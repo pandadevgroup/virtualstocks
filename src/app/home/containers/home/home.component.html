@@ -1,1 +1,3 @@
-{{ stocks | async | json }}
+<div *ngFor="let stock of stocks | async">
+	<p class="mat-typography">{{ stock.ticker }}</p>
+</div>
