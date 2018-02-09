@@ -15,6 +15,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { AppComponent } from "./app.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { CoreModule } from "@app/core";
+import { AuthModule } from "@app/auth";
 
 import { environment } from "@env/environment";
 
@@ -31,6 +32,7 @@ import { environment } from "@env/environment";
 		AngularFirestoreModule,
    		AngularFireAuthModule,
 		CoreModule,
+		AuthModule,
 
 		MatToolbarModule
 	],
