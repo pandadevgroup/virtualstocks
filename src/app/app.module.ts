@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
+import { CoreModule } from '@app/core';
 
 import { environment } from '../environments/environment';
 
@@ -13,9 +14,10 @@ import { environment } from '../environments/environment';
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+	BrowserModule,
+	AppRoutingModule,
+	ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
