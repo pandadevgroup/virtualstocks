@@ -8,7 +8,7 @@ import { SharedModule } from "@app/shared";
 	imports: [
 		CommonModule,
 		HttpClientModule,
-		SharedModule
+		SharedModule.forRoot()
 	],
 	declarations: [],
 	providers: []
