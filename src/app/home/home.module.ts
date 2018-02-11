@@ -2,10 +2,10 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent } from "./containers";
+import * as fromContainers from "./containers";
 
 const routes: Routes = [
-	{ path: "", pathMatch: "full", component: HomeComponent }
+	{ path: "", pathMatch: "full", component: fromContainers.HomeComponent }
 ]
 
 @NgModule({
@@ -14,7 +14,7 @@ const routes: Routes = [
 		RouterModule.forChild(routes)
 	],
 	declarations: [
-		HomeComponent
+		...fromContainers.containers
 	]
 })
 export class HomeModule {}

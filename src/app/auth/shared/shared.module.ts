@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { AuthService } from "./services";
+import * as fromServices from "./services";
 
-import { AuthGuard } from "./guards";
+import * as fromGuards from "./guards";
 
 @NgModule({
 	imports: [
@@ -16,7 +16,10 @@ export class SharedModule {
 	static forRoot(): ModuleWithProviders {
 		return {
 			ngModule: SharedModule,
-			providers: [AuthService, AuthGuard]
+			providers: [
+				...fromServices.services,
+				...fromGuards.guards
+			]
 		};
 	}
 }

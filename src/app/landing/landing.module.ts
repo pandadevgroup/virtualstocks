@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LandingComponent } from "./containers";
+import * as fromContainers from "./containers";
 
 const routes: Routes = [
-	{ path: "", pathMatch: "full", component: LandingComponent },
+	{ path: "", pathMatch: "full", component: fromContainers.LandingComponent },
 ];
 
 @NgModule({
@@ -14,7 +14,7 @@ const routes: Routes = [
 	RouterModule.forChild(routes)
   ],
   declarations: [
-	  LandingComponent
+	  ...fromContainers.containers
   ]
 })
 export class LandingModule { }

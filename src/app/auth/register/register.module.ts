@@ -2,10 +2,10 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import { RegisterComponent } from "./containers";
+import * as fromContainers from "./containers";
 
 const routes: Routes = [
-	{ path: "", pathMatch: "full", component: RegisterComponent }
+	{ path: "", pathMatch: "full", component: fromContainers.RegisterComponent }
 ]
 
 @NgModule({
@@ -14,7 +14,7 @@ const routes: Routes = [
 		RouterModule.forChild(routes)
 	],
 	declarations: [
-		RegisterComponent
+		...fromContainers.containers
 	]
 })
 export class RegisterModule {}
