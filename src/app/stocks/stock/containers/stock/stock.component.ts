@@ -1,4 +1,8 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/switchMap";
 
 import * as Chart from "chart.js";
 
@@ -7,6 +11,10 @@ import * as Chart from "chart.js";
 	styleUrls: ["stock.component.scss"]
 })
 export class StockComponent {
+	stock$: Observable<any>;
+
+	constructor(private route: ActivatedRoute) {}
+
 	ngOnInit() {
 		// Enter your code here I guess for testing
 		var myLineChart = new Chart(document.getElementById("chart").msGetInputContext("2d"), {
@@ -42,5 +50,11 @@ export class StockComponent {
 			}
 		});
 		console.log(Chart);
+
+		this.stock$ = this.route.paramMap
+			.switchMap((params: ParamMap) => {
+				const ticker = params.get("ticker");
+				return Observable.of({ ticker });
+			});
 	}
 }
