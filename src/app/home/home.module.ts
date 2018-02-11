@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent } from "./containers/home/home.component";
+import { HomeComponent } from "./containers";
 
 const routes: Routes = [
 	{ path: "", pathMatch: "full", component: HomeComponent }

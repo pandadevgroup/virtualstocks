@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { AuthService } from "./services/auth/auth.service";
+import { AuthService } from "./services";
 
-import { AuthGuard } from "./guards/auth.guard";
+import { AuthGuard } from "./guards";
 
 @NgModule({
 	imports: [

@@ -12,8 +12,8 @@ import { AppRoutingModule } from "./app-routing.module";
 
 import { ServiceWorkerModule } from "@angular/service-worker";
 
-import { AppComponent } from "./app.component";
-import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { AppComponent } from "./containers";
+import { ToolbarComponent } from "./components";
 import { CoreModule } from "@app/core";
 import { AuthModule } from "@app/auth";
 
