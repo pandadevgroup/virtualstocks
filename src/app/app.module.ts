@@ -16,6 +16,7 @@ import * as fromContainers from "./containers";
 import * as fromComponents from "./components";
 import { CoreModule } from "@app/core";
 import { AuthModule } from "@app/auth";
+import { StocksModule } from "@app/stocks";
 
 import { environment } from "@env/environment";
 
@@ -36,6 +37,7 @@ import { environment } from "@env/environment";
    		AngularFireAuthModule,
 		CoreModule,
 		AuthModule,
+		StocksModule,
 
 		MatToolbarModule
 	],
