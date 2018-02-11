@@ -5,7 +5,7 @@ import { Routes, RouterModule } from "@angular/router";
 import * as fromContainers from "./containers";
 
 const routes: Routes = [
-	{ path: "", pathMatch: "full", component: fromContainers.StockDetailComponent }
+	{ path: "", pathMatch: "full", component: fromContainers.StockComponent }
 ];
 
 @NgModule({
@@ -18,4 +18,4 @@ const routes: Routes = [
 	],
 	providers: []
 })
-export class StockDetailModule {}
+export class StockModule {}

@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-	{ path: "details/:ticker", loadChildren: "./stock-detail#StockDetailModule" }
+	{ path: "stock/:ticker", loadChildren: "./stock#StockModule" }
 ];
 
 @NgModule({
