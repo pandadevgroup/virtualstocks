@@ -15,6 +15,8 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 
 import { services } from "../services";
 
+import { environment } from "@env/environment";
+
 @NgModule({
 	imports: [
 		CommonModule,
