@@ -3,17 +3,17 @@ import { PortfolioStock, Portfolio } from "@app/stocks/models";
 import * as fromPortfolio from "../actions/portfolio.actions";
 
 export interface PortfolioState {
-	entities: { [ticker: string]: PortfolioStock };
+	stockEntities: { [ticker: string]: PortfolioStock };
 	loaded: boolean;
 	loading: boolean;
-	totalValue: number;
+	value: number;
 }
 
 export const initialState: PortfolioState = {
-	entities: {},
+	stockEntities: {},
 	loaded: false,
 	loading: false,
-	totalValue: 0
+	value: 0
 };
 
 export function reducer(state = initialState, action: fromPortfolio.PortfolioAction): PortfolioState {
@@ -36,23 +36,28 @@ export function reducer(state = initialState, action: fromPortfolio.PortfolioAct
 		case fromPortfolio.LOAD_PORTFOLIO_SUCCESS: {
 			const portfolio = action.payload;
 
-			const entities = portfolio.stocks.reduce((
+			const stockEntities = portfolio.stocks.reduce((
 				entities: { [ticker: string]: PortfolioStock }, stock
 			) => {
 				entities[stock.ticker] = stock;
 				return entities;
 			}, {});
 
-			const totalValue = portfolio.totalValue;
+			const value = portfolio.value;
 
 			return {
 				...state,
 				loading: false,
 				loaded: true,
-				entities,
-				totalValue
+				stockEntities,
+				value
 			}
 		}
 	}
 	return state;
 }
+
+export const getPortfolioStockEntities = (state: PortfolioState) => state.stockEntities;
+export const getPortfolioLoaded = (state: PortfolioState) => state.loaded;
+export const getPortfolioLoading = (state: PortfolioState) => state.loading;
+export const getPortfolioValue = (state: PortfolioState) => state.value;

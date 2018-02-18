@@ -15,7 +15,7 @@ const routes: Routes = [
 	imports: [
 		RouterModule.forChild(routes),
 		StoreModule.forFeature("stocks", fromStore.reducers),
-		EffectsModule.forFeature(fromStore.effects)
+		EffectsModule.forFeature([])
 	]
 })
 export class StocksModule {}
