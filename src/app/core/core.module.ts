@@ -13,11 +13,11 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ServiceWorkerModule } from "@angular/service-worker";
 
-import { services } from "../services";
+import { services } from "@app/services";
 
 import { environment } from "@env/environment";
 
-import * as fromStore from "../store";
+import * as fromStore from "@app/store";
 
 @NgModule({
 	imports: [

@@ -2,7 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import { SharedModule } from "./shared/shared.module";
+import * as fromServices from "@app/auth/services";
+import * as fromGuards from "@app/auth/guards";
 
 const routes: Routes = [
 	{ path: "login", loadChildren: "./login/login.module#LoginModule" },
@@ -13,7 +14,10 @@ const routes: Routes = [
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
-		SharedModule.forRoot()
+	],
+	providers: [
+		...fromServices.services,
+		...fromGuards.guards
 	],
 	declarations: []
 })
