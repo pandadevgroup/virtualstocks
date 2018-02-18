@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -16,6 +16,8 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { services } from "../services";
 
 import { environment } from "@env/environment";
+
+import * as fromStore from "../store";
 
 @NgModule({
 	imports: [
@@ -30,10 +32,8 @@ import { environment } from "@env/environment";
 		AngularFirestoreModule,
 		AngularFireAuthModule,
 
-		StoreModule.forRoot({
-			router: routerReducer
-		}),
-		EffectsModule.forRoot([]),
+		StoreModule.forRoot(fromStore.reducers),
+		EffectsModule.forRoot(fromStore.effects),
 		environment.production ? [] : StoreDevtoolsModule.instrument(),
 		StoreRouterConnectingModule.forRoot({
 			stateKey: 'router'
@@ -41,7 +41,8 @@ import { environment } from "@env/environment";
 	],
 	declarations: [],
 	providers: [
-		...services
+		...services,
+		{ provide: RouterStateSerializer, useClass: fromStore.CustomSerializer }
 	]
 })
 export class CoreModule {
