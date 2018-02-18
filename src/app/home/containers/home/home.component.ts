@@ -2,7 +2,8 @@ import { Component } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 
-import { Stock, UserService } from "@app/shared";
+import { Stock } from "@app/models";
+import { UserService } from "@app/services";
 
 @Component({
 	templateUrl: "home.component.html",

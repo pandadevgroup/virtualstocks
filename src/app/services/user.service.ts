@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 
 import { AngularFirestore } from "angularfire2/firestore";
 
-import { Stock } from "../models/stock.model";
+import { Stock } from "../models";
 
 @Injectable()
 export class UserService {
