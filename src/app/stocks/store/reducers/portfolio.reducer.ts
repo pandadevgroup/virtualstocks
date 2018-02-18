@@ -1,6 +1,6 @@
 import { PortfolioStock, Portfolio } from "@app/stocks/models";
 
-import * as fromPortfolio from "../actions/portfolio.action";
+import * as fromPortfolio from "../actions/portfolio.actions";
 
 export interface PortfolioState extends Portfolio {
 	loaded: boolean;

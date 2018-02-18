@@ -1,1 +1,1 @@
-export * from "./portfolio.action";
+export * from "./portfolio.actions";
