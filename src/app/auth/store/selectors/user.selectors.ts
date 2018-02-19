@@ -10,6 +10,6 @@ export const getUserState = createSelector(
 	state => state.user
 );
 
-export const getUser = createSelector(getUserState, fromUser.getUser);
+export const getUserData = createSelector(getUserState, fromUser.getUserData);
 export const getUserError = createSelector(getUserState, fromUser.getUserError);
 export const getUserLoggedIn = createSelector(getUserState, fromUser.getUserLoggedIn);

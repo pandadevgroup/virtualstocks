@@ -2,13 +2,13 @@ import * as fromUser from "../actions/user.actions";
 import { AuthInfo, User } from "@app/auth";
 
 export interface UserState {
-	user: User;
+	userData: User;
 	loggedIn: boolean;
 	error: any;
 }
 
 export const initialState: UserState = {
-	user: null,
+	userData: null,
 	loggedIn: false,
 	error: null
 };
@@ -22,11 +22,11 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 			};
 		}
 		case fromUser.LOGIN_SUCCESS: {
-			const user = action.payload;
+			const userData = action.payload;
 
 			return {
 				...state,
-				user,
+				userData,
 				loggedIn: true,
 				error: null
 			};
@@ -52,6 +52,6 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 	return state;
 }
 
-export const getUser = (state: UserState) => state.user;
+export const getUserData = (state: UserState) => state.userData;
 export const getUserLoggedIn = (state: UserState) => state.loggedIn;
 export const getUserError = (state: UserState) => state.error;
