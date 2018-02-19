@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
 
 import { Store } from "@ngrx/store";
 import * as fromAuth from "@app/auth";
@@ -12,7 +12,7 @@ import "rxjs/add/operator/takeUntil";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
 	loggedIn: boolean = false;
 	private ngUnsubscribe = new Subject();
