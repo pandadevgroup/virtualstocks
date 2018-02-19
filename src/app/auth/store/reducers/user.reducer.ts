@@ -21,16 +21,6 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 				error: null
 			};
 		}
-		case fromUser.LOGIN_SUCCESS: {
-			const userData = action.payload;
-
-			return {
-				...state,
-				userData,
-				loggedIn: true,
-				error: null
-			};
-		}
 		case fromUser.LOGIN_FAILURE: {
 			const error = action.payload;
 
@@ -38,14 +28,24 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 				...state,
 				loggedIn: false,
 				error
-			}
+			};
 		}
 		case fromUser.LOGOUT: {
 			return {
 				...state,
 				loggedIn: false,
 				error: null
-			}
+			};
+		}
+		case fromUser.UPDATE_USER: {
+			const userData = action.payload;
+
+			return {
+				...state,
+				loggedIn: !!userData,
+				error: null,
+				userData
+			};
 		}
 	}
 

@@ -20,8 +20,7 @@ export class AppComponent {
 
 	ngOnInit() {
 		this.authSubscription$ = this.authService.user.subscribe(user => {
-			console.log(user);
-			this.store.dispatch(new fromAuth.LoginSuccess(user));
+			this.store.dispatch(new fromAuth.UpdateUser(user));
 		});
 	}
 

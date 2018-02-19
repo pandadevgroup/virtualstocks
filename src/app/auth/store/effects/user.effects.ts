@@ -17,7 +17,6 @@ export class UserEffects {
 	login$ = this.actions$.ofType(fromActions.LOGIN).pipe(
 		map((action: fromActions.Login) => action.payload),
 		switchMap(authInfo => this.authService.login(authInfo)),
-		map(user => new fromActions.LoginSuccess(user)),
 		catchError(error => of(new fromActions.LoginFailure(error)))
 	);
 }
