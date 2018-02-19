@@ -2,8 +2,13 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
-import * as fromServices from "@app/auth/services";
-import * as fromGuards from "@app/auth/guards";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+
+import * as fromServices from "./services";
+import * as fromGuards from "./guards";
+
+import { reducers } from "./store";
 
 const routes: Routes = [
 	{ path: "login", loadChildren: "./login/login.module#LoginModule" },
@@ -14,6 +19,8 @@ const routes: Routes = [
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
+		StoreModule.forFeature("auth", reducers),
+		EffectsModule.forFeature([])
 	],
 	providers: [
 		...fromServices.services,
