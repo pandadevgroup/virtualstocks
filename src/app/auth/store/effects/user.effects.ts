@@ -5,7 +5,7 @@ import { Effect, Actions } from "@ngrx/effects";
 import { map, switchMap, catchError } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
 
-import { AuthService } from "@app/auth";
+import { AuthService } from "@app/auth/services";
 
 import * as fromActions from "../actions";
 
