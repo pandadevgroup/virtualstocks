@@ -4,6 +4,7 @@ import { Effect, Actions } from "@ngrx/effects";
 
 import { map, switchMap, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
+import { empty } from "rxjs/observable/empty";
 
 import { AuthService } from "@app/auth/services";
 
@@ -17,6 +18,7 @@ export class UserEffects {
 	login$ = this.actions$.ofType(fromActions.LOGIN).pipe(
 		map((action: fromActions.Login) => action.payload),
 		switchMap(authInfo => this.authService.login(authInfo)),
+		map(() => new fromActions.LoginSuccess()),
 		catchError(error => of(new fromActions.LoginFailure(error)))
 	);
 

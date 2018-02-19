@@ -5,11 +5,16 @@ import { User, AuthInfo } from "@app/auth";
 // Login Logout
 export const LOGIN = "[Auth] Login";
 export const LOGOUT = "[Auth] Logout";
+export const LOGIN_SUCCESS = "[Auth] Login Success";
 export const LOGIN_FAILURE = "[Auth] Login Failure";
 
 export class Login implements Action {
 	readonly type = LOGIN;
 	constructor(public payload: AuthInfo) {}
+}
+
+export class LoginSuccess implements Action {
+	readonly type = LOGIN_SUCCESS;
 }
 
 export class LoginFailure implements Action {
@@ -31,6 +36,7 @@ export class UpdateUser implements Action {
 
 export type UserActions =
 	| Login
+	| LoginSuccess
 	| LoginFailure
 	| Logout
 	| UpdateUser;
