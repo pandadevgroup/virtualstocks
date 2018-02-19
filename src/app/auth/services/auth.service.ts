@@ -16,10 +16,7 @@ export class AuthService {
 		if (authInfo.type === "google") {
 			return this._loginWithGoogle();
 		} else if (authInfo.type === "credentials") {
-			// TODO
-			return Observable.fromPromise(
-				this.af.auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
-			);
+			return this._loginWithCreds(authInfo);
 		} else {
 			throw "AuthInfo.type should be either 'google' or 'credentials'";
 		}
@@ -29,12 +26,19 @@ export class AuthService {
 		return Observable.fromPromise(
 			this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 		).pipe(
-			map(this._parseAuthResponse.bind(this))
+			map(response => this._parseAuthUser(response.user))
 		);
 	}
 
-	_parseAuthResponse(result) {
-		const { user } = result;
+	_loginWithCreds(authInfo: AuthInfo): Observable<User> {
+		return Observable.fromPromise(
+			this.af.auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
+		).pipe(
+			map(response => this._parseAuthUser(response))
+		);
+	}
+
+	_parseAuthUser(user) {
 		const name = user.displayName;
 		const email = user.email;
 		const id = user.uid;
