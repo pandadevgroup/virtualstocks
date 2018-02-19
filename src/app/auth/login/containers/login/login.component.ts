@@ -10,4 +10,10 @@ import * as fromStore from "@app/auth/store";
 })
 export class LoginComponent {
 	constructor(private store: Store<fromStore.AuthState>) {}
+
+	ngOnInit() {
+		this.store.dispatch(new fromStore.Login({
+			type: "google"
+		}));
+	}
 }

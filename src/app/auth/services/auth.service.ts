@@ -12,6 +12,12 @@ import { map, catchError } from "rxjs/operators";
 export class AuthService {
 	constructor(private af: AngularFireAuth) {}
 
+	get user(): Observable<User> {
+		return this.af.authState.pipe(
+			map(this._parseAuthUser.bind(this))
+		);
+	}
+
 	login(authInfo: AuthInfo): Observable<User> {
 		if (authInfo.type === "google") {
 			return this._loginWithGoogle();
@@ -38,7 +44,7 @@ export class AuthService {
 		);
 	}
 
-	_parseAuthUser(user) {
+	_parseAuthUser(user): User {
 		const name = user.displayName;
 		const email = user.email;
 		const id = user.uid;
