@@ -15,20 +15,24 @@ import { filter, take } from "rxjs/operators";
 export class LoginComponent implements OnInit, OnDestroy {
 	subscription: Subscription;
 
-	constructor(private store: Store<fromRoot.State>) {}
+	constructor(
+		private store: Store<fromRoot.State>,
+		private userEffects: fromAuth.UserEffects
+	) {}
 
 	ngOnInit() {
-		this.subscription = this.store
-			.select(fromAuth.getUserLoggedIn)
-			.pipe(
-				filter(loggedIn => loggedIn),
-				take(1)
-			)
-			.subscribe(loggedIn => {
-				this.store.dispatch(new fromRoot.Go({
+		this.subscription = this.userEffects.loginWithGoogle$.subscribe(result => {
+			if (result.type !== fromAuth.LOGIN_WITH_GOOGLE_SUCCESS) return;
+			const { user, googleResponse } = result.payload;
+
+			console.log(user, googleResponse);
+
+			this.store.dispatch(
+				new fromRoot.Go({
 					path: ["/home"]
-				}));
-			});
+				})
+			);
+		});
 	}
 
 	ngOnDestroy() {
@@ -36,8 +40,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 	}
 
 	login() {
-		this.store.dispatch(new fromAuth.Login({
-			type: "google"
-		}));
+		this.store.dispatch(new fromAuth.LoginWithGoogle());
 	}
 }

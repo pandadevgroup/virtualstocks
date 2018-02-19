@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { Effect, Actions } from "@ngrx/effects";
 
-import { map, switchMap, catchError, tap } from "rxjs/operators";
+import { map, switchMap, catchError, tap, share } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
 import { empty } from "rxjs/observable/empty";
 
@@ -15,11 +15,12 @@ export class UserEffects {
 	constructor(private actions$: Actions, private authService: AuthService) {}
 
 	@Effect()
-	login$ = this.actions$.ofType(fromActions.LOGIN).pipe(
+	loginWithGoogle$ = this.actions$.ofType(fromActions.LOGIN_WITH_GOOGLE).pipe(
 		map((action: fromActions.Login) => action.payload),
-		switchMap(authInfo => this.authService.login(authInfo)),
-		map(() => new fromActions.LoginSuccess()),
-		catchError(error => of(new fromActions.LoginFailure(error)))
+		switchMap(authInfo => this.authService.loginWithGoogle()),
+		map(data => new fromActions.LoginWithGoogleSuccess(data)),
+		catchError(error => of(new fromActions.LoginFailure(error))),
+		share()
 	);
 
 	@Effect({ dispatch: false })

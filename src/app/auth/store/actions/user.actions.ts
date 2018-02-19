@@ -1,12 +1,14 @@
 import { Action } from "@ngrx/store";
 
-import { User, AuthInfo } from "@app/auth";
+import { User, AuthInfo, GoogleLoginResponse } from "@app/auth";
 
 // Login Logout
 export const LOGIN = "[Auth] Login";
 export const LOGOUT = "[Auth] Logout";
 export const LOGIN_SUCCESS = "[Auth] Login Success";
 export const LOGIN_FAILURE = "[Auth] Login Failure";
+export const LOGIN_WITH_GOOGLE = "[Auth] Login With Google";
+export const LOGIN_WITH_GOOGLE_SUCCESS = "[Auth] Login With Google Success";
 
 export class Login implements Action {
 	readonly type = LOGIN;
@@ -15,6 +17,16 @@ export class Login implements Action {
 
 export class LoginSuccess implements Action {
 	readonly type = LOGIN_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class LoginWithGoogle implements Action {
+	readonly type = LOGIN_WITH_GOOGLE;
+}
+
+export class LoginWithGoogleSuccess implements Action {
+	readonly type = LOGIN_WITH_GOOGLE_SUCCESS;
+	constructor(public payload: GoogleLoginResponse) {}
 }
 
 export class LoginFailure implements Action {
@@ -36,6 +48,8 @@ export class UpdateUser implements Action {
 
 export type UserActions =
 	| Login
+	| LoginWithGoogle
+	| LoginWithGoogleSuccess
 	| LoginSuccess
 	| LoginFailure
 	| Logout
