@@ -1,30 +1,43 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 
 import { Store } from "@ngrx/store";
 import * as fromAuth from "@app/auth";
 
-import { Subscription } from "rxjs/Subscription";
+import { Subject } from "rxjs/Subject";
+import "rxjs/add/operator/takeUntil";
 
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+
+	loggedIn: boolean = false;
+	private ngUnsubscribe = new Subject();
+
 	constructor(
 		private store: Store<fromAuth.AuthState>,
-		private authService: fromAuth.AuthService
+		private authService: fromAuth.AuthService,
+		private cd: ChangeDetectorRef
 	) {}
 
-	authSubscription$: Subscription;
-
 	ngOnInit() {
-		this.authSubscription$ = this.authService.user.subscribe(user => {
+		this.authService.user.takeUntil(this.ngUnsubscribe).subscribe(user => {
 			this.store.dispatch(new fromAuth.UpdateUser(user));
 		});
+		this.store
+			.select(fromAuth.getUserLoggedIn)
+			.takeUntil(this.ngUnsubscribe)
+			.subscribe(loggedIn => {
+				this.loggedIn = loggedIn;
+				this.cd.markForCheck();
+			});
 	}
 
 	ngOnDestroy() {
-		this.authSubscription$.unsubscribe();
+		this.ngUnsubscribe.next();
+		this.ngUnsubscribe.complete();
 	}
 }

@@ -10,10 +10,12 @@ import * as fromServices from "./services";
 import * as fromGuards from "./guards";
 
 import { reducers, effects } from "./store";
+import * as fromContainers from "./containers";
 
 const routes: Routes = [
 	{ path: "login", loadChildren: "./login/login.module#LoginModule" },
-	{ path: "register", loadChildren: "./register/register.module#RegisterModule" }
+	{ path: "register", loadChildren: "./register/register.module#RegisterModule" },
+	{ path: "logout", component: fromContainers.LogoutComponent }
 ];
 
 @NgModule({
@@ -28,6 +30,8 @@ const routes: Routes = [
 		...fromServices.services,
 		...fromGuards.guards
 	],
-	declarations: []
+	declarations: [
+		...fromContainers.containers
+	]
 })
 export class AuthModule {}

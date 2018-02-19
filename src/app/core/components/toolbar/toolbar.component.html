@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
 	<mat-toolbar-row>
 		<a routerLink="/">Virtual Stocks</a>
+		<span class="spacer"></span>
+		<a mat-button routerLink="/login" *ngIf="!loggedIn">Login</a>
+		<a mat-button routerLink="/logout" *ngIf="loggedIn">Logout</a>
 	</mat-toolbar-row>
 </mat-toolbar>

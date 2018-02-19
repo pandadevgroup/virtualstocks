@@ -12,7 +12,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ServiceWorkerModule } from "@angular/service-worker";
 
-import { MatToolbarModule } from "@angular/material";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
 
 import { environment } from "@env/environment";
 
@@ -47,6 +48,7 @@ import { CoreRoutingModule } from "./core-routing.module";
 		}),
 
 		MatToolbarModule,
+		MatButtonModule,
 
 		CoreRoutingModule
 	],
