@@ -38,12 +38,26 @@ export class Logout implements Action {
 	readonly type = LOGOUT;
 }
 
-// Update User
-export const UPDATE_USER = "[Auth] Update User";
+// Set User
+export const SET_USER = "[Auth] Set User";
 
-export class UpdateUser implements Action {
-	readonly type = UPDATE_USER;
+export class SetUser implements Action {
+	readonly type = SET_USER;
 	constructor(public payload: User) {}
+}
+
+// Create User
+export const CREATE_USER = "[Auth] Create User";
+export const CREATE_USER_WITH_GOOGLE_AUTH = "[Auth] Create User With Google Auth";
+
+export class CreateUser {
+	readonly type = CREATE_USER;
+	constructor(public payload: User) {}
+}
+
+export class CreateUserWithGoogleAuth {
+	readonly type = CREATE_USER_WITH_GOOGLE_AUTH;
+	constructor(public payload: any) {}
 }
 
 export type UserActions =
@@ -53,4 +67,6 @@ export type UserActions =
 	| LoginSuccess
 	| LoginFailure
 	| Logout
-	| UpdateUser;
+	| SetUser
+	| CreateUser
+	| CreateUserWithGoogleAuth;

@@ -37,7 +37,7 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 				loggedIn: false
 			};
 		}
-		case fromUser.UPDATE_USER: {
+		case fromUser.SET_USER: {
 			const userData = action.payload;
 
 			return {

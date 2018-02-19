@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.authService.user.takeUntil(this.ngUnsubscribe).subscribe(user => {
-			this.store.dispatch(new fromAuth.UpdateUser(user));
+			this.store.dispatch(new fromAuth.SetUser(user));
 		});
 		this.store
 			.select(fromAuth.getUserLoggedIn)

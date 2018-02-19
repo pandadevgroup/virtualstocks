@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 import { AuthInfo, User, GoogleLoginResponse } from "@app/auth";
 
 import { Observable } from "rxjs/Observable";
-import { switchMap, catchError, tap, map } from "rxjs/operators";
+import { switchMap, catchError, tap, map, take } from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
 	}
 
 	getUser(id): Observable<User> {
-		return this.db.doc<User>(`/user/${id}`).valueChanges().pipe(tap(x => console.log("boo:",x)));
+		return this.db.doc<User>(`/users/${id}`).valueChanges().pipe(tap(x => console.log("boo:",x)));
 	}
 
 	loginWithGoogle(): Observable<GoogleLoginResponse> {
@@ -33,7 +33,8 @@ export class AuthService {
 		).pipe(
 			switchMap(googleResponse => {
 				return this.parseAuthUser(googleResponse.user).pipe(
-					map(user => ({ user, googleResponse }))
+					map(user => ({ user, googleResponse })),
+					take(1)
 				)
 			}),
 		);
@@ -43,12 +44,12 @@ export class AuthService {
 		return Observable.fromPromise(
 			this.af.auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
 		).pipe(
-			switchMap(response => this.parseAuthUser(response))
+			switchMap(response => this.parseAuthUser(response).pipe(take(1)))
 		);
 	}
 
 	private parseAuthUser(user): Observable<User> {
-		if (!user) return null;
+		if (!user) return Observable.of(null);
 
 		const id = user.uid;
 
