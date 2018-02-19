@@ -4,12 +4,14 @@ import { AuthInfo, User } from "@app/auth";
 export interface UserState {
 	userData: User;
 	loggedIn: boolean;
+	loaded: boolean;
 	error: any;
 }
 
 export const initialState: UserState = {
 	userData: null,
 	loggedIn: false,
+	loaded: false,
 	error: null
 };
 
@@ -26,15 +28,13 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 
 			return {
 				...state,
-				loggedIn: false,
 				error
 			};
 		}
 		case fromUser.LOGOUT: {
 			return {
 				...state,
-				loggedIn: false,
-				error: null
+				loggedIn: false
 			};
 		}
 		case fromUser.UPDATE_USER: {
@@ -44,6 +44,7 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 				...state,
 				loggedIn: !!userData,
 				error: null,
+				loaded: true,
 				userData
 			};
 		}
@@ -55,3 +56,4 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 export const getUserData = (state: UserState) => state.userData;
 export const getUserLoggedIn = (state: UserState) => state.loggedIn;
 export const getUserError = (state: UserState) => state.error;
+export const getUserLoaded = (state: UserState) => state.loaded;

@@ -13,3 +13,4 @@ export const getUserState = createSelector(
 export const getUserData = createSelector(getUserState, fromUser.getUserData);
 export const getUserError = createSelector(getUserState, fromUser.getUserError);
 export const getUserLoggedIn = createSelector(getUserState, fromUser.getUserLoggedIn);
+export const getUserLoaded = createSelector(getUserState, fromUser.getUserLoaded);
