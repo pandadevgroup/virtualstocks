@@ -28,6 +28,10 @@ export class AuthService {
 		}
 	}
 
+	logout() {
+		this.af.auth.signOut();
+	}
+
 	_loginWithGoogle(): Observable<User> {
 		return Observable.fromPromise(
 			this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
@@ -45,6 +49,8 @@ export class AuthService {
 	}
 
 	_parseAuthUser(user): User {
+		if (!user) return null;
+
 		const name = user.displayName;
 		const email = user.email;
 		const id = user.uid;

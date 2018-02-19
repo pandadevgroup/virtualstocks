@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { Effect, Actions } from "@ngrx/effects";
 
-import { map, switchMap, catchError } from "rxjs/operators";
+import { map, switchMap, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
 
 import { AuthService } from "@app/auth/services";
@@ -18,5 +18,10 @@ export class UserEffects {
 		map((action: fromActions.Login) => action.payload),
 		switchMap(authInfo => this.authService.login(authInfo)),
 		catchError(error => of(new fromActions.LoginFailure(error)))
+	);
+
+	@Effect({ dispatch: false })
+	logout$ = this.actions$.ofType(fromActions.LOGOUT).pipe(
+		tap(() => this.authService.logout())
 	);
 }
