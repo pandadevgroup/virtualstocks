@@ -1,4 +1,4 @@
-import { PortfolioStock, Portfolio } from "@app/stocks/models";
+import { PortfolioStock, Portfolio } from "@app/stocks";
 
 import * as fromPortfolio from "../actions/portfolio.actions";
 
