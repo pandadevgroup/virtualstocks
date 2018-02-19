@@ -13,13 +13,22 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ServiceWorkerModule } from "@angular/service-worker";
 
-import { services } from "@app/services";
+import { MatToolbarModule } from "@angular/material";
 
 import { environment } from "@env/environment";
 
-import * as fromStore from "@app/store";
+import * as fromStore from "./store";
+
+import * as fromContainers from "./containers";
+import * as fromComponents from "./components";
+
+import { CoreRoutingModule } from "./core-routing.module";
 
 @NgModule({
+	declarations: [
+		...fromContainers.containers,
+		...fromComponents.components
+	],
 	imports: [
 		CommonModule,
 		HttpClientModule,
@@ -38,10 +47,12 @@ import * as fromStore from "@app/store";
 		StoreRouterConnectingModule.forRoot({
 			stateKey: 'router'
 		}),
+
+		MatToolbarModule,
+
+		CoreRoutingModule
 	],
-	declarations: [],
 	providers: [
-		...services,
 		{ provide: RouterStateSerializer, useClass: fromStore.CustomSerializer }
 	]
 })
