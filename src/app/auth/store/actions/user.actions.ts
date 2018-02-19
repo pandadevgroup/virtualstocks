@@ -26,4 +26,4 @@ export class Logout implements Action {
 	readonly type = LOGOUT;
 }
 
-export type AuthActions = Login | LoginSuccess | LoginFailure | Logout;
+export type UserActions = Login | LoginSuccess | LoginFailure | Logout;

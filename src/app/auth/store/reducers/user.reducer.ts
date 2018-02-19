@@ -1,27 +1,27 @@
-import * as fromAuth from "../actions/auth.actions";
+import * as fromUser from "../actions/user.actions";
 import { AuthInfo, User } from "@app/auth";
 
-export interface AuthState {
+export interface UserState {
 	user: User;
 	loggedIn: boolean;
 	error: any;
 }
 
-export const initialState: AuthState = {
+export const initialState: UserState = {
 	user: null,
 	loggedIn: false,
 	error: null
 };
 
-export function reducer(state = initialState, action: fromAuth.AuthActions): AuthState {
+export function reducer(state = initialState, action: fromUser.UserActions): UserState {
 	switch (action.type) {
-		case fromAuth.LOGIN: {
+		case fromUser.LOGIN: {
 			return {
 				...state,
 				error: null
 			};
 		}
-		case fromAuth.LOGIN_SUCCESS: {
+		case fromUser.LOGIN_SUCCESS: {
 			const user = action.payload;
 
 			return {
@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: fromAuth.AuthActions): Aut
 				error: null
 			};
 		}
-		case fromAuth.LOGIN_FAILURE: {
+		case fromUser.LOGIN_FAILURE: {
 			const error = action.payload;
 
 			return {
@@ -40,7 +40,7 @@ export function reducer(state = initialState, action: fromAuth.AuthActions): Aut
 				error
 			}
 		}
-		case fromAuth.LOGOUT: {
+		case fromUser.LOGOUT: {
 			return {
 				...state,
 				loggedIn: false,
@@ -52,6 +52,6 @@ export function reducer(state = initialState, action: fromAuth.AuthActions): Aut
 	return state;
 }
 
-export const getAuthUser = (state: AuthState) => state.user;
-export const getAuthLoggedIn = (state: AuthState) => state.loggedIn;
-export const getAuthError = (state: AuthState) => state.error;
+export const getUser = (state: UserState) => state.user;
+export const getUserLoggedIn = (state: UserState) => state.loggedIn;
+export const getUserError = (state: UserState) => state.error;
