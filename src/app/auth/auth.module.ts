@@ -13,8 +13,15 @@ import { reducers, effects } from "./store";
 import * as fromContainers from "./containers";
 
 const routes: Routes = [
-	{ path: "login", loadChildren: "./login/login.module#LoginModule" },
-	{ path: "register", loadChildren: "./register/register.module#RegisterModule" },
+	{
+		path: "login",
+		canActivate: [fromGuards.NoAuthGuard],
+		loadChildren: "./login/login.module#LoginModule"
+	},
+	{
+		path: "register",
+		loadChildren: "./register/register.module#RegisterModule"
+	},
 	{ path: "logout", component: fromContainers.LogoutComponent }
 ];
 
