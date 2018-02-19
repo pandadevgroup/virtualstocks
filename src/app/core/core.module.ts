@@ -15,6 +15,9 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 
+import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
+import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
+
 import { environment } from "@env/environment";
 
 import * as fromStore from "./store";
@@ -46,6 +49,9 @@ import { CoreRoutingModule } from "./core-routing.module";
 		StoreRouterConnectingModule.forRoot({
 			stateKey: 'router'
 		}),
+
+		LoadingBarHttpClientModule,
+		LoadingBarRouterModule,
 
 		MatToolbarModule,
 		MatButtonModule,
