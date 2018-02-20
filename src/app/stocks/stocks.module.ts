@@ -14,6 +14,11 @@ const routes: Routes = [
 		path: "stock/:ticker",
 		canActivate: [fromGuards.PortfolioGuard],
 		loadChildren: "./stock#StockModule"
+	},
+	{
+		path: "stocks",
+		canActivate: [fromGuards.PortfolioGuard],
+		loadChildren: "./stocks#StocksModule"
 	}
 ];
 
