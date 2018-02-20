@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 
-import { Store } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
 import { switchMap, map, catchError, take, filter, tap } from "rxjs/operators";
@@ -13,8 +12,7 @@ import { StocksService } from "@app/stocks/services";
 export class StocksDataEffects {
 	constructor(
 		private actions$: Actions,
-		private stocksService: StocksService,
-		private store: Store<fromRoot.State>
+		private stocksService: StocksService
 	) {}
 
 	@Effect()

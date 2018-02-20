@@ -8,7 +8,6 @@ export const LOGOUT = "[Auth] Logout";
 export const LOGIN_SUCCESS = "[Auth] Login Success";
 export const LOGIN_FAILURE = "[Auth] Login Failure";
 export const LOGIN_WITH_GOOGLE = "[Auth] Login With Google";
-export const LOGIN_WITH_GOOGLE_SUCCESS = "[Auth] Login With Google Success";
 
 export class Login implements Action {
 	readonly type = LOGIN;
@@ -22,11 +21,6 @@ export class LoginSuccess implements Action {
 
 export class LoginWithGoogle implements Action {
 	readonly type = LOGIN_WITH_GOOGLE;
-}
-
-export class LoginWithGoogleSuccess implements Action {
-	readonly type = LOGIN_WITH_GOOGLE_SUCCESS;
-	constructor(public payload: GoogleLoginResponse) {}
 }
 
 export class LoginFailure implements Action {
@@ -46,41 +40,10 @@ export class SetUser implements Action {
 	constructor(public payload: User) {}
 }
 
-// Create User
-export const CREATE_USER = "[Auth] Create User";
-export const CREATE_USER_WITH_GOOGLE_AUTH = "[Auth] Create User With Google Auth";
-export const CREATE_USER_SUCCESS = "[Auth] Create User Success";
-export const CREATE_USER_FAIL = "[Auth] Create User Fail";
-
-export class CreateUser {
-	readonly type = CREATE_USER;
-	constructor(public payload: User) {}
-}
-
-export class CreateUserWithGoogleAuth {
-	readonly type = CREATE_USER_WITH_GOOGLE_AUTH;
-	constructor(public payload: any) {}
-}
-
-export class CreateUserSuccess {
-	readonly type = CREATE_USER_SUCCESS;
-	constructor(public payload: User) {}
-}
-
-export class CreateUserFail {
-	readonly type = CREATE_USER_FAIL;
-	constructor(public payload: any) {}
-}
-
 export type UserActions =
 	| Login
 	| LoginWithGoogle
-	| LoginWithGoogleSuccess
 	| LoginSuccess
 	| LoginFailure
 	| Logout
-	| SetUser
-	| CreateUser
-	| CreateUserWithGoogleAuth
-	| CreateUserSuccess
-	| CreateUserFail;
+	| SetUser;

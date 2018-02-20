@@ -33,30 +33,15 @@ export class AuthService {
 		return this.db.doc<User>(`/users/${id}`).valueChanges();
 	}
 
-	loginWithGoogle(): Observable<GoogleLoginResponse> {
+	loginWithGoogle(): Observable<any> {
 		return Observable.fromPromise(
 			this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-		).pipe(
-			switchMap(googleResponse => {
-				return this.parseAuthUser(googleResponse.user).pipe(
-					map(user => ({ user, googleResponse })),
-					take(1)
-				)
-			}),
 		);
-	}
-
-	createUser(user: User): Observable<User> {
-		return Observable.fromPromise(
-			this.db.doc<User>(`users/${user.id}`).set(user)
-		).pipe(map(() => user));
 	}
 
 	private loginWithCreds(authInfo: AuthInfo): Observable<User> {
 		return Observable.fromPromise(
 			this.af.auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
-		).pipe(
-			switchMap(response => this.parseAuthUser(response).pipe(take(1)))
 		);
 	}
 

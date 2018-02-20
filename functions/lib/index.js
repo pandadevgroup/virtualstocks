@@ -14,8 +14,14 @@ exports.initializeUser = functions.auth.user().onCreate(event => {
     const id = user.uid;
     const name = user.displayName;
     const email = user.email;
-    admin.firestore().doc(`users/${id}`).set({
+    const createUser = admin.firestore().doc(`users/${id}`).set({
         id, name, email
     });
+    const createPortfolio = admin.firestore().doc(`portfolios/${id}`).set({
+        stocks: [],
+        value: 100000,
+        cash: 100000
+    });
+    return Promise.all([createUser, createPortfolio]);
 });
 //# sourceMappingURL=index.js.map

@@ -21,27 +21,7 @@ export class LoadPortfolioSuccess implements Action {
 	constructor(public payload: Portfolio) {}
 }
 
-// Create Portfolio
-export const CREATE_PORTFOLIO = "[Stocks] Create Portfolio";
-export const CREATE_PORTFOLIO_SUCCESS = "[Stocks] Create Portfolio Success";
-export const CREATE_PORTFOLIO_FAIL = "[Stocks] Create Portfolio Fail";
-export class CreatePortfolio implements Action {
-	readonly type = CREATE_PORTFOLIO;
-	constructor(public payload: string) {}
-}
-export class CreatePortfolioSuccess implements Action {
-	readonly type = CREATE_PORTFOLIO_SUCCESS;
-	constructor(public payload: Portfolio) {}
-}
-export class CreatePortfolioFail implements Action {
-	readonly type = CREATE_PORTFOLIO_FAIL;
-	constructor(public payload: any) {}
-}
-
 export type PortfolioAction =
 	| LoadPortfolio
 	| LoadPortfolioFail
-	| LoadPortfolioSuccess
-	| CreatePortfolio
-	| CreatePortfolioSuccess
-	| CreatePortfolioFail;
+	| LoadPortfolioSuccess;

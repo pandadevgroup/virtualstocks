@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { Effect, Actions } from "@ngrx/effects";
 
-import { map, switchMap, catchError, tap } from "rxjs/operators";
+import { map, switchMap, catchError, tap, filter, take } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
 import { empty } from "rxjs/observable/empty";
 
@@ -23,54 +23,17 @@ export class UserEffects {
 		.pipe(
 			map((action: fromActions.Login) => action.payload),
 			switchMap(authInfo => this.authService.loginWithGoogle().pipe(
-				map(data => new fromActions.LoginWithGoogleSuccess(data)),
+				switchMap(() => this.authService.user),
+				filter(user => !!user),
+				take(1),
+				map(user => new fromActions.LoginSuccess(user)),
 				catchError(error => of(new fromActions.LoginFailure(error)))
 			))
 		);
 
 	@Effect()
-	loginWithGoogleSuccess$ = this.actions$
-		.ofType(fromActions.LOGIN_WITH_GOOGLE_SUCCESS)
-		.pipe(
-			map((action: fromActions.LoginWithGoogleSuccess) => action.payload),
-			map((data: GoogleLoginResponse) => {
-				if (data.user === null) {
-					// User doesn't exist, create one
-					return new fromActions.CreateUserWithGoogleAuth(data.googleResponse.user);
-				} else {
-					return new fromRoot.Go({
-						path: ["/home"]
-					});
-				}
-			})
-		);
-
-	@Effect()
-	createUserWithGoogleAuth$ = this.actions$
-		.ofType(fromActions.CREATE_USER_WITH_GOOGLE_AUTH)
-		.pipe(
-			map((action: fromActions.CreateUserWithGoogleAuth) => action.payload),
-			map(data => new fromActions.CreateUser({
-				id: data.uid,
-				name: data.displayName,
-				email: data.email
-			}))
-		);
-
-	@Effect()
-	createUser$ = this.actions$
-		.ofType(fromActions.CREATE_USER)
-		.pipe(
-			map((action: fromActions.CreateUser) => action.payload),
-			switchMap(data => this.authService.createUser(data).pipe(
-				map(data => new fromActions.CreateUserSuccess(data)),
-				catchError(error => of(new fromActions.CreateUserFail(error)))
-			))
-		);
-
-	@Effect()
-	createUserSuccess$ = this.actions$
-		.ofType(fromActions.CREATE_USER_SUCCESS)
+	loginSuccess$ = this.actions$
+		.ofType(fromActions.LOGIN_SUCCESS)
 		.pipe(
 			map(() => new fromRoot.Go({
 				path: ["/home"]
