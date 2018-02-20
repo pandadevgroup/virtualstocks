@@ -1,5 +1,6 @@
 import { NgModule, Optional, SkipSelf } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
@@ -14,6 +15,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
 import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
@@ -34,6 +36,7 @@ import { CoreRoutingModule } from "./core-routing.module";
 	],
 	imports: [
 		CommonModule,
+		ReactiveFormsModule,
 
 		ServiceWorkerModule.register("/ngsw-worker.js", {
 			enabled: environment.production
@@ -55,6 +58,7 @@ import { CoreRoutingModule } from "./core-routing.module";
 
 		MatToolbarModule,
 		MatButtonModule,
+		MatIconModule,
 
 		CoreRoutingModule
 	],

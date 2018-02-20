@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
 
 import { Store } from "@ngrx/store";
+import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth";
 
 import { Subject } from "rxjs/Subject";
@@ -34,6 +35,12 @@ export class AppComponent implements OnInit, OnDestroy {
 				this.loggedIn = loggedIn;
 				this.cd.markForCheck();
 			});
+	}
+
+	onStockSearch(ticker) {
+		this.store.dispatch(new fromRoot.Go({
+			path: ["stock", ticker]
+		}));
 	}
 
 	ngOnDestroy() {

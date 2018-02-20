@@ -24,7 +24,6 @@ export class QueryBatchStockPricesFail {
 
 // Stock detail
 export const QUERY_STOCK_DETAIL = "[Stocks] Query Stock Detail";
-export const QUERY_CURRENT_STOCK_DETAIL = "[Stocks] Query Current Stock Detail";
 export const QUERY_STOCK_DETAIL_SUCCESS = "[Stocks] Query Stock Detail Success";
 export const QUERY_STOCK_DETAIL_FAIL = "[Stocks] Query Stock Detail Fail";
 export const CLEAR_STOCK_DETAIL = "[Stocks] Clear Stock Detail";
@@ -32,10 +31,6 @@ export const CLEAR_STOCK_DETAIL = "[Stocks] Clear Stock Detail";
 export class QueryStockDetail {
 	readonly type = QUERY_STOCK_DETAIL;
 	constructor(public payload: string) {}
-}
-
-export class QueryCurrentStockDetail {
-	readonly type = QUERY_CURRENT_STOCK_DETAIL;
 }
 
 export class QueryStockDetailSuccess {
@@ -57,7 +52,6 @@ export type StocksDataAction =
 	| QueryBatchStockPricesFail
 	| QueryBatchStockPricesSuccess
 	| QueryStockDetail
-	| QueryCurrentStockDetail
 	| QueryStockDetailFail
 	| QueryStockDetailSuccess
 	| ClearStockDetail;

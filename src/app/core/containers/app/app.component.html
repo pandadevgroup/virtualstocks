@@ -1,6 +1,7 @@
 <ngx-loading-bar color="#FFCA28" [includeSpinner]="false"></ngx-loading-bar>
 
-<vs-toolbar [loggedIn]="loggedIn"></vs-toolbar>
+<vs-toolbar [loggedIn]="loggedIn" (search)="onStockSearch($event)"></vs-toolbar>
+
 <div id="main">
 
 

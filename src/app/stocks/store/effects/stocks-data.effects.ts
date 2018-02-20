@@ -26,13 +26,6 @@ export class StocksDataEffects {
 	);
 
 	@Effect()
-	queryCurrentStockDetail$ = this.actions$.ofType(fromActions.QUERY_CURRENT_STOCK_DETAIL).pipe(
-		switchMap(() => this.store.select(fromRoot.getRouterState).pipe(take(1))),
-		map(state => state.state.params.ticker),
-		map(ticker => new fromActions.QueryStockDetail(ticker))
-	);
-
-	@Effect()
 	queryStockDetail$ = this.actions$.ofType(fromActions.QUERY_STOCK_DETAIL).pipe(
 		switchMap((action: fromActions.QueryStockDetail) =>
 			this.stocksService.getStockDetail(action.payload)),

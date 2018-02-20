@@ -3,6 +3,19 @@
 		<a routerLink="/">Virtual Stocks</a>
 		<span class="spacer"></span>
 		<a mat-button routerLink="/login" *ngIf="!loggedIn">Login</a>
-		<a mat-button routerLink="/logout" *ngIf="loggedIn">Logout</a>
+		<ng-container *ngIf="loggedIn">
+			<button mat-icon-button color="white" (click)="runSearch()">
+				<mat-icon aria-label="Search">search</mat-icon>
+			</button>
+			<input
+				class="search"
+				[class.show]="showSearch"
+				placeholder="Search Ticker"
+				(keyup.enter)="runSearch()"
+				(blur)="hideSearch()"
+				[formControl]="searchControl"
+				#search>
+			<a mat-button routerLink="/logout">Logout</a>
+		</ng-container>
 	</mat-toolbar-row>
 </mat-toolbar>
