@@ -1,13 +1,8 @@
-export interface PortfolioStock {
-	/**
-	 * Stock ticker
-	 * @example "NVDA", "AMZN", "GOOGL"
-	 */
-	ticker: string;
+import { Stock } from "./stock.model";
+
+export interface PortfolioStock extends Stock {
 	/** Number of stocks owned */
 	quantity: number;
 	/** Initial total price paid for stocks */
 	purchaseValue: number;
-	/** Current value of stocks */
-	currentValue: number;
 }

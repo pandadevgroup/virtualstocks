@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 
-import { Stock } from "@app/stocks";
+import { Stock, PortfolioStock } from "@app/stocks";
 
 import { Store } from "@ngrx/store";
 import * as fromRoot from "@app/core/store";
@@ -15,7 +15,7 @@ import * as fromPortfolio from "@app/stocks/store/reducers/portfolio.reducer";
 })
 export class HomeComponent {
 	portfolio$: Observable<fromPortfolio.PortfolioState>;
-	stocks$: Observable<Stock[]>;
+	stocks$: Observable<PortfolioStock[]>;
 
 	constructor(private store: Store<fromRoot.State>) {}
 
