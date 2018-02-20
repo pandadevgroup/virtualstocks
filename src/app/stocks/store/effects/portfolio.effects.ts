@@ -18,13 +18,39 @@ export class PortfolioEffects {
 
 	@Effect()
 	loadPortfolio$ = this.actions$.ofType(fromActions.LOAD_PORTFOLIO).pipe(
-		switchMap(() => this.authService.user.pipe(take(1))),
-		map(user => {
-			if (user) return user.id;
-			throw { message: "You are not signed in." };
+		switchMap(() => this.authService.userId),
+		map(id => {
+			if (!id) throw { message: "You are not signed in." };
+			return id;
 		}),
-		switchMap(id => this.portfolioService.getPortfolio(id)),
-		map(portfolio => new fromActions.LoadPortfolioSuccess(portfolio)),
+		switchMap(id => {
+			return this.portfolioService.getPortfolio(id).pipe(
+				map(portfolio => {
+					if (portfolio == null) {
+						return new fromActions.CreatePortfolio(id);
+					}
+					return new fromActions.LoadPortfolioSuccess(portfolio);
+				})
+			);
+		}),
 		catchError(error => of(new fromActions.LoadPortfolioFail(error)))
-	)
+	);
+
+	@Effect()
+	createPortfolio$ = this.actions$
+		.ofType(fromActions.CREATE_PORTFOLIO)
+		.pipe(
+			switchMap((action: fromActions.CreatePortfolio) =>
+				this.portfolioService.createPortfolio(action.payload)),
+			map(portfolio => new fromActions.CreatePortfolioSuccess(portfolio)),
+			catchError(error => of(new fromActions.CreatePortfolioFail(error)))
+		);
+
+	@Effect()
+	createPortfolioSuccess$ = this.actions$
+		.ofType(fromActions.CREATE_PORTFOLIO_SUCCESS)
+		.pipe(
+			map((action: fromActions.CreatePortfolioSuccess) =>
+				new fromActions.LoadPortfolioSuccess(action.payload))
+		);
 }

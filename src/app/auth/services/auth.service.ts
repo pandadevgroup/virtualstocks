@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 import { AuthInfo, User, GoogleLoginResponse } from "@app/auth";
 
 import { Observable } from "rxjs/Observable";
-import { switchMap, catchError, map, take } from "rxjs/operators";
+import { switchMap, catchError, map, take, tap } from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
@@ -16,6 +16,12 @@ export class AuthService {
 	get user(): Observable<User> {
 		return this.af.authState.pipe(
 			switchMap(this.parseAuthUser.bind(this))
+		);
+	}
+
+	get userId(): Observable<string> {
+		return this.af.authState.pipe(
+			map(authState => authState.uid)
 		);
 	}
 
