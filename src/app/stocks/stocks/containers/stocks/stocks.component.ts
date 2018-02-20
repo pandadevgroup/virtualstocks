@@ -9,6 +9,8 @@ import * as fromRoot from "@app/core/store";
 import * as fromStocks from "@app/stocks/store";
 import * as fromPortfolio from "@app/stocks/store/reducers/portfolio.reducer";
 
+import { tap } from "rxjs/operators";
+
 @Component({
 	templateUrl: "stocks.component.html",
 	styleUrls: ["stocks.component.scss"]
@@ -21,6 +23,11 @@ export class StocksComponent {
 
 	ngOnInit() {
 		this.portfolio$ = this.store.select(fromStocks.getPortfolioState);
-		this.stocks$ = this.store.select(fromStocks.getAllPortfolioStocks);
+		this.stocks$ = this.store.select(fromStocks.getAllPortfolioStocks).pipe(
+			tap(stocks => {
+				const stockTickers = stocks.map(stock => stock.ticker);
+				this.store.dispatch(new fromStocks.QueryBatchStockPrices(stockTickers));
+			})
+		);
 	}
 }
