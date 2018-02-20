@@ -6,3 +6,9 @@ export interface Stock {
 	ticker: string;
 	companyName: string;
 }
+
+export interface BatchStockData {
+	[ticker: string]: {
+		price: number
+	}
+}
