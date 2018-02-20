@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { Observable } from "rxjs/Observable";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 
 import { BatchStockData, StockDetail } from "@app/stocks/models";
 
@@ -22,6 +22,17 @@ export class StocksService {
 	}
 
 	getStockDetail(ticker: string): Observable<StockDetail> {
-		return Observable.of(null);
+		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
+		return this.http
+			.get<any>(queryUrl)
+			.pipe(
+				map(response => {
+					const { symbol: ticker, ...data } = response;
+					return {
+						ticker, ...data
+					};
+				}),
+				catchError(error => Observable.throw(error))
+			);
 	}
 }
