@@ -1,17 +1,17 @@
-import * as fromStocks from "../actions/stocks.actions";
+import * as fromStocks from "../actions/stocks-data.actions";
 import { BatchStockData } from "@app/stocks/models";
 
-export interface StocksState {
+export interface StocksDataState {
 	batchStocksData: BatchStockData,
 	error: any
 }
 
-export const initialState: StocksState = {
+export const initialState: StocksDataState = {
 	batchStocksData: {},
 	error: null
 };
 
-export function reducer(state = initialState, action: fromStocks.StocksAction): StocksState {
+export function reducer(state = initialState, action: fromStocks.StocksDataAction): StocksDataState {
 	switch (action.type) {
 		case fromStocks.QUERY_BATCH_STOCK_PRICES_SUCCESS: {
 			return {
@@ -30,4 +30,4 @@ export function reducer(state = initialState, action: fromStocks.StocksAction): 
 	return state;
 }
 
-export const getBatchStocksData = (state: StocksState) => state.batchStocksData;
+export const getBatchStocksData = (state: StocksDataState) => state.batchStocksData;

@@ -22,7 +22,7 @@ export class QueryBatchStockPricesFail {
 	constructor(public payload: any) {}
 }
 
-export type StocksAction =
+export type StocksDataAction =
 	| QueryBatchStockPrices
 	| QueryBatchStockPricesFail
 	| QueryBatchStockPricesSuccess;
