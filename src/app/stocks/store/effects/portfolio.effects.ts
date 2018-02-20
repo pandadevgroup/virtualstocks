@@ -19,10 +19,6 @@ export class PortfolioEffects {
 	@Effect()
 	loadPortfolio$ = this.actions$.ofType(fromActions.LOAD_PORTFOLIO).pipe(
 		switchMap(() => this.authService.userId.pipe(take(1))),
-		map(id => {
-			if (!id) throw { message: "You are not signed in." };
-			return id;
-		}),
 		switchMap(id => {
 			return this.portfolioService.getPortfolio(id).pipe(
 				map(portfolio => {
@@ -30,10 +26,10 @@ export class PortfolioEffects {
 						return new fromActions.CreatePortfolio(id);
 					}
 					return new fromActions.LoadPortfolioSuccess(portfolio);
-				})
+				}),
+				catchError(error => of(new fromActions.LoadPortfolioFail(error)))
 			);
-		}),
-		catchError(error => of(new fromActions.LoadPortfolioFail(error)))
+		})
 	);
 
 	@Effect()
@@ -41,9 +37,11 @@ export class PortfolioEffects {
 		.ofType(fromActions.CREATE_PORTFOLIO)
 		.pipe(
 			switchMap((action: fromActions.CreatePortfolio) =>
-				this.portfolioService.createPortfolio(action.payload)),
-			map(portfolio => new fromActions.CreatePortfolioSuccess(portfolio)),
-			catchError(error => of(new fromActions.CreatePortfolioFail(error)))
+				this.portfolioService.createPortfolio(action.payload).pipe(
+					map(portfolio => new fromActions.CreatePortfolioSuccess(portfolio)),
+					catchError(error => of(new fromActions.CreatePortfolioFail(error)))
+				)
+			)
 		);
 
 	@Effect()
