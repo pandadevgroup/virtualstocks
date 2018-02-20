@@ -7,13 +7,15 @@ export interface PortfolioState {
 	loaded: boolean;
 	loading: boolean;
 	value: number;
+	error: any;
 }
 
 export const initialState: PortfolioState = {
 	stockEntities: {},
 	loaded: false,
 	loading: false,
-	value: 0
+	value: 0,
+	error: null
 };
 
 export function reducer(state = initialState, action: fromPortfolio.PortfolioAction): PortfolioState {
@@ -29,7 +31,8 @@ export function reducer(state = initialState, action: fromPortfolio.PortfolioAct
 			return {
 				...state,
 				loading: false,
-				loaded: false
+				loaded: false,
+				error: action.payload
 			}
 		}
 
@@ -50,7 +53,8 @@ export function reducer(state = initialState, action: fromPortfolio.PortfolioAct
 				loading: false,
 				loaded: true,
 				stockEntities,
-				value
+				value,
+				error: null
 			}
 		}
 	}

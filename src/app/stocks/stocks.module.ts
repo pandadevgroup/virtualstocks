@@ -6,6 +6,7 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
 import * as fromStore from "./store";
+import { services } from "./services";
 
 const routes: Routes = [
 	{ path: "stock/:ticker", loadChildren: "./stock#StockModule" }
@@ -15,7 +16,10 @@ const routes: Routes = [
 	imports: [
 		RouterModule.forChild(routes),
 		StoreModule.forFeature("stocks", fromStore.reducers),
-		EffectsModule.forFeature([])
+		EffectsModule.forFeature(fromStore.effects)
+	],
+	providers: [
+		...services
 	]
 })
 export class StocksModule {}
