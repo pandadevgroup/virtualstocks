@@ -22,9 +22,10 @@ export class UserEffects {
 		.ofType(fromActions.LOGIN_WITH_GOOGLE)
 		.pipe(
 			map((action: fromActions.Login) => action.payload),
-			switchMap(authInfo => this.authService.loginWithGoogle()),
-			map(data => new fromActions.LoginWithGoogleSuccess(data)),
-			catchError(error => of(new fromActions.LoginFailure(error)))
+			switchMap(authInfo => this.authService.loginWithGoogle().pipe(
+				map(data => new fromActions.LoginWithGoogleSuccess(data)),
+				catchError(error => of(new fromActions.LoginFailure(error)))
+			))
 		);
 
 	@Effect()
@@ -61,9 +62,19 @@ export class UserEffects {
 		.ofType(fromActions.CREATE_USER)
 		.pipe(
 			map((action: fromActions.CreateUser) => action.payload),
-			switchMap(data => this.authService.createUser(data)),
-			map(data => new fromActions.CreateUserSuccess(data)),
-			catchError(error => of(new fromActions.CreateUserFail(error))),
+			switchMap(data => this.authService.createUser(data).pipe(
+				map(data => new fromActions.CreateUserSuccess(data)),
+				catchError(error => of(new fromActions.CreateUserFail(error)))
+			))
+		);
+
+	@Effect()
+	createUserSuccess$ = this.actions$
+		.ofType(fromActions.CREATE_USER_SUCCESS)
+		.pipe(
+			map(() => new fromRoot.Go({
+				path: ["/home"]
+			}))
 		);
 
 	@Effect({ dispatch: false })
