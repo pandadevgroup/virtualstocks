@@ -1,8 +1,12 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/switchMap";
+
+import { Store } from "@ngrx/store";
+
+import { StockDetail } from "@app/stocks/models";
+import * as fromStore from "@app/stocks/store";
 
 import * as Chart from "chart.js";
 
@@ -10,14 +14,18 @@ import * as Chart from "chart.js";
 	templateUrl: "stock.component.html",
 	styleUrls: ["stock.component.scss"]
 })
-export class StockComponent {
+export class StockComponent implements OnInit, OnDestroy {
 	@ViewChild("canvas") canvasEl: ElementRef;
 
-	stock$: Observable<any>;
+	stock$: Observable<StockDetail>;
 
-	constructor(private route: ActivatedRoute) {}
+	constructor(private store: Store<fromStore.StocksState>) {}
 
 	ngOnInit() {
+		this.store.dispatch(new fromStore.QueryCurrentStockDetail());
+		this.stock$ = this.store.select(fromStore.getStockDetail);
+
+
 		// Enter your code here I guess for testing
 
 		var myLineChart = new Chart(this.canvasEl.nativeElement.getContext("2d"), {
@@ -52,11 +60,9 @@ export class StockComponent {
 				}
 			}
 		});
+	}
 
-		this.stock$ = this.route.paramMap
-			.switchMap((params: ParamMap) => {
-				const ticker = params.get("ticker");
-				return Observable.of({ ticker });
-			});
+	ngOnDestroy() {
+		this.store.dispatch(new fromStore.ClearStockDetail());
 	}
 }
