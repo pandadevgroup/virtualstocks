@@ -19,6 +19,7 @@ export class PortfolioEffects {
 	@Effect()
 	loadPortfolio$ = this.actions$.ofType(fromActions.LOAD_PORTFOLIO).pipe(
 		switchMap(() => this.authService.userId),
+		take(1),
 		map(id => {
 			if (!id) throw { message: "You are not signed in." };
 			return id;
