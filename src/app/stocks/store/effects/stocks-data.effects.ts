@@ -16,7 +16,8 @@ export class StocksDataEffects {
 
 	@Effect()
 	queryBatchStockPrices$ = this.actions$.ofType(fromActions.QUERY_BATCH_STOCK_PRICES).pipe(
-		switchMap(stocks => this.stocksService.queryBatchStockPrices(stocks)),
+		switchMap((action: fromActions.QueryBatchStockPrices) =>
+			this.stocksService.queryBatchStockPrices(action.payload)),
 		map(data => new fromActions.QueryBatchStockPricesSuccess(data)),
 		catchError(error => of(new fromActions.QueryBatchStockPricesFail(error)))
 	);
