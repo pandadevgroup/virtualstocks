@@ -7,9 +7,14 @@ import { EffectsModule } from "@ngrx/effects";
 
 import * as fromStore from "./store";
 import { services } from "./services";
+import * as fromGuards from "./guards";
 
 const routes: Routes = [
-	{ path: "stock/:ticker", loadChildren: "./stock#StockModule" }
+	{
+		path: "stock/:ticker",
+		canActivate: [fromGuards.PortfolioGuard],
+		loadChildren: "./stock#StockModule"
+	}
 ];
 
 @NgModule({
@@ -19,7 +24,8 @@ const routes: Routes = [
 		EffectsModule.forFeature(fromStore.effects)
 	],
 	providers: [
-		...services
+		...services,
+		...fromGuards.guards
 	]
 })
 export class StocksModule {}

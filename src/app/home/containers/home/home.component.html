@@ -1,1 +1,7 @@
 <h1 class="mat-display-1">Home Component</h1>
+
+<div *ngIf="portfolio$ | async as portfolio">
+	<p>{{ portfolio.stocks.length }} stocks</p>
+	<p *ngFor="let stock of portfolio.stocks">{{ stock }} | json</p>
+	<p>Portfolio Value: ${{ portfolio.value }}</p>
+</div>
