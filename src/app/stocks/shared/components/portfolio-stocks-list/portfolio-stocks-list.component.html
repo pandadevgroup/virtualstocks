@@ -1,2 +1,6 @@
 <p>{{ stocks.length }} stocks</p>
-<p *ngFor="let stock of stocks">{{ stock | json }}</p>
+<ng-container *ngIf="stockPrices">
+	<p *ngFor="let stock of stocks">
+		{{ stock | json }}. {{ stockPrices[stock.ticker] | json }}.
+	</p>
+</ng-container>

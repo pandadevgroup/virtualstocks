@@ -1,4 +1,7 @@
 <h1 class="mat-display-1">Stocks Component</h1>
 
-<vs-portfolio-stocks-list [stocks]="stocks$ | async"></vs-portfolio-stocks-list>
+<vs-portfolio-stocks-list
+	[stocks]="stocks$ | async"
+	[stockPrices]="stockPrices$ | async">
+</vs-portfolio-stocks-list>
 <p>Portfolio Value: {{ (portfolio$ | async).value }}</p>

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 
-import { Stock, PortfolioStock } from "@app/stocks";
+import { Stock, PortfolioStock, BatchStockData } from "@app/stocks";
 
 import { Store } from "@ngrx/store";
 import * as fromRoot from "@app/core/store";
@@ -18,6 +18,7 @@ import { tap } from "rxjs/operators";
 export class StocksComponent {
 	portfolio$: Observable<fromPortfolio.PortfolioState>;
 	stocks$: Observable<PortfolioStock[]>;
+	stockPrices$: Observable<BatchStockData>;
 
 	constructor(private store: Store<fromRoot.State>) {}
 
@@ -29,5 +30,6 @@ export class StocksComponent {
 				this.store.dispatch(new fromStocks.QueryBatchStockPrices(stockTickers));
 			})
 		);
+		this.stockPrices$ = this.store.select(fromStocks.getBatchStocksData);
 	}
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { PortfolioStock } from "@app/stocks";
+import { PortfolioStock, BatchStockData } from "@app/stocks/models";
 
 @Component({
 	selector: "vs-portfolio-stocks-list",
@@ -9,4 +9,5 @@ import { PortfolioStock } from "@app/stocks";
 })
 export class PortfolioStocksListComponent {
 	@Input() stocks: PortfolioStock[];
+	@Input() stockPrices: BatchStockData;
 }
