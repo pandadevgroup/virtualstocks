@@ -6,6 +6,8 @@ import * as fromContainers from "./containers";
 
 import { PortfolioGuard } from "@app/stocks";
 
+import { SharedModule as StocksSharedModule } from "@app/stocks";
+
 const routes: Routes = [
 	{
 		path: "",
@@ -18,7 +20,9 @@ const routes: Routes = [
 @NgModule({
 	imports: [
 		CommonModule,
-		RouterModule.forChild(routes)
+		RouterModule.forChild(routes),
+
+		StocksSharedModule
 	],
 	declarations: [
 		...fromContainers.containers

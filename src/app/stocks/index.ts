@@ -3,3 +3,4 @@ export * from "./models";
 export * from "./store";
 export * from "./services";
 export * from "./guards";
+export * from "./shared";
