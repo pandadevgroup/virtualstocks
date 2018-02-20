@@ -49,6 +49,8 @@ export class SetUser implements Action {
 // Create User
 export const CREATE_USER = "[Auth] Create User";
 export const CREATE_USER_WITH_GOOGLE_AUTH = "[Auth] Create User With Google Auth";
+export const CREATE_USER_SUCCESS = "[Auth] Create User Success";
+export const CREATE_USER_FAIL = "[Auth] Create User Fail";
 
 export class CreateUser {
 	readonly type = CREATE_USER;
@@ -57,6 +59,16 @@ export class CreateUser {
 
 export class CreateUserWithGoogleAuth {
 	readonly type = CREATE_USER_WITH_GOOGLE_AUTH;
+	constructor(public payload: any) {}
+}
+
+export class CreateUserSuccess {
+	readonly type = CREATE_USER_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class CreateUserFail {
+	readonly type = CREATE_USER_FAIL;
 	constructor(public payload: any) {}
 }
 
@@ -69,4 +81,6 @@ export type UserActions =
 	| Logout
 	| SetUser
 	| CreateUser
-	| CreateUserWithGoogleAuth;
+	| CreateUserWithGoogleAuth
+	| CreateUserSuccess
+	| CreateUserFail;

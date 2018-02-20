@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 import { AuthInfo, User, GoogleLoginResponse } from "@app/auth";
 
 import { Observable } from "rxjs/Observable";
-import { switchMap, catchError, tap, map, take } from "rxjs/operators";
+import { switchMap, catchError, map, take } from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
 	}
 
 	getUser(id): Observable<User> {
-		return this.db.doc<User>(`/users/${id}`).valueChanges().pipe(tap(x => console.log("boo:",x)));
+		return this.db.doc<User>(`/users/${id}`).valueChanges();
 	}
 
 	loginWithGoogle(): Observable<GoogleLoginResponse> {
@@ -38,6 +38,12 @@ export class AuthService {
 				)
 			}),
 		);
+	}
+
+	createUser(user: User): Observable<User> {
+		return Observable.fromPromise(
+			this.db.doc<User>(`users/${user.id}`).set(user)
+		).pipe(map(() => user));
 	}
 
 	private loginWithCreds(authInfo: AuthInfo): Observable<User> {

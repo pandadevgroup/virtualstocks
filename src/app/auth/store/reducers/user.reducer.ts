@@ -23,6 +23,28 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 				error: null
 			};
 		}
+		case fromUser.LOGIN_SUCCESS: {
+			const userData = action.payload;
+
+			return {
+				...state,
+				userData,
+				loggedIn: !!userData,
+				loaded: true,
+				error: null
+			};
+		}
+		case fromUser.LOGIN_WITH_GOOGLE_SUCCESS: {
+			const userData = action.payload.user;
+
+			return {
+				...state,
+				userData,
+				loggedIn: !!userData,
+				loaded: true,
+				error: null
+			};
+		}
 		case fromUser.LOGIN_FAILURE: {
 			const error = action.payload;
 
@@ -43,9 +65,29 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 			return {
 				...state,
 				loggedIn: !!userData,
-				error: null,
 				loaded: true,
 				userData
+			};
+		}
+		case fromUser.CREATE_USER: {
+			return {
+				...state,
+				error: null
+			};
+		}
+		case fromUser.CREATE_USER_SUCCESS: {
+			const userData = action.payload;
+			return {
+				...state,
+				loggedIn: true,
+				userData,
+				error: null
+			};
+		}
+		case fromUser.CREATE_USER_FAIL: {
+			return {
+				...state,
+				error: action.payload
 			};
 		}
 	}
