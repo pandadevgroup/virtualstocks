@@ -38,6 +38,7 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 		case fromStocks.QUERY_STOCK_DETAIL_FAIL: {
 			return {
 				...state,
+				stockDetail: null,
 				error: action.payload
 			};
 		}
