@@ -11,6 +11,7 @@ export class StocksService {
 	constructor(private http: HttpClient) {}
 
 	queryBatchStockPrices(stocks: string[]): Observable<BatchStockData> {
+		if (stocks.length === 0) return Observable.of({});
 		// Note: Each query only returns the first 100 stocks.
 		const symbols = stocks.join(",");
 		const queryUrl = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbols}&types=price`;

@@ -57,15 +57,6 @@ export function reducer(state = initialState, action: fromPortfolio.PortfolioAct
 				error: null
 			}
 		}
-
-		case fromPortfolio.CREATE_PORTFOLIO_FAIL: {
-			return {
-				...state,
-				loading: false,
-				loaded: true,
-				error: action.payload
-			};
-		}
 	}
 	return state;
 }
