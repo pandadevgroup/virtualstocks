@@ -15,10 +15,12 @@ import * as fromPortfolio from "@app/stocks/store/reducers/portfolio.reducer";
 })
 export class HomeComponent {
 	portfolio$: Observable<fromPortfolio.PortfolioState>;
+	stocks$: Observable<Stock[]>;
 
 	constructor(private store: Store<fromRoot.State>) {}
 
 	ngOnInit() {
 		this.portfolio$ = this.store.select(fromStocks.getPortfolioState);
+		this.stocks$ = this.store.select(fromStocks.getAllPortfolioStocks);
 	}
 }
