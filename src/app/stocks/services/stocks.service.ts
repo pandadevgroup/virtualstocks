@@ -15,10 +15,7 @@ export class StocksService {
 		const symbols = stocks.join(",");
 		const queryUrl = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbols}&types=price`;
 		return this.http
-			.get<BatchStockData>(queryUrl)
-			.pipe(
-				catchError(error => Observable.throw(error))
-			);
+			.get<BatchStockData>(queryUrl);
 	}
 
 	getStockDetail(ticker: string): Observable<StockDetail> {
@@ -31,8 +28,7 @@ export class StocksService {
 					return {
 						ticker, ...data
 					};
-				}),
-				catchError(error => Observable.throw(error))
+				})
 			);
 	}
 }
