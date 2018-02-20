@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError } from "rxjs/operators";
 
-import { BatchStockData } from "@app/stocks/models";
+import { BatchStockData, StockDetail } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -19,5 +19,9 @@ export class StocksService {
 			.pipe(
 				catchError(error => Observable.throw(error))
 			);
+	}
+
+	getStockDetail(ticker: string): Observable<StockDetail> {
+		return Observable.of(null);
 	}
 }

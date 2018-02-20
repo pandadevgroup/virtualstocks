@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 
+import { Store } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
-import { switchMap, map, catchError, take } from "rxjs/operators";
+import { switchMap, map, catchError, take, filter } from "rxjs/operators";
 
+import * as fromRoot from "@app/core/store";
 import * as fromActions from "../actions";
 import { StocksService } from "@app/stocks/services";
 
@@ -11,7 +13,8 @@ import { StocksService } from "@app/stocks/services";
 export class StocksDataEffects {
 	constructor(
 		private actions$: Actions,
-		private stocksService: StocksService
+		private stocksService: StocksService,
+		private store: Store<fromRoot.State>
 	) {}
 
 	@Effect()
@@ -21,4 +24,19 @@ export class StocksDataEffects {
 		map(data => new fromActions.QueryBatchStockPricesSuccess(data)),
 		catchError(error => of(new fromActions.QueryBatchStockPricesFail(error)))
 	);
+
+	@Effect()
+	queryCurrentStockDetail$ = this.actions$.ofType(fromActions.QUERY_CURRENT_STOCK_DETAIL).pipe(
+		switchMap(() => this.store.select(fromRoot.getRouterState)),
+		map(state => state.state.params.ticker),
+		map(ticker => new fromActions.QueryStockDetail(ticker))
+	);
+
+	@Effect()
+	queryStockDetail$ = this.actions$.ofType(fromActions.QUERY_STOCK_DETAIL).pipe(
+		switchMap((action: fromActions.QueryStockDetail) =>
+			this.stocksService.getStockDetail(action.payload)),
+		map(data => new fromActions.QueryStockDetailSuccess(data)),
+		catchError(error => of(new fromActions.QueryStockDetailFail(error)))
+	)
 }
