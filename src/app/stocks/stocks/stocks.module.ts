@@ -7,7 +7,7 @@ import * as fromContainers from "./containers";
 import { SharedModule } from "@app/stocks";
 
 const routes: Routes = [
-	{ path: "", pathMatch: "full", component: fromContainers.StocksComponent}
+	{ path: "", pathMatch: "full", component: fromContainers.StocksComponent }
 ]
 
 @NgModule({

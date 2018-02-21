@@ -1,12 +1,18 @@
-<ngx-loading-bar color="#FFCA28" [includeSpinner]="false"></ngx-loading-bar>
+<ng-progress
+	[speed]="200"
+	[spinner]="false"
+	color="#FFCA28">
+</ng-progress>
 
 <vs-toolbar [loggedIn]="loggedIn" (search)="onStockSearch($event)"></vs-toolbar>
 
 <div id="main">
 
 
-    <p><a routerLink="/stock/NVDA">Stock NVDA</a></p>
+	<p>
+		<a routerLink="/stock/NVDA">Stock NVDA</a>
+	</p>
 
-    <router-outlet></router-outlet>
+	<router-outlet></router-outlet>
 
 </div>

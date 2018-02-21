@@ -288,24 +288,27 @@
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
-"@ngx-loading-bar/core@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/core/-/core-1.1.1.tgz#bcfc8e968f121ca431b4926dfd3465739f7076cd"
+"@ngx-progressbar/core@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/core/-/core-3.0.2.tgz#c477f18d0c2ca4c7672fcc55d4d5252ddce47da6"
+
+"@ngx-progressbar/core@4.1.1", "@ngx-progressbar/core@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/core/-/core-4.1.1.tgz#31b7ffa9de1d94380819a94aa0a31cedb044f37c"
   dependencies:
     tslib "^1.7.1"
 
-"@ngx-loading-bar/http-client@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/http-client/-/http-client-1.1.1.tgz#22d4b3b674425087e2c764c4cba110d74593f498"
+"@ngx-progressbar/http-client@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/http-client/-/http-client-3.0.2.tgz#1ff8af944c1953a653fedcec96837f0c56ca1b59"
   dependencies:
-    "@ngx-loading-bar/core" "1.1.1"
-    tslib "^1.7.1"
+    "@ngx-progressbar/core" "3.0.2"
 
-"@ngx-loading-bar/router@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/router/-/router-1.1.1.tgz#0cb354b231b9f77519bd9557a5dbefdaf1a51563"
+"@ngx-progressbar/router@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/router/-/router-4.1.1.tgz#f632de1406af9bb54f67d67eab77ad15aaedf35a"
   dependencies:
-    "@ngx-loading-bar/core" "1.1.1"
+    "@ngx-progressbar/core" "4.1.1"
     tslib "^1.7.1"
 
 "@schematics/angular@0.1.17":

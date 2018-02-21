@@ -13,12 +13,13 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ServiceWorkerModule } from "@angular/service-worker";
 
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpClientModule } from '@ngx-progressbar/http-client';
+import { NgProgressRouterModule } from "@ngx-progressbar/router";
+
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-
-import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
-import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 
 import { environment } from "@env/environment";
 
@@ -53,8 +54,9 @@ import { CoreRoutingModule } from "./core-routing.module";
 			stateKey: 'router'
 		}),
 
-		LoadingBarHttpClientModule,
-		LoadingBarRouterModule,
+		NgProgressModule.forRoot(),
+		NgProgressHttpClientModule,
+		NgProgressRouterModule,
 
 		MatToolbarModule,
 		MatButtonModule,
