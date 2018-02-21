@@ -14,8 +14,8 @@ export interface BuyStockOrder {
 }
 
 export class StockOrderType {
-	static BUY: "buy";
-	static LIMIT: "limit";
-	static SHORT: "short";
-	static SELL: "sell";
+	static BUY = "buy";
+	static LIMIT = "limit";
+	static SHORT = "short";
+	static SELL = "sell";
 }
