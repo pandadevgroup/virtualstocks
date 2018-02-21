@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { StockOrder } from "@app/stocks/models";
+import { BuyStockOrder, StockOrder } from "@app/stocks/models";
 
 // Buy stock
 export const BUY_STOCK = "[Stocks] Buy Stock";
@@ -9,7 +9,7 @@ export const BUY_STOCK_FAIL = "[Stocks] Buy Stock Fail";
 
 export class BuyStock implements Action {
 	readonly type = BUY_STOCK;
-	constructor(public payload: StockOrder) {}
+	constructor(public payload: BuyStockOrder) {}
 }
 export class BuyStockSuccess implements Action {
 	readonly type = BUY_STOCK_SUCCESS;

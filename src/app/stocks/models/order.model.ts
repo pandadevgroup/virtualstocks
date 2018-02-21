@@ -4,3 +4,9 @@ export interface StockOrder {
 	quantity: number;
 	fulfilled: boolean;
 }
+
+export interface BuyStockOrder {
+	uid: string;
+	ticker: string;
+	quantity: number;
+}

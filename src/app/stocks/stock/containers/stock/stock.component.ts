@@ -8,6 +8,7 @@ import { Store } from "@ngrx/store";
 import { StockDetail } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
+import * as fromAuth from "@app/auth/store";
 
 @Component({
 	templateUrl: "stock.component.html",
@@ -25,6 +26,18 @@ export class StockComponent implements OnInit, OnDestroy {
 			tap((ticker) => this.store.dispatch(new fromStocks.QueryStockDetail(ticker))),
 			switchMap(() => this.store.select(fromStocks.getStockDetail))
 		);
+
+		// CODE TO BUY STOCK. CUT PASTE THIS INTO THE BUTTON CLICK HANDLER
+		this.store.select(fromAuth.getUserData).pipe(
+			map(user => user.id),
+			map(uid => {
+				this.store.dispatch(new fromStocks.BuyStock({
+					uid,
+					ticker: "AMZN",
+					quantity: 10
+				}))
+			})
+		).subscribe();
 	}
 
 	ngOnDestroy() {
