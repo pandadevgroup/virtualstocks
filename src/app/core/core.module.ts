@@ -14,7 +14,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ServiceWorkerModule } from "@angular/service-worker";
 
 import { NgProgressModule } from '@ngx-progressbar/core';
-import { NgProgressHttpClientModule } from '@ngx-progressbar/http-client';
 import { NgProgressRouterModule } from "@ngx-progressbar/router";
 
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -55,7 +54,6 @@ import { CoreRoutingModule } from "./core-routing.module";
 		}),
 
 		NgProgressModule.forRoot(),
-		NgProgressHttpClientModule,
 		NgProgressRouterModule,
 
 		MatToolbarModule,

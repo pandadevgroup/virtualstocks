@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+
+import { AngularFirestore } from "angularfire2/firestore";
 
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
@@ -8,9 +9,10 @@ import { StockOrder } from "@app/stocks/models";
 
 @Injectable()
 export class OrdersService {
-	constructor(private http: HttpClient) {}
+	constructor(private db: AngularFirestore) {}
 
-	buyStock(uid: string, order: StockOrder): Observable<any> {
-		return Observable.of(null);
+	buyStock(order: StockOrder): Observable<any> {
+		const ordersCollection = this.db.collection<StockOrder>("orders");
+		return Observable.fromPromise(ordersCollection.add(order));
 	}
 }
