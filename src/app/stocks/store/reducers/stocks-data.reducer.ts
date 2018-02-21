@@ -45,6 +45,7 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 		case fromStocks.CLEAR_STOCK_DETAIL: {
 			return {
 				...state,
+				error: null,
 				stockDetail: null
 			};
 		}
