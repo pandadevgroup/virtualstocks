@@ -30,3 +30,7 @@ export const getPortfolioValue = createSelector(
 	getPortfolioState,
 	fromPortfolio.getPortfolioValue
 );
+export const getPortfolioError = createSelector(
+	getPortfolioState,
+	fromPortfolio.getPortfolioError
+);

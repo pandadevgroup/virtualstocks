@@ -65,3 +65,4 @@ export const getPortfolioStockEntities = (state: PortfolioState) => state.stockE
 export const getPortfolioLoaded = (state: PortfolioState) => state.loaded;
 export const getPortfolioLoading = (state: PortfolioState) => state.loading;
 export const getPortfolioValue = (state: PortfolioState) => state.value;
+export const getPortfolioError = (state: PortfolioState) => state.error;
