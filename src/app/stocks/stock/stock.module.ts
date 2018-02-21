@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
+import { MatButtonModule } from '@angular/material';
 
 import * as fromContainers from "./containers";
 import * as fromComponents from "./components";
@@ -16,7 +17,8 @@ const routes: Routes = [
 	],
 	imports: [
 		CommonModule,
-		RouterModule.forChild(routes)
+		RouterModule.forChild(routes),
+		MatButtonModule
 	],
 	providers: []
 })

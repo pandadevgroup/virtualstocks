@@ -1,8 +1,10 @@
 import { Component, ViewChild, ElementRef, Input } from "@angular/core";
+import { MatButtonModule } from '@angular/material';
 
 import * as Chart from "chart.js";
 
 import { StockDetail } from "@app/stocks/models";
+
 
 @Component({
 	selector: "vs-stock-detail",
@@ -17,7 +19,7 @@ export class StockDetailComponent {
 	ngOnInit() {
 		// Enter your code here I guess for testing
 
-		var myLineChart = new Chart(this.canvasEl.nativeElement.getContext("2d"), {
+		var detailChart = new Chart(this.canvasEl.nativeElement.getContext("2d"), {
 			type: 'line',
 			data: {
 			  labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
