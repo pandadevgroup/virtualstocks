@@ -2,7 +2,7 @@ Stock Detail
 
 <pre>{{ stock | json }}</pre>
 
-<button mat-button>Create buy order</button>
+<button mat-button (click)="onBuyStockClick()">Create buy order</button>
 <button mat-button disabled>Create sell order</button>
 <hr>
 <div class="canvas__container">

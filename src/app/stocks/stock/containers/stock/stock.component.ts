@@ -27,7 +27,10 @@ export class StockComponent implements OnInit, OnDestroy {
 			switchMap(() => this.store.select(fromStocks.getStockDetail))
 		);
 
-		// CODE TO BUY STOCK. CUT PASTE THIS INTO THE BUTTON CLICK HANDLER
+
+	}
+
+	buyStock() {
 		this.store.select(fromAuth.getUserData).pipe(
 			map(user => user.id),
 			map(uid => {
