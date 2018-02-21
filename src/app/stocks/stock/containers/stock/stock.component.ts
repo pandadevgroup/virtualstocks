@@ -30,13 +30,13 @@ export class StockComponent implements OnInit, OnDestroy {
 
 	}
 
-	buyStock() {
+	buyStock(ticker) {
 		this.store.select(fromAuth.getUserData).pipe(
 			map(user => user.id),
 			map(uid => {
 				this.store.dispatch(new fromStocks.BuyStock({
 					uid,
-					ticker: "AMZN",
+					ticker,
 					quantity: 10
 				}))
 			})

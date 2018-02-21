@@ -15,7 +15,7 @@ export class StockDetailComponent {
 	@ViewChild("canvas") canvasEl: ElementRef;
 
 	@Input() stock: StockDetail;
-	@Output() buyStock: EventEmitter<any> = new EventEmitter();
+	@Output() buyStock: EventEmitter<string> = new EventEmitter();
 
 	ngOnInit() {
 		// Enter your code here I guess for testing
@@ -55,6 +55,6 @@ export class StockDetailComponent {
 	}
 
 	onBuyStockClick() {
-		this.buyStock.emit();
+		this.buyStock.emit(this.stock.ticker);
 	}
 }
