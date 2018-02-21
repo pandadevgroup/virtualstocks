@@ -4,15 +4,15 @@
 		<span class="spacer"></span>
 		<a mat-button routerLink="/login" *ngIf="!loggedIn">Login</a>
 		<ng-container *ngIf="loggedIn">
-			<button mat-icon-button color="white" (click)="runSearch()">
+			<button mat-icon-button color="white" (mousedown)="runSearch()" (click)="onSearchClick()">
 				<mat-icon aria-label="Search">search</mat-icon>
 			</button>
 			<input
 				class="search"
 				[class.show]="showSearch"
 				placeholder="Search Ticker"
-				(keyup.enter)="runSearch()"
-				(blur)="hideSearch()"
+				(keyup.enter)="onEnter()"
+				(blur)="onBlur()"
 				[formControl]="searchControl"
 				#search>
 			<a mat-button routerLink="/logout">Logout</a>

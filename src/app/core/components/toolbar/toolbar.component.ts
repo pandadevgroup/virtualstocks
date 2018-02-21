@@ -15,21 +15,28 @@ export class ToolbarComponent {
 	showSearch = false;
 	searchControl = new FormControl();
 
-	runSearch() {
-		if (this.showSearch && this.searchControl.value.trim() !== "") {
-			this.search.emit(this.searchControl.value.trim());
-		}
-		this.toggleSearch();
-	}
-
-	toggleSearch() {
+	onSearchClick() {
 		this.showSearch = !this.showSearch;
 		if (this.showSearch) this.searchRef.nativeElement.focus();
-		else this.searchControl.setValue("");
+	}
+
+	onEnter() {
+		this.runSearch();
+		this.showSearch = !this.showSearch;
+	}
+
+	onBlur() {
+		this.hideSearch();
+	}
+
+	runSearch() {
+		if (this.searchControl.value && this.searchControl.value.trim() !== "") {
+			this.search.emit(this.searchControl.value.trim());
+			this.searchControl.setValue("");
+		}
 	}
 
 	hideSearch() {
 		this.showSearch = false;
-		this.searchControl.setValue("");
 	}
 }
