@@ -10,5 +10,7 @@ import { StockOrder } from "@app/stocks/models";
 export class OrdersService {
 	constructor(private http: HttpClient) {}
 
-
+	buyStock(uid: string, order: StockOrder): Observable<any> {
+		return Observable.of(null);
+	}
 }
