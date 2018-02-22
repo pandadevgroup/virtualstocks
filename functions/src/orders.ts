@@ -97,3 +97,11 @@ export function shortOrder(db, order, price, timestamp) {
 export function limitOrder(db, order, price, timestamp) {
 	return Promise.reject("Not yet implemented: limits");
 }
+
+export function onError(db, order, error) {
+	return db.doc(`orders/${order.id}`).update({
+		fulfilled: true,
+		fulfillmentTimestamp: Date.now(),
+		error
+	});
+}
