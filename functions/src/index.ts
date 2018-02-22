@@ -34,7 +34,7 @@ export const initializeUser = functions.auth.user().onCreate(event => {
 });
 
 server.post("/update", (req, res) => {
-	const orderId = req.body.order_id;
+	const orderId = req.body.orderId;
 	const price = req.body.price;
 	const timestamp = req.body.timestamp;
 
