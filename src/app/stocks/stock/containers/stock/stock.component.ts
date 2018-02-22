@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
+import { MatDialog } from "@angular/material/dialog";
+
 import { Observable } from "rxjs/Observable";
 import { switchMap, tap, filter, map } from "rxjs/operators";
 
@@ -11,6 +13,8 @@ import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
 import { User } from "@app/auth";
 
+import { StockTransactionDialog } from "../../components";
+
 @Component({
 	templateUrl: "stock.component.html",
 	styleUrls: ["stock.component.scss"]
@@ -19,7 +23,10 @@ export class StockComponent implements OnInit, OnDestroy {
 	stock$: Observable<StockDetail>;
 	user$: Observable<User>;
 
-	constructor(private store: Store<fromRoot.State>) {}
+	constructor(
+		private store: Store<fromRoot.State>,
+		private dialog: MatDialog
+	) {}
 
 	ngOnInit() {
 		this.stock$ = this.store.select(fromRoot.getRouterState).pipe(
@@ -33,11 +40,16 @@ export class StockComponent implements OnInit, OnDestroy {
 	}
 
 	openTransactionDialog({ type, uid, ticker }) {
-		this.store.dispatch(new fromStocks.BuyStock({
-			uid,
-			ticker,
-			quantity: 10
-		}));
+		this.dialog.open(StockTransactionDialog, {
+			data: {}
+		}).afterClosed().subscribe(result => {
+			console.log(result);
+		});
+		// this.store.dispatch(new fromStocks.BuyStock({
+		// 	uid,
+		// 	ticker,
+		// 	quantity: 10
+		// }));
 	}
 
 	ngOnDestroy() {

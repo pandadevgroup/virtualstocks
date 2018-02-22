@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import * as fromContainers from "./containers";
 import * as fromComponents from "./components";
@@ -20,8 +21,12 @@ const routes: Routes = [
 		CommonModule,
 		RouterModule.forChild(routes),
 
-		MatButtonModule
+		MatButtonModule,
+		MatDialogModule
 	],
-	providers: []
+	providers: [],
+	entryComponents: [
+		...fromComponents.entryComponents
+	]
 })
 export class StockModule {}
