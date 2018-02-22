@@ -52,21 +52,27 @@ export function buyOrder(db, order, price, timestamp) {
 
 export function sellOrder(db, order, price, timestamp) {
 	const orderCost = getOrderCost(order, price);
+	const stockPath = getStockPath(order);
 
-	return db.doc(`portfolios/${order.uid}`).get().then(data => {
-		const { cash } = data.data();
-		return db.doc(`portfolios/${order.uid}`).update({
-			cash: cash + orderCost
-		});
+	return db.doc(stockPath).get().then(data => {
+		if (!data.exists) throw "Not enough shares";
+		const { quantity } = data.data();
+		if (quantity < order.quantity) throw "Not enough shares";
 	}).then(() => {
+		const updatePortfolio = db.doc(`portfolios/${order.uid}`).get().then(data => {
+			const { cash } = data.data();
+			return db.doc(`portfolios/${order.uid}`).update({
+				cash: cash + orderCost
+			});
+		});
+
 		const updateOrder = db.doc(`orders/${order.id}`).update({
 			fulfilled: true,
 			price,
 			fulfillmentTimestamp: timestamp
 		});
 
-		const stockPath = getStockPath(order);
-		const updatePortfolio = db.doc(stockPath).get()
+		const updateStocks = db.doc(stockPath).get()
 			.then(data => {
 				let stock = data.data();
 				if (stock.quantity == order.quantity) {
@@ -80,7 +86,7 @@ export function sellOrder(db, order, price, timestamp) {
 				}
 			});
 
-		return Promise.all([updateOrder, updatePortfolio]);
+		return Promise.all([updateOrder, updateStocks]);
 	});
 }
 
