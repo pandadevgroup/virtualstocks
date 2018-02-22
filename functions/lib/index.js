@@ -32,7 +32,13 @@ server.post("/update", (req, res) => {
     const orderId = req.body.orderId;
     const price = req.body.price;
     const timestamp = req.body.timestamp;
-    res.send(`Order ID: ${orderId}. Price: ${price}. Timestamp: ${timestamp}.`);
+    admin.firestore().doc(`orders/${orderId}`).update({
+        fulfilled: true,
+        price,
+        fulfillmentTimestamp: timestamp
+    }).then(() => res.send("OK")).catch(error => {
+        res.status(500).send("Error\n" + error);
+    });
 });
 exports.orders = functions.https.onRequest(server);
 //# sourceMappingURL=index.js.map
