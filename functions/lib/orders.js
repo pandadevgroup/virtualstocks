@@ -68,7 +68,7 @@ function sellOrder(db, order, price, timestamp) {
             let stock = data.data();
             if (stock.quantity == order.quantity) {
                 // Sold all stocks, have to remove ticker entirely
-                return db.doc(stockPath).remove();
+                return db.doc(stockPath).delete();
             }
             else {
                 return db.doc(stockPath).update({
