@@ -6,7 +6,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 admin.initializeApp(functions.config().firebase);
 const server = express();
-server.use(bodyParser.urlencoded());
+server.use(bodyParser.json());
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
