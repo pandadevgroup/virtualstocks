@@ -4,6 +4,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 
 admin.initializeApp(functions.config().firebase);
+const db = admin.firestore();
 const server = express();
 server.use(bodyParser.json());
 
@@ -20,11 +21,11 @@ export const initializeUser = functions.auth.user().onCreate(event => {
 	const name = user.displayName;
 	const email = user.email;
 
-	const createUser = admin.firestore().doc(`users/${id}`).set({
+	const createUser = db.doc(`users/${id}`).set({
 		id, name, email
 	});
 
-	const createPortfolio = admin.firestore().doc(`portfolios/${id}`).set({
+	const createPortfolio = db.doc(`portfolios/${id}`).set({
 		stocks: [],
 		value: 100000,
 		cash: 100000
@@ -38,13 +39,35 @@ server.post("/update", (req, res) => {
 	const price = req.body.price;
 	const timestamp = req.body.timestamp;
 
-	const deleteOrder = admin.firestore().doc(`orders/${order.id}`).update({
+	const deleteOrder = db.doc(`orders/${order.id}`).update({
 		fulfilled: true,
 		price,
 		fulfillmentTimestamp: timestamp
 	});
 
-	Promise.all([deleteOrder])
+	const stockPath = `portfolios/${order.uid}/stocks/${order.ticker}`;
+	const addToPortfolio = db.doc(stockPath).get()
+		.then(data => {
+			if (!data.exists) {
+				// Ticker doesn't exist, create it now
+				return db.doc(stockPath).set({
+					ticker: order.ticker,
+					quantity: order.quantity,
+					purchaseValue: price * order.quantity
+					// TODO: Company name
+				});
+			} else {
+				let stock = data.data();
+				// Ticker already exists, just update
+				return db.doc(stockPath).update({
+					quantity: stock.quantity + order.quantity,
+					purchaseValue: stock.purchaseValue + price * order.quantity
+					// TODO: Company name
+				});
+			}
+		});
+
+	Promise.all([deleteOrder, addToPortfolio])
 		.then(() => res.send("OK"))
 		.catch(error => {
 			res.status(500).send("Error\n" + error);

@@ -5,6 +5,7 @@ const admin = require("firebase-admin");
 const express = require("express");
 const bodyParser = require("body-parser");
 admin.initializeApp(functions.config().firebase);
+const db = admin.firestore();
 const server = express();
 server.use(bodyParser.json());
 // // Start writing Firebase Functions
@@ -18,10 +19,10 @@ exports.initializeUser = functions.auth.user().onCreate(event => {
     const id = user.uid;
     const name = user.displayName;
     const email = user.email;
-    const createUser = admin.firestore().doc(`users/${id}`).set({
+    const createUser = db.doc(`users/${id}`).set({
         id, name, email
     });
-    const createPortfolio = admin.firestore().doc(`portfolios/${id}`).set({
+    const createPortfolio = db.doc(`portfolios/${id}`).set({
         stocks: [],
         value: 100000,
         cash: 100000
@@ -29,14 +30,39 @@ exports.initializeUser = functions.auth.user().onCreate(event => {
     return Promise.all([createUser, createPortfolio]);
 });
 server.post("/update", (req, res) => {
-    const orderId = req.body.orderId;
+    const order = req.body.order;
     const price = req.body.price;
     const timestamp = req.body.timestamp;
-    admin.firestore().doc(`orders/${orderId}`).update({
+    const deleteOrder = db.doc(`orders/${order.id}`).update({
         fulfilled: true,
         price,
         fulfillmentTimestamp: timestamp
-    }).then(() => res.send("OK")).catch(error => {
+    });
+    const stockPath = `portfolios/${order.uid}/stocks/${order.ticker}`;
+    const addToPortfolio = db.doc(stockPath).get()
+        .then(data => {
+        if (!data.exists) {
+            // Ticker doesn't exist, create it now
+            return db.doc(stockPath).set({
+                ticker: order.ticker,
+                quantity: order.quantity,
+                purchaseValue: price * order.quantity
+                // TODO: Company name
+            });
+        }
+        else {
+            let stock = data.data();
+            // Ticker already exists, just update
+            return db.doc(stockPath).update({
+                quantity: stock.quantity + order.quantity,
+                purchaseValue: stock.purchaseValue + price * order.quantity
+                // TODO: Company name
+            });
+        }
+    });
+    Promise.all([deleteOrder, addToPortfolio])
+        .then(() => res.send("OK"))
+        .catch(error => {
         res.status(500).send("Error\n" + error);
     });
 });
