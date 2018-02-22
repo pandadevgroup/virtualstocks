@@ -29,7 +29,7 @@ exports.initializeUser = functions.auth.user().onCreate(event => {
     return Promise.all([createUser, createPortfolio]);
 });
 server.post("/update", (req, res) => {
-    const orderId = req.body.order_id;
+    const orderId = req.body.orderId;
     const price = req.body.price;
     const timestamp = req.body.timestamp;
     res.send(`Order ID: ${orderId}. Price: ${price}. Timestamp: ${timestamp}.`);
