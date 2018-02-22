@@ -2,12 +2,11 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 import { map } from "rxjs/operators";
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import { Portfolio, PortfolioStock } from "../models";
 
 import { AngularFirestore } from "angularfire2/firestore";
-
-import { withLatestFrom } from "rxjs/operators";
 
 @Injectable()
 export class PortfolioService {
@@ -15,8 +14,10 @@ export class PortfolioService {
 
 	getPortfolio(userId): Observable<Portfolio> {
 		const stocks = this.db.collection<PortfolioStock>(`portfolios/${userId}/stocks`);
-		return this.db.doc<any>(`portfolios/${userId}`).valueChanges().pipe(
-			withLatestFrom(stocks.valueChanges()),
+		return combineLatest(
+			this.db.doc<any>(`portfolios/${userId}`).valueChanges(),
+			stocks.valueChanges()
+		).pipe(
 			map(([portfolio, stocks]) => ({ ...portfolio, stocks }))
 		);
 	}
