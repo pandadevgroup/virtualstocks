@@ -15,7 +15,7 @@ export class StockDetailComponent {
 
 	@Input() stock: StockDetail;
 	@Input() user: User;
-	@Output() transaction: EventEmitter<{ ticker, uid, type }> = new EventEmitter();
+	@Output() transaction: EventEmitter<{ stock, uid, type }> = new EventEmitter();
 
 	ngOnInit() {
 		// Enter your code here I guess for testing
@@ -55,8 +55,8 @@ export class StockDetailComponent {
 	}
 
 	onUserAction(type: StockOrderType) {
-		const ticker = this.stock.ticker;
+		const stock = this.stock;
 		const uid = this.user.id;
-		this.transaction.emit({ ticker, uid, type });
+		this.transaction.emit({ stock, uid, type });
 	}
 }

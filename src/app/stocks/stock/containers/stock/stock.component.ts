@@ -39,7 +39,7 @@ export class StockComponent implements OnInit, OnDestroy {
 		this.user$ = this.store.select(fromAuth.getUserData);
 	}
 
-	openTransactionDialog({ type, uid, ticker }) {
+	openTransactionDialog({ type, uid, stock }) {
 		this.dialog.open(StockTransactionDialog, {
 			data: {}
 		}).afterClosed().subscribe(result => {
