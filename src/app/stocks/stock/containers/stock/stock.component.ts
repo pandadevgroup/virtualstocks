@@ -39,17 +39,17 @@ export class StockComponent implements OnInit, OnDestroy {
 		this.user$ = this.store.select(fromAuth.getUserData);
 	}
 
-	openTransactionDialog(data) {
+	openTransactionDialog({ stock, type, uid }) {
 		this.dialog.open(StockTransactionDialog, {
-			data
-		}).afterClosed().subscribe(result => {
-			console.log(result);
+			data: { stock, type }
+		}).afterClosed().subscribe(({ action, ticker, quantity }) => {
+			if (action == null) return;
+			this.store.dispatch(new fromStocks.BuyStock({
+				uid,
+				ticker,
+				quantity: 10
+			}));
 		});
-		// this.store.dispatch(new fromStocks.BuyStock({
-		// 	uid,
-		// 	ticker,
-		// 	quantity: 10
-		// }));
 	}
 
 	ngOnDestroy() {
