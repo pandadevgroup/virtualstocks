@@ -1,5 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
-import { MatButtonModule } from '@angular/material';
+import { Component, ViewChild, ElementRef, Input } from "@angular/core";
 
 import * as Chart from "chart.js";
 
@@ -15,7 +14,6 @@ export class StockDetailComponent {
 	@ViewChild("canvas") canvasEl: ElementRef;
 
 	@Input() stock: StockDetail;
-	@Output() buyStock: EventEmitter<string> = new EventEmitter();
 
 	ngOnInit() {
 		// Enter your code here I guess for testing
@@ -52,9 +50,5 @@ export class StockDetailComponent {
 				}
 			}
 		});
-	}
-
-	onBuyStockClick() {
-		this.buyStock.emit(this.stock.ticker);
 	}
 }

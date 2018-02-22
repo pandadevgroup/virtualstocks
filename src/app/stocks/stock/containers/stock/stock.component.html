@@ -1,3 +1,5 @@
 <h1 class="mat-display-1">Stock Detail Page</h1>
 
-<vs-stock-detail [stock]="stock$ | async" (buyStock)="buyStock($event)"></vs-stock-detail>
+<vs-stock-detail [stock]="stock$ | async"></vs-stock-detail>
+
+<vs-stock-actions [user]="user$ | async" (buyStock)="buyStock($event)"></vs-stock-actions>

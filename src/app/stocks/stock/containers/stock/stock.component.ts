@@ -9,6 +9,7 @@ import { StockDetail } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
+import { User } from "@app/auth";
 
 @Component({
 	templateUrl: "stock.component.html",
@@ -16,6 +17,7 @@ import * as fromAuth from "@app/auth/store";
 })
 export class StockComponent implements OnInit, OnDestroy {
 	stock$: Observable<StockDetail>;
+	user$: Observable<User>;
 
 	constructor(private store: Store<fromRoot.State>) {}
 
@@ -27,10 +29,10 @@ export class StockComponent implements OnInit, OnDestroy {
 			switchMap(() => this.store.select(fromStocks.getStockDetail))
 		);
 
-
+		this.user$ = this.store.select(fromAuth.getUserData);
 	}
 
-	buyStock(ticker) {
+	buyStock({ ticker, uid }) {
 		this.store.select(fromAuth.getUserData).pipe(
 			map(user => user.id),
 			map(uid => {

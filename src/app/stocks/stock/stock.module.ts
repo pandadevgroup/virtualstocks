@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
-import { MatButtonModule } from '@angular/material';
+
+import { MatButtonModule } from "@angular/material/button";
 
 import * as fromContainers from "./containers";
 import * as fromComponents from "./components";
