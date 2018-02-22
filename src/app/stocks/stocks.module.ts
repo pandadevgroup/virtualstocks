@@ -8,17 +8,23 @@ import { EffectsModule } from "@ngrx/effects";
 import * as fromStore from "./store";
 import { services } from "./services";
 import * as fromGuards from "./guards";
+import * as fromAuth from "@app/auth";
 
 const routes: Routes = [
 	{
 		path: "stock/:ticker",
-		canActivate: [fromGuards.PortfolioGuard],
+		canActivate: [fromAuth.AuthGuard, fromGuards.PortfolioGuard],
 		loadChildren: "./stock#StockModule"
 	},
 	{
 		path: "stocks",
-		canActivate: [fromGuards.PortfolioGuard],
+		canActivate: [fromAuth.AuthGuard, fromGuards.PortfolioGuard],
 		loadChildren: "./stocks#StocksModule"
+	},
+	{
+		path: "orders",
+		canActivate: [fromAuth.AuthGuard],
+		loadChildren: "./orders#OrdersModule"
 	}
 ];
 
