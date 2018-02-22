@@ -75,7 +75,7 @@ export function sellOrder(db, order, price, timestamp) {
 				} else {
 					return db.doc(stockPath).update({
 						quantity: stock.quantity - order.quantity,
-						purchaseValue: stock.purchaseValue - (stock.purchaseValue * (stock.quantity - order.quantity))/stock.quantity
+						purchaseValue: (stock.purchaseValue * (stock.quantity - order.quantity))/stock.quantity
 					});
 				}
 			});
