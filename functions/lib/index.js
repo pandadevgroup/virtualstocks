@@ -51,6 +51,7 @@ server.post("/update", (req, res) => {
     promise.then(() => res.send("OK"))
         .catch(error => {
         res.status(500).send(error);
+        fromOrders.onError(db, order, error);
     });
 });
 exports.orders = functions.https.onRequest(server);

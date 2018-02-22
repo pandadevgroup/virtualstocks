@@ -96,4 +96,12 @@ function limitOrder(db, order, price, timestamp) {
     return Promise.reject("Not yet implemented: limits");
 }
 exports.limitOrder = limitOrder;
+function onError(db, order, error) {
+    return db.doc(`orders/${order.id}`).update({
+        fulfilled: true,
+        fulfillmentTimestamp: Date.now(),
+        error
+    });
+}
+exports.onError = onError;
 //# sourceMappingURL=orders.js.map
