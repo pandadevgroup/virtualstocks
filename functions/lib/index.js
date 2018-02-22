@@ -4,6 +4,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const express = require("express");
 const bodyParser = require("body-parser");
+const fromOrders = require("./orders");
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 const server = express();
@@ -30,40 +31,26 @@ exports.initializeUser = functions.auth.user().onCreate(event => {
     return Promise.all([createUser, createPortfolio]);
 });
 server.post("/update", (req, res) => {
-    const order = req.body.order;
-    const price = req.body.price;
-    const timestamp = req.body.timestamp;
-    const deleteOrder = db.doc(`orders/${order.id}`).update({
-        fulfilled: true,
-        price,
-        fulfillmentTimestamp: timestamp
-    });
-    const stockPath = `portfolios/${order.uid}/stocks/${order.ticker}`;
-    const addToPortfolio = db.doc(stockPath).get()
-        .then(data => {
-        if (!data.exists) {
-            // Ticker doesn't exist, create it now
-            return db.doc(stockPath).set({
-                ticker: order.ticker,
-                quantity: order.quantity,
-                purchaseValue: price * order.quantity
-                // TODO: Company name
-            });
-        }
-        else {
-            let stock = data.data();
-            // Ticker already exists, just update
-            return db.doc(stockPath).update({
-                quantity: stock.quantity + order.quantity,
-                purchaseValue: stock.purchaseValue + price * order.quantity
-                // TODO: Company name
-            });
-        }
-    });
-    Promise.all([deleteOrder, addToPortfolio])
-        .then(() => res.send("OK"))
+    const { order, price, timestamp } = req.body;
+    const { type } = order;
+    let promise;
+    switch (type) {
+        case "buy":
+            promise = fromOrders.buyOrder(db, order, price, timestamp);
+            break;
+        case "sell":
+            promise = fromOrders.sellOrder(db, order, price, timestamp);
+            break;
+        case "short":
+            promise = fromOrders.shortOrder(db, order, price, timestamp);
+            break;
+        case "limit":
+            promise = fromOrders.limitOrder(db, order, price, timestamp);
+            break;
+    }
+    promise.then(() => res.send("OK"))
         .catch(error => {
-        res.status(500).send("Error\n" + error);
+        res.status(500).send(error);
     });
 });
 exports.orders = functions.https.onRequest(server);
