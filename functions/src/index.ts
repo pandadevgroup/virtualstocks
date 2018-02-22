@@ -1,7 +1,11 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
+import * as express from "express";
+import * as bodyParser from "body-parser";
 
 admin.initializeApp(functions.config().firebase);
+const server = express();
+server.use(bodyParser.urlencoded());
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -28,3 +32,13 @@ export const initializeUser = functions.auth.user().onCreate(event => {
 
 	return Promise.all([createUser, createPortfolio]);
 });
+
+server.post("/update", (req, res) => {
+	const orderId = req.body.order_id;
+	const price = req.body.price;
+	const timestamp = req.body.timestamp;
+
+	res.send(`Order ID: ${orderId}. Price: ${price}. Timestamp: ${timestamp}.`);
+});
+
+export const orders = functions.https.onRequest(server);

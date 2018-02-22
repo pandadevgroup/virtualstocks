@@ -2,7 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const express = require("express");
+const bodyParser = require("body-parser");
 admin.initializeApp(functions.config().firebase);
+const server = express();
+server.use(bodyParser.urlencoded());
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -24,4 +28,11 @@ exports.initializeUser = functions.auth.user().onCreate(event => {
     });
     return Promise.all([createUser, createPortfolio]);
 });
+server.post("/update", (req, res) => {
+    const orderId = req.body.order_id;
+    const price = req.body.price;
+    const timestamp = req.body.timestamp;
+    res.send(`Order ID: ${orderId}. Price: ${price}. Timestamp: ${timestamp}.`);
+});
+exports.orders = functions.https.onRequest(server);
 //# sourceMappingURL=index.js.map
