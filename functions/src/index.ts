@@ -34,17 +34,21 @@ export const initializeUser = functions.auth.user().onCreate(event => {
 });
 
 server.post("/update", (req, res) => {
-	const orderId = req.body.orderId;
+	const order = req.body.order;
 	const price = req.body.price;
 	const timestamp = req.body.timestamp;
 
-	admin.firestore().doc(`orders/${orderId}`).update({
+	const deleteOrder = admin.firestore().doc(`orders/${order.id}`).update({
 		fulfilled: true,
 		price,
 		fulfillmentTimestamp: timestamp
-	}).then(() => res.send("OK")).catch(error => {
-		res.status(500).send("Error\n" + error);
 	});
+
+	Promise.all([deleteOrder])
+		.then(() => res.send("OK"))
+		.catch(error => {
+			res.status(500).send("Error\n" + error);
+		});
 });
 
 export const orders = functions.https.onRequest(server);
