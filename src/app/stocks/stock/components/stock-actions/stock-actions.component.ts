@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { User } from "@app/auth";
+import { Component, Output, EventEmitter } from "@angular/core";
+import { StockOrderType } from "@app/stocks/models";
 
 @Component({
 	selector: "vs-stock-actions",
@@ -7,6 +7,13 @@ import { User } from "@app/auth";
 	styleUrls: ["stock-actions.component.scss"]
 })
 export class StockActionsComponent {
-	@Input() user: User;
-	@Output() buyStock: EventEmitter<{ ticker: string, uid: string }> = new EventEmitter();
+	@Output() userAction: EventEmitter<StockOrderType> = new EventEmitter();
+
+	onBuy() {
+		this.userAction.emit(StockOrderType.BUY);
+	}
+
+	onSell() {
+		this.userAction.emit(StockOrderType.SELL);
+	}
 }

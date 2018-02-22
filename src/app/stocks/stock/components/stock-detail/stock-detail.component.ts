@@ -1,9 +1,9 @@
-import { Component, ViewChild, ElementRef, Input } from "@angular/core";
+import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
 
 import * as Chart from "chart.js";
 
-import { StockDetail } from "@app/stocks/models";
-
+import { StockDetail, StockOrderType } from "@app/stocks/models";
+import { User } from "@app/auth";
 
 @Component({
 	selector: "vs-stock-detail",
@@ -14,6 +14,8 @@ export class StockDetailComponent {
 	@ViewChild("canvas") canvasEl: ElementRef;
 
 	@Input() stock: StockDetail;
+	@Input() user: User;
+	@Output() transaction: EventEmitter<{ ticker, uid, type }> = new EventEmitter();
 
 	ngOnInit() {
 		// Enter your code here I guess for testing
@@ -50,5 +52,11 @@ export class StockDetailComponent {
 				}
 			}
 		});
+	}
+
+	onUserAction(type: StockOrderType) {
+		const ticker = this.stock.ticker;
+		const uid = this.user.id;
+		this.transaction.emit({ ticker, uid, type });
 	}
 }
