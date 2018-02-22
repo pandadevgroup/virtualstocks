@@ -44,10 +44,11 @@ export class StockComponent implements OnInit, OnDestroy {
 			data: { stock, type }
 		}).afterClosed().subscribe(({ action, ticker, quantity }) => {
 			if (action == null) return;
-			this.store.dispatch(new fromStocks.BuyStock({
+			this.store.dispatch(new fromStocks.StockTransaction({
 				uid,
 				ticker,
-				quantity: 10
+				quantity: 10,
+				type
 			}));
 		});
 	}

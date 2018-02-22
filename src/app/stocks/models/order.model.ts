@@ -7,10 +7,11 @@ export interface StockOrder {
 	type: StockOrderType;
 }
 
-export interface BuyStockOrder {
+export interface StockTransactionPayload {
 	uid: string;
 	ticker: string;
 	quantity: number;
+	type: StockOrderType;
 }
 
 export class StockOrderType {

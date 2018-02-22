@@ -11,7 +11,7 @@ import { StockOrder } from "@app/stocks/models";
 export class OrdersService {
 	constructor(private db: AngularFirestore) {}
 
-	buyStock(order: StockOrder): Observable<any> {
+	orderStock(order: StockOrder): Observable<any> {
 		const ordersCollection = this.db.collection<StockOrder>("orders");
 		return Observable.fromPromise(ordersCollection.add(order));
 	}

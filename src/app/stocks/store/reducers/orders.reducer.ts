@@ -12,20 +12,20 @@ export const initialState: OrdersState = {
 
 export function reducer(state = initialState, action: fromOrders.OrdersAction): OrdersState {
 	switch(action.type) {
-		case fromOrders.BUY_STOCK: {
+		case fromOrders.STOCK_TRANSACTION: {
 			return {
 				...state,
 				loading: true
 			};
 		}
-		case fromOrders.BUY_STOCK_SUCCESS: {
+		case fromOrders.STOCK_TRANSACTION_SUCCESS: {
 			return {
 				...state,
 				loading: false,
 				error: null
 			};
 		}
-		case fromOrders.BUY_STOCK_FAIL: {
+		case fromOrders.STOCK_TRANSACTION_FAIL: {
 			return {
 				...state,
 				loading: false,

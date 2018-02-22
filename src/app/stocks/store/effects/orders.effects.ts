@@ -6,7 +6,7 @@ import { switchMap, map, catchError, take } from "rxjs/operators";
 
 import * as fromActions from "../actions";
 import { OrdersService } from "@app/stocks/services";
-import { BuyStockOrder, StockOrderType } from "@app/stocks/models";
+import { StockTransactionPayload, StockOrderType } from "@app/stocks/models";
 
 @Injectable()
 export class OrdersEffects {
@@ -16,17 +16,16 @@ export class OrdersEffects {
 	) {}
 
 	@Effect()
-	buyStock$ = this.actions$.ofType(fromActions.BUY_STOCK).pipe(
-		map((action: fromActions.BuyStock) => action.payload),
-		map((order: BuyStockOrder) => ({
+	stockTransaction$ = this.actions$.ofType(fromActions.STOCK_TRANSACTION).pipe(
+		map((action: fromActions.StockTransaction) => action.payload),
+		map((order: StockTransactionPayload) => ({
 			...order,
 			fulfilled: false,
-			error: null,
-			type: StockOrderType.BUY
+			error: null
 		})),
-		switchMap(order => this.ordersService.buyStock(order).pipe(
-			map(() => new fromActions.BuyStockSuccess()),
-			catchError(error => of(new fromActions.BuyStockFail(error)))
+		switchMap(order => this.ordersService.orderStock(order).pipe(
+			map(() => new fromActions.StockTransactionSuccess()),
+			catchError(error => of(new fromActions.StockTransactoinFail(error)))
 		))
 	)
 }

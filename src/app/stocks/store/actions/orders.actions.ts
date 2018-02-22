@@ -1,25 +1,25 @@
 import { Action } from "@ngrx/store";
 
-import { BuyStockOrder, StockOrder } from "@app/stocks/models";
+import { StockTransactionPayload } from "@app/stocks/models";
 
-// Buy stock
-export const BUY_STOCK = "[Stocks] Buy Stock";
-export const BUY_STOCK_SUCCESS = "[Stocks] Buy Stock Success";
-export const BUY_STOCK_FAIL = "[Stocks] Buy Stock Fail";
+// Stock Transaction
+export const STOCK_TRANSACTION = "[Stocks] Stock Transaction";
+export const STOCK_TRANSACTION_SUCCESS = "[Stocks] Stock Transaction Success";
+export const STOCK_TRANSACTION_FAIL = "[Stocks] Stock Transaction Fail";
 
-export class BuyStock implements Action {
-	readonly type = BUY_STOCK;
-	constructor(public payload: BuyStockOrder) {}
+export class StockTransaction implements Action {
+	readonly type = STOCK_TRANSACTION;
+	constructor(public payload: StockTransactionPayload) {}
 }
-export class BuyStockSuccess implements Action {
-	readonly type = BUY_STOCK_SUCCESS;
+export class StockTransactionSuccess implements Action {
+	readonly type = STOCK_TRANSACTION_SUCCESS;
 }
-export class BuyStockFail implements Action {
-	readonly type = BUY_STOCK_FAIL;
+export class StockTransactoinFail implements Action {
+	readonly type = STOCK_TRANSACTION_FAIL;
 	constructor(public payload: any) {}
 }
 
 export type OrdersAction =
-	| BuyStock
-	| BuyStockSuccess
-	| BuyStockFail;
+	| StockTransaction
+	| StockTransactionSuccess
+	| StockTransactoinFail;
