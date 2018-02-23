@@ -6,7 +6,7 @@ import { switchMap, map, catchError, take } from "rxjs/operators";
 
 import * as fromActions from "../actions";
 import { TransactionsService } from "@app/stocks/services";
-import { StockTransactionPayload, StockOrderType } from "@app/stocks/models";
+import { StockTransactionPayload, TransactionType } from "@app/stocks/models";
 
 @Injectable()
 export class TransactionsEffects {

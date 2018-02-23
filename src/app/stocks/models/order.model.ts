@@ -1,21 +1,18 @@
+import { TransactionType } from "./transaction.model";
+
 export interface StockOrder {
 	uid: string;
 	ticker: string;
 	quantity: number;
 	fulfilled: boolean;
-	type: StockOrderType;
+	type: TransactionType;
+	limitPrice?: number;
 }
 
 export interface StockTransactionPayload {
 	uid: string;
 	ticker: string;
 	quantity: number;
-	type: StockOrderType;
-}
-
-export class StockOrderType {
-	static BUY = "buy";
-	static LIMIT = "limit";
-	static SHORT = "short";
-	static SELL = "sell";
+	type: TransactionType;
+	limitPrice?: number;
 }

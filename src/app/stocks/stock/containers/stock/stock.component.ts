@@ -7,7 +7,7 @@ import { switchMap, tap, filter, map } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
 
-import { StockDetail, StockOrderType } from "@app/stocks/models";
+import { StockDetail, TransactionType } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
