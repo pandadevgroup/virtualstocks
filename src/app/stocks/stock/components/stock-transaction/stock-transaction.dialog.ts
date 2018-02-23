@@ -1,7 +1,7 @@
 import { Component, Inject } from "@angular/core";
 
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { TransactionType, StockDetail } from "@app/stocks/models";
+import { StockTransactionType, StockDetail } from "@app/stocks/models";
 
 @Component({
 	templateUrl: "stock-transaction.dialog.html",
@@ -9,16 +9,16 @@ import { TransactionType, StockDetail } from "@app/stocks/models";
 })
 export class StockTransactionDialog {
 	constructor(
-		@Inject(MAT_DIALOG_DATA) private data: { stock: StockDetail, type: TransactionType },
+		@Inject(MAT_DIALOG_DATA) private data: { stock: StockDetail, type: StockTransactionType },
 		private dialogRef: MatDialogRef<StockTransactionDialog>
 	) {}
 
 	get title(): string {
 		let action;
-		if (this.data.type === TransactionType.BUY) action = "Buy";
-		else if (this.data.type === TransactionType.SELL) action = "Sell";
-		else if (this.data.type === TransactionType.LIMIT) action = "Limit";
-		else if (this.data.type === TransactionType.SHORT) action = "Short";
+		if (this.data.type === StockTransactionType.BUY) action = "Buy";
+		else if (this.data.type === StockTransactionType.SELL) action = "Sell";
+		else if (this.data.type === StockTransactionType.LIMIT) action = "Limit";
+		else if (this.data.type === StockTransactionType.SHORT) action = "Short";
 
 		return `${action} ${this.data.stock.ticker}`;
 	}
@@ -29,7 +29,7 @@ export class StockTransactionDialog {
 
 	confirm() {
 		this.dialogRef.close({
-			action: TransactionType.BUY,
+			action: StockTransactionType.BUY,
 			ticker: this.stock.ticker,
 			quantity: 10
 		});

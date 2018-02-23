@@ -1,25 +1,45 @@
 import { Action } from "@ngrx/store";
 
-import { StockTransactionPayload } from "@app/stocks/models";
+import { StockTransactionPayload, StockTransaction } from "@app/stocks/models";
 
-// Stock Transaction
-export const STOCK_TRANSACTION = "[Stocks] Stock Transaction";
-export const STOCK_TRANSACTION_SUCCESS = "[Stocks] Stock Transaction Success";
-export const STOCK_TRANSACTION_FAIL = "[Stocks] Stock Transaction Fail";
+// New Stock Transaction
+export const STOCK_TRANSACTION = "[Stocks] New Stock Transaction";
+export const STOCK_TRANSACTION_SUCCESS = "[Stocks] New Stock Transaction Success";
+export const STOCK_TRANSACTION_FAIL = "[Stocks] New Stock Transaction Fail";
 
-export class StockTransaction implements Action {
+export class NewStockTransaction implements Action {
 	readonly type = STOCK_TRANSACTION;
 	constructor(public payload: StockTransactionPayload) {}
 }
-export class StockTransactionSuccess implements Action {
+export class NewStockTransactionSuccess implements Action {
 	readonly type = STOCK_TRANSACTION_SUCCESS;
 }
-export class StockTransactionFail implements Action {
+export class NewStockTransactionFail implements Action {
 	readonly type = STOCK_TRANSACTION_FAIL;
 	constructor(public payload: any) {}
 }
 
+// Load Transactions
+export const LOAD_TRANSACTIONS = "[Stocks] Load Transactions";
+export const LOAD_TRANSACTIONS_SUCCESS = "[Stocks] Load Transactions Success";
+export const LOAD_TRANSACTIONS_FAIL = "[Stocks] Load Transactions Fail";
+
+export class LoadTransactions implements Action {
+	readonly type = LOAD_TRANSACTIONS;
+}
+export class LoadTransactionsSuccess implements Action {
+	readonly type = LOAD_TRANSACTIONS_SUCCESS;
+	constructor(public payload: StockTransaction[]) {}
+}
+export class LoadTransactionsFail implements Action {
+	readonly type = LOAD_TRANSACTIONS_FAIL;
+	constructor(public payload: any) {}
+}
+
 export type OrdersAction =
-	| StockTransaction
-	| StockTransactionSuccess
-	| StockTransactionFail;
+	| NewStockTransaction
+	| NewStockTransactionSuccess
+	| NewStockTransactionFail
+	| LoadTransactions
+	| LoadTransactionsSuccess
+	| LoadTransactionsFail;

@@ -7,7 +7,7 @@ import { switchMap, tap, filter, map } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
 
-import { StockDetail, TransactionType } from "@app/stocks/models";
+import { StockDetail, StockTransactionType } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
@@ -44,7 +44,7 @@ export class StockComponent implements OnInit, OnDestroy {
 			data: { stock, type }
 		}).afterClosed().subscribe(({ action, ticker, quantity }) => {
 			if (action == null) return;
-			this.store.dispatch(new fromStocks.StockTransaction({
+			this.store.dispatch(new fromStocks.NewStockTransaction({
 				uid,
 				ticker,
 				quantity: 10,

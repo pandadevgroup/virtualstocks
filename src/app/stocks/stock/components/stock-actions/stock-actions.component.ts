@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
-import { TransactionType } from "@app/stocks/models";
+import { StockTransactionType } from "@app/stocks/models";
 
 @Component({
 	selector: "vs-stock-actions",
@@ -7,13 +7,13 @@ import { TransactionType } from "@app/stocks/models";
 	styleUrls: ["stock-actions.component.scss"]
 })
 export class StockActionsComponent {
-	@Output() userAction: EventEmitter<TransactionType> = new EventEmitter();
+	@Output() userAction: EventEmitter<StockTransactionType> = new EventEmitter();
 
 	onBuy() {
-		this.userAction.emit(TransactionType.BUY);
+		this.userAction.emit(StockTransactionType.BUY);
 	}
 
 	onSell() {
-		this.userAction.emit(TransactionType.SELL);
+		this.userAction.emit(StockTransactionType.SELL);
 	}
 }

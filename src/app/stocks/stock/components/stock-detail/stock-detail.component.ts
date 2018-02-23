@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@
 
 import * as Chart from "chart.js";
 
-import { StockDetail, TransactionType } from "@app/stocks/models";
+import { StockDetail, StockTransactionType } from "@app/stocks/models";
 import { User } from "@app/auth";
 
 @Component({
@@ -54,7 +54,7 @@ export class StockDetailComponent {
 		});
 	}
 
-	onUserAction(type: TransactionType) {
+	onUserAction(type: StockTransactionType) {
 		const stock = this.stock;
 		const uid = this.user.id;
 		this.transaction.emit({ stock, uid, type });

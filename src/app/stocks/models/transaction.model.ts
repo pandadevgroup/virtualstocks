@@ -1,15 +1,15 @@
-export interface Transaction {
+export interface StockTransaction {
 	fulfilled: boolean;
 	fulfillmentTimestamp?: number;
 	price?: number;
 	limitPrice?: number;
 	quantity: number;
 	ticker: string;
-	type: TransactionType;
+	type: StockTransactionType;
 	uid: string;
 }
 
-export class TransactionType {
+export class StockTransactionType {
 	static BUY = "buy";
 	static LIMIT = "limit";
 	static SHORT = "short";
