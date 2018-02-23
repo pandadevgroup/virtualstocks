@@ -1,4 +1,5 @@
 import * as fromUser from "./user.actions";
+import { mockUser } from "@app/auth/test";
 
 describe("User Actions", () => {
 	describe("Auth Actions", () => {
@@ -19,16 +20,11 @@ describe("User Actions", () => {
 
 		describe("LoginSuccess", () => {
 			it("should create an action", () => {
-				const user = {
-					id: "fakeuserid",
-					name: "Nathan Wang",
-					email: "nathan.r.wang@gmail.com"
-				};
-				const action = new fromUser.LoginSuccess(user);
+				const action = new fromUser.LoginSuccess(mockUser);
 
 				expect({ ...action }).toEqual({
 					type: fromUser.LOGIN_SUCCESS,
-					payload: user
+					payload: mockUser
 				});
 			});
 		});
@@ -65,16 +61,11 @@ describe("User Actions", () => {
 	describe("Set User", () => {
 		describe("SetUser", () => {
 			it("should create an action", () => {
-				const user = {
-					id: "fakeuserid",
-					name: "Nathan Wang",
-					email: "nathan.r.wang@gmail.com"
-				};
-				const action = new fromUser.SetUser(user);
+				const action = new fromUser.SetUser(mockUser);
 
 				expect({ ...action }).toEqual({
 					type: fromUser.SET_USER,
-					payload: user
+					payload: mockUser
 				});
 			});
 		});
