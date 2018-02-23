@@ -10,11 +10,19 @@ export const getTransactionsState = createSelector(
 	state => state.transactions
 );
 
-export const getOrdersLoading = createSelector(
+export const getTransactionsLoading = createSelector(
 	getTransactionsState,
 	fromTransactions.getTransactionsLoading
 );
-export const getOrdersError = createSelector(
+export const getTransactionsError = createSelector(
 	getTransactionsState,
 	fromTransactions.getTransactionsError
+);
+export const getTransactions = createSelector(
+	getTransactionsState,
+	fromTransactions.getTransactions
+);
+export const getTransactionsLoaded = createSelector(
+	getTransactionsState,
+	fromTransactions.getTransactionsLoaded
 );
