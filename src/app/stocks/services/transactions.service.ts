@@ -8,11 +8,11 @@ import { catchError, map } from "rxjs/operators";
 import { StockOrder } from "@app/stocks/models";
 
 @Injectable()
-export class OrdersService {
+export class TransactionsService {
 	constructor(private db: AngularFirestore) {}
 
 	orderStock(order: StockOrder): Observable<any> {
-		const ordersCollection = this.db.collection<StockOrder>("orders");
+		const ordersCollection = this.db.collection<StockOrder>("transactions");
 		return Observable.fromPromise(ordersCollection.add(order));
 	}
 }
