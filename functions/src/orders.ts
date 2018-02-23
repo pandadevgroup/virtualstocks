@@ -21,6 +21,7 @@ export function buyOrder(db, order, price, timestamp) {
 		const updateOrder = db.doc(`transactions/${order.id}`).update({
 			fulfilled: true,
 			price,
+			timestamp: Date.now(),
 			fulfillmentTimestamp: timestamp
 		});
 
@@ -69,6 +70,7 @@ export function sellOrder(db, order, price, timestamp) {
 		const updateOrder = db.doc(`transactions/${order.id}`).update({
 			fulfilled: true,
 			price,
+			timestamp: Date.now(),
 			fulfillmentTimestamp: timestamp
 		});
 
@@ -101,7 +103,7 @@ export function limitOrder(db, order, price, timestamp) {
 export function onError(db, order, error) {
 	return db.doc(`transactions/${order.id}`).update({
 		fulfilled: true,
-		fulfillmentTimestamp: Date.now(),
+		timestamp: Date.now(),
 		error
 	});
 }

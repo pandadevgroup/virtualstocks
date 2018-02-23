@@ -21,6 +21,7 @@ function buyOrder(db, order, price, timestamp) {
         const updateOrder = db.doc(`transactions/${order.id}`).update({
             fulfilled: true,
             price,
+            timestamp: Date.now(),
             fulfillmentTimestamp: timestamp
         });
         const stockPath = getStockPath(order);
@@ -68,6 +69,7 @@ function sellOrder(db, order, price, timestamp) {
         const updateOrder = db.doc(`transactions/${order.id}`).update({
             fulfilled: true,
             price,
+            timestamp: Date.now(),
             fulfillmentTimestamp: timestamp
         });
         const updateStocks = db.doc(stockPath).get()
@@ -99,7 +101,7 @@ exports.limitOrder = limitOrder;
 function onError(db, order, error) {
     return db.doc(`transactions/${order.id}`).update({
         fulfilled: true,
-        fulfillmentTimestamp: Date.now(),
+        timestamp: Date.now(),
         error
     });
 }
