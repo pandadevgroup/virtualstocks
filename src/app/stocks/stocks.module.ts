@@ -25,6 +25,11 @@ const routes: Routes = [
 		path: "transactions",
 		canActivate: [fromGuards.TransactionsGuard],
 		loadChildren: "./transactions#TransactionsModule"
+	},
+	{
+		path: "portfolio",
+		canActivate: [fromGuards.PortfolioGuard],
+		loadChildren: "./portfolio#PortfolioModule"
 	}
 ];
 
