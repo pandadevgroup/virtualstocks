@@ -43,6 +43,7 @@ import { CoreRoutingModule } from "./core-routing.module";
 		}),
 
 		AngularFireModule.initializeApp(environment.firebase),
+		AngularFirestoreModule.enablePersistence(),
 		AngularFirestoreModule,
 		AngularFireAuthModule,
 
