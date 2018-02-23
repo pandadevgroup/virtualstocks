@@ -14,7 +14,7 @@ export class StockTransaction implements Action {
 export class StockTransactionSuccess implements Action {
 	readonly type = STOCK_TRANSACTION_SUCCESS;
 }
-export class StockTransactoinFail implements Action {
+export class StockTransactionFail implements Action {
 	readonly type = STOCK_TRANSACTION_FAIL;
 	constructor(public payload: any) {}
 }
@@ -22,4 +22,4 @@ export class StockTransactoinFail implements Action {
 export type OrdersAction =
 	| StockTransaction
 	| StockTransactionSuccess
-	| StockTransactoinFail;
+	| StockTransactionFail;

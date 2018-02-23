@@ -3,7 +3,6 @@ export interface StockOrder {
 	ticker: string;
 	quantity: number;
 	fulfilled: boolean;
-	error: string | null;
 	type: StockOrderType;
 }
 

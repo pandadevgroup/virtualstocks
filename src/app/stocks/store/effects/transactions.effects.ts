@@ -20,12 +20,11 @@ export class TransactionsEffects {
 		map((action: fromActions.StockTransaction) => action.payload),
 		map((order: StockTransactionPayload) => ({
 			...order,
-			fulfilled: false,
-			error: null
+			fulfilled: false
 		})),
 		switchMap(order => this.transactionsService.orderStock(order).pipe(
 			map(() => new fromActions.StockTransactionSuccess()),
-			catchError(error => of(new fromActions.StockTransactoinFail(error)))
+			catchError(error => of(new fromActions.StockTransactionFail(error)))
 		))
 	)
 }
