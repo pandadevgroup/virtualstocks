@@ -27,4 +27,12 @@ export class TransactionsEffects {
 			catchError(error => of(new fromActions.NewStockTransactionFail(error)))
 		))
 	);
+
+	@Effect()
+	loadTransactions$ = this.actions$.ofType(fromActions.LOAD_TRANSACTIONS).pipe(
+		switchMap(() => this.transactionsService.getTransactions().pipe(
+			map(transactions => new fromActions.LoadTransactionsSuccess(transactions)),
+			catchError(error => of(new fromActions.LoadTransactionsFail(error)))
+		))
+	);
 }

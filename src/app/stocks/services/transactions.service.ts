@@ -5,7 +5,7 @@ import { AngularFirestore } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { StockOrder } from "@app/stocks/models";
+import { StockOrder, StockTransaction } from "@app/stocks/models";
 
 @Injectable()
 export class TransactionsService {
@@ -14,5 +14,9 @@ export class TransactionsService {
 	orderStock(order: StockOrder): Observable<any> {
 		const ordersCollection = this.db.collection<StockOrder>("transactions");
 		return Observable.fromPromise(ordersCollection.add(order));
+	}
+
+	getTransactions(): Observable<StockTransaction[]> {
+		return Observable.of([]);
 	}
 }
