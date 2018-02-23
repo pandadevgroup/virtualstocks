@@ -18,7 +18,7 @@ export function buyOrder(db, order, price, timestamp) {
 			});
 		}
 	}).then(() => {
-		const updateOrder = db.doc(`orders/${order.id}`).update({
+		const updateOrder = db.doc(`transactions/${order.id}`).update({
 			fulfilled: true,
 			price,
 			fulfillmentTimestamp: timestamp
@@ -66,7 +66,7 @@ export function sellOrder(db, order, price, timestamp) {
 			});
 		});
 
-		const updateOrder = db.doc(`orders/${order.id}`).update({
+		const updateOrder = db.doc(`transactions/${order.id}`).update({
 			fulfilled: true,
 			price,
 			fulfillmentTimestamp: timestamp
@@ -99,7 +99,7 @@ export function limitOrder(db, order, price, timestamp) {
 }
 
 export function onError(db, order, error) {
-	return db.doc(`orders/${order.id}`).update({
+	return db.doc(`transactions/${order.id}`).update({
 		fulfilled: true,
 		fulfillmentTimestamp: Date.now(),
 		error
