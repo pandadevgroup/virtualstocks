@@ -21,8 +21,7 @@ export class UserEffects {
 	loginWithGoogle$ = this.actions$
 		.ofType(fromActions.LOGIN_WITH_GOOGLE)
 		.pipe(
-			map((action: fromActions.Login) => action.payload),
-			switchMap(authInfo => this.authService.loginWithGoogle().pipe(
+			switchMap(() => this.authService.loginWithGoogle().pipe(
 				switchMap(() => this.authService.user),
 				filter(user => !!user),
 				take(1),
