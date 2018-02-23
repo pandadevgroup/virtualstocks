@@ -26,5 +26,5 @@ export class TransactionsEffects {
 			map(() => new fromActions.NewStockTransactionSuccess()),
 			catchError(error => of(new fromActions.NewStockTransactionFail(error)))
 		))
-	)
+	);
 }
