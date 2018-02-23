@@ -6,10 +6,11 @@ import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
 import { StockOrder, StockTransaction } from "@app/stocks/models";
+import { AuthService } from "@app/auth";
 
 @Injectable()
 export class TransactionsService {
-	constructor(private db: AngularFirestore) {}
+	constructor(private db: AngularFirestore, private authService: AuthService) {}
 
 	orderStock(order: StockOrder): Observable<any> {
 		const transactionsCollection = this.db.collection<StockOrder>("transactions");
@@ -17,8 +18,9 @@ export class TransactionsService {
 	}
 
 	getTransactions(): Observable<StockTransaction[]> {
-		// TODO
-		const transactionsCollection = this.db.collection<StockTransaction>("transactions");
-		return Observable.of([]);
+		return this.db.collection<StockTransaction>(
+			"transactions",
+			ref => ref.where("uid", "==", this.authService.userId)
+		).valueChanges();
 	}
 }
