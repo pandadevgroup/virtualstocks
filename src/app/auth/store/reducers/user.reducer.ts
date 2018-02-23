@@ -45,7 +45,9 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 		case fromUser.LOGOUT: {
 			return {
 				...state,
-				loggedIn: false
+				loggedIn: false,
+				userData: null,
+				error: null
 			};
 		}
 		case fromUser.SET_USER: {
