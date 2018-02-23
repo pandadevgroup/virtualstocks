@@ -12,11 +12,13 @@ export class TransactionsService {
 	constructor(private db: AngularFirestore) {}
 
 	orderStock(order: StockOrder): Observable<any> {
-		const ordersCollection = this.db.collection<StockOrder>("transactions");
-		return Observable.fromPromise(ordersCollection.add(order));
+		const transactionsCollection = this.db.collection<StockOrder>("transactions");
+		return Observable.fromPromise(transactionsCollection.add(order));
 	}
 
 	getTransactions(): Observable<StockTransaction[]> {
+		// TODO
+		const transactionsCollection = this.db.collection<StockTransaction>("transactions");
 		return Observable.of([]);
 	}
 }

@@ -11,17 +11,14 @@ import { switchMap, catchError, map, take, tap } from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
+	userId: string = null;
+
 	constructor(private af: AngularFireAuth, private db: AngularFirestore) {}
 
 	get user(): Observable<User> {
 		return this.af.authState.pipe(
+			tap(user => this.userId = user.uid),
 			switchMap(this.parseAuthUser.bind(this))
-		);
-	}
-
-	get userId(): Observable<string> {
-		return this.af.authState.pipe(
-			map(authState => authState.uid)
 		);
 	}
 

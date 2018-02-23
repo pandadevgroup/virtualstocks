@@ -18,13 +18,10 @@ export class PortfolioEffects {
 
 	@Effect()
 	loadPortfolio$ = this.actions$.ofType(fromActions.LOAD_PORTFOLIO).pipe(
-		switchMap(() => this.authService.userId.pipe(take(1))),
-		switchMap(id => {
-			return this.portfolioService.getPortfolio(id).pipe(
-				filter(portfolio => !!portfolio),
-				map(portfolio => new fromActions.LoadPortfolioSuccess(portfolio)),
-				catchError(error => of(new fromActions.LoadPortfolioFail(error)))
-			);
-		})
+		switchMap(() => this.portfolioService.getPortfolio(this.authService.userId).pipe(
+			filter(portfolio => !!portfolio),
+			map(portfolio => new fromActions.LoadPortfolioSuccess(portfolio)),
+			catchError(error => of(new fromActions.LoadPortfolioFail(error)))
+		))
 	);
 }
