@@ -18,12 +18,12 @@ const routes: Routes = [
 	},
 	{
 		path: "stocks",
-		canActivate: [fromAuth.AuthGuard, fromGuards.PortfolioGuard],
+		canActivate: [fromGuards.PortfolioGuard],
 		loadChildren: "./stocks#StocksModule"
 	},
 	{
 		path: "transactions",
-		canActivate: [fromAuth.AuthGuard, fromGuards.TransactionsGuard],
+		canActivate: [fromGuards.TransactionsGuard],
 		loadChildren: "./transactions#TransactionsModule"
 	}
 ];

@@ -17,7 +17,10 @@ export class AuthService {
 
 	get user(): Observable<User> {
 		return this.af.authState.pipe(
-			tap(user => this.userId = user.uid),
+			tap(user => {
+				if (user) this.userId = user.uid;
+				else this.userId = null;
+			}),
 			switchMap(this.parseAuthUser.bind(this))
 		);
 	}
