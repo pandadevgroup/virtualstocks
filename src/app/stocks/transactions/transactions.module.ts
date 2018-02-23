@@ -8,7 +8,7 @@ const routes: Routes = [
 	{
 		path: "",
 		pathMatch: "full",
-		component: fromContainers.OrdersComponent
+		component: fromContainers.TransactionsComponent
 	}
 ];
 
@@ -21,4 +21,4 @@ const routes: Routes = [
 		RouterModule.forChild(routes)
 	]
 })
-export class OrdersModule {}
+export class TransactionsModule {}

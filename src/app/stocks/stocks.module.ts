@@ -22,9 +22,9 @@ const routes: Routes = [
 		loadChildren: "./stocks#StocksModule"
 	},
 	{
-		path: "orders",
+		path: "transactions",
 		canActivate: [fromAuth.AuthGuard],
-		loadChildren: "./orders#OrdersModule"
+		loadChildren: "./transactions#TransactionsModule"
 	}
 ];
 

@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 import * as fromStocks from "@app/stocks/store";
 
 @Component({
-	templateUrl: "orders.component.html",
-	styleUrls: ["orders.component.scss"]
+	templateUrl: "transactions.component.html",
+	styleUrls: ["transactions.component.scss"]
 })
-export class OrdersComponent {
+export class TransactionsComponent {
 	constructor(private store: Store<fromStocks.StocksState>) {}
 }
