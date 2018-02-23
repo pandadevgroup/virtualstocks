@@ -1,1 +1,4 @@
-Transactions
+<ng-container *ngIf="transactions$ | async as transactions">
+	<p>{{ transactions.length }} Transactions</p>
+	<p *ngFor="let transaction of transactions">{{ transaction | json }}</p>
+</ng-container>

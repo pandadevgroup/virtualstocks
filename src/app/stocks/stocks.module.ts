@@ -23,7 +23,7 @@ const routes: Routes = [
 	},
 	{
 		path: "transactions",
-		canActivate: [fromAuth.AuthGuard],
+		canActivate: [fromAuth.AuthGuard, fromGuards.TransactionsGuard],
 		loadChildren: "./transactions#TransactionsModule"
 	}
 ];

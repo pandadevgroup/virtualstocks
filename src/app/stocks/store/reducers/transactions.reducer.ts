@@ -35,6 +35,7 @@ export function reducer(state = initialState, action: fromTransactions.OrdersAct
 			return {
 				...state,
 				loading: false,
+				loaded: true,
 				error: null,
 				transactions: action.payload
 			}
