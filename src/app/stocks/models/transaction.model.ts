@@ -1,5 +1,6 @@
 export interface StockTransaction {
 	fulfilled: boolean;
+	timestamp?: number;
 	fulfillmentTimestamp?: number;
 	price?: number;
 	limitPrice?: number;
