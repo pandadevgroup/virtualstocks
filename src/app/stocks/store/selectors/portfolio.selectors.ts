@@ -26,9 +26,9 @@ export const getPortfolioLoading = createSelector(
 	getPortfolioState,
 	fromPortfolio.getPortfolioLoading
 );
-export const getPortfolioValue = createSelector(
+export const getPortfolioCash = createSelector(
 	getPortfolioState,
-	fromPortfolio.getPortfolioValue
+	fromPortfolio.getPortfolioCash
 );
 export const getPortfolioError = createSelector(
 	getPortfolioState,

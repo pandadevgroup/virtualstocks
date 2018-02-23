@@ -6,7 +6,7 @@ export interface PortfolioState {
 	stockEntities: { [ticker: string]: PortfolioStock };
 	loaded: boolean;
 	loading: boolean;
-	value: number;
+	cash: number;
 	error: any;
 }
 
@@ -14,7 +14,7 @@ export const initialState: PortfolioState = {
 	stockEntities: {},
 	loaded: false,
 	loading: false,
-	value: 0,
+	cash: 0,
 	error: null
 };
 
@@ -46,14 +46,14 @@ export function reducer(state = initialState, action: fromPortfolio.PortfolioAct
 				return entities;
 			}, {});
 
-			const value = portfolio.value;
+			const cash = portfolio.cash;
 
 			return {
 				...state,
 				loading: false,
 				loaded: true,
 				stockEntities,
-				value,
+				cash,
 				error: null
 			}
 		}
@@ -64,5 +64,5 @@ export function reducer(state = initialState, action: fromPortfolio.PortfolioAct
 export const getPortfolioStockEntities = (state: PortfolioState) => state.stockEntities;
 export const getPortfolioLoaded = (state: PortfolioState) => state.loaded;
 export const getPortfolioLoading = (state: PortfolioState) => state.loading;
-export const getPortfolioValue = (state: PortfolioState) => state.value;
+export const getPortfolioCash = (state: PortfolioState) => state.cash;
 export const getPortfolioError = (state: PortfolioState) => state.error;
