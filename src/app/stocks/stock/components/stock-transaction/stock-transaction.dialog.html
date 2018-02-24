@@ -1,8 +1,18 @@
-<h2 mat-dialog-title>{{ title }}</h2>
-<mat-dialog-content>
-	{{ stock.latestPrice | currency }} at {{ stock.latestTime }}
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button (click)="confirm()">Yes</button>
-</mat-dialog-actions>
+<!--<button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button>-->
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ title }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    	{{ stock.latestPrice | currency }} at {{ stock.latestTime }}
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-danger"  (click)="decline()">Cancel</button>
+      <button type="button" class="btn btn-success" (click)="confirm()">Yes</button>
+    </div>
+</ng-template>
