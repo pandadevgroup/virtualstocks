@@ -2,8 +2,11 @@ Stock Detail
 
 <vs-stock-actions (userAction)="onUserAction($event)"></vs-stock-actions>
 
-<pre>{{ stock | json }}</pre>
-
+<div class="card">
+	<div class="card-body">
+		<pre>{{ stock | json }}</pre>
+	</div>
+</div>
 <hr>
 <div class="canvas__container">
 	<canvas #canvas></canvas>
