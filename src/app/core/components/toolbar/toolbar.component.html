@@ -16,7 +16,7 @@
 				<a class="nav-link" routerLink="/portfolio">Portfolio</a>
 			</li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+		<form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()" *ngIf="loggedIn">
 			<input class="form-control mr-sm-2"
 				type="search"
 				placeholder="Search Stock"
@@ -24,5 +24,13 @@
 				formControlName="ticker">
 			<button class="btn btn-outline-pale-yellow my-2 my-sm-0" type="submit">Search</button>
 		</form>
+		<ul class="navbar-nav ml-3">
+			<li class="nav-item" *ngIf="!loggedIn">
+				<a routerLink="/login" class="nav-link">Login</a>
+			</li>
+			<li class="nav-item" *ngIf="loggedIn">
+				<a routerLink="/logout" class="nav-link">Logout</a>
+			</li>
+		</ul>
 	</div>
 </nav>
