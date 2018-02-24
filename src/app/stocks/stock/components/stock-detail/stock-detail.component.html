@@ -1,7 +1,7 @@
 Stock Detail
 
 <div class="row">
-		
+
 	<div class="col-lg-9 col-md-8">
 		<div class="card">
 			<div class="card-body">
@@ -16,10 +16,25 @@ Stock Detail
 	<!-- TODO: make the smaller column appear on top instead of bottom when the sm/xs breakpoint is exceeded-->
 	<!-- TODO: make the buy/sell inside a modal -->
 	<div class="col-lg-3 col-md-4">
+		<div id="action-overview">
 			<h3>{{stock.ticker}}</h3>
 			<p class="text-muted">{{stock.companyName}} </p>
 			<h4 class="text-success">$ {{ stock.latestPrice}}</h4>
 			<vs-stock-actions (userAction)="onUserAction($event)"></vs-stock-actions>
-	
 		</div>
+		<div id="buy-confirm">
+			<h3>BUY {{stock.ticker}}</h3>
+
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" placeholder="QTY" aria-label="Quantity" aria-describedby="share-addon" id="share-qty">
+				<div class="input-group-append">
+					<span class="input-group-text" id="share-addon">Share<span id="share-plural" class="hidden">s</span> @ ${{ stock.latestPrice}} a share</span>
+				</div>
+
+			</div>
+			<button class="btn btn-primary btn-block">Buy <!--there's some way to link this to the input in the QTY field but I forgot that it is--> share <!--add an 's' if more than one share--> for $<!--{{stock.latestPrice * qty}} total--></button>
+
+
+		</div>
+	</div>
 </div>
