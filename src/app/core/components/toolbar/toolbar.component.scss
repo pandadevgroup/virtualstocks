@@ -1,38 +1,22 @@
-/* NOT how to theme bootstrap */
-.btn-outline-pale-yellow {
-	color: #ffe484;
-	background-color: transparent;
-	background-image: none;
-	border-color: #ffe484;
-}
+.ticker-search {
+	border: 0;
+	background-color: rgba(255,255,255,0.3);
+	padding: 0.2rem;
+	width: 15rem;
+	transition: all 0.3s;
 
-.btn-outline-pale-yellow:hover {
-	color: #007bff;
-	background-color: #ffe484;
-	border-color: #ffe484;
-}
+	&::placeholder {
+		color: rgba(255,255,255,0.8);
+		transition: all 0.3s;
+	}
 
-.btn-outline-pale-yellow:focus,
-.btn-outline-pale-yellow.focus {
-	box-shadow: 0 0 0 0.2rem rgba(255, 228, 132, 0.5);
-}
+	&:focus {
+		background-color: rgba(255, 255, 255, 0.8);
+		outline: none;
+		width: 20rem;
 
-.btn-outline-pale-yellow.disabled,
-.btn-outline-pale-yellow:disabled {
-	color: #ffe484;
-	background-color: transparent;
-}
-
-.btn-outline-pale-yellow:not(:disabled):not(.disabled):active,
-.btn-outline-pale-yellow:not(:disabled):not(.disabled).active,
-.show>.btn-outline-pale-yellow.dropdown-toggle {
-	color: #007bff;
-	background-color: #ffe484;
-	border-color: #ffe484;
-}
-
-.btn-outline-pale-yellow:not(:disabled):not(.disabled):active:focus,
-.btn-outline-pale-yellow:not(:disabled):not(.disabled).active:focus,
-.show>.btn-outline-pale-yellow.dropdown-toggle:focus {
-	box-shadow: 0 0 0 0.2rem rgba(255, 228, 132, 0.5);
+		&::placeholder {
+			color: black;
+		}
+	}
 }
