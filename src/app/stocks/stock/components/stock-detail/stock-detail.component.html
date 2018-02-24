@@ -1,7 +1,8 @@
 Stock Detail
 
 <div class="row">
-	<div class="col-lg-9">
+		
+	<div class="col-lg-9 col-md-8">
 		<div class="card">
 			<div class="card-body">
 				<pre>{{ stock | json }}</pre>
@@ -12,8 +13,10 @@ Stock Detail
 			<canvas #canvas></canvas>
 		</div>
 	</div>
-	<div class="col-lg-3">
-		<vs-stock-actions (userAction)="onUserAction($event)"></vs-stock-actions>
-
-	</div>
+	<!-- TODO: make the smaller column appear on top instead of bottom when the sm/xs breakpoint is exceeded-->
+	<!-- TODO: make the buy/sell inside a modal -->
+	<div class="col-lg-3 col-md-4">
+			<vs-stock-actions (userAction)="onUserAction($event)"></vs-stock-actions>
+	
+		</div>
 </div>
