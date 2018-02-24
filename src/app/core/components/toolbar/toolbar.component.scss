@@ -4,31 +4,35 @@
 	background-color: transparent;
 	background-image: none;
 	border-color: #ffe484;
-  }
-  
-  .btn-outline-pale-yellow:hover {
+}
+
+.btn-outline-pale-yellow:hover {
 	color: #007bff;
 	background-color: #ffe484;
 	border-color: #ffe484;
-  }
-  
-  .btn-outline-pale-yellow:focus, .btn-outline-pale-yellow.focus {
+}
+
+.btn-outline-pale-yellow:focus,
+.btn-outline-pale-yellow.focus {
 	box-shadow: 0 0 0 0.2rem rgba(255, 228, 132, 0.5);
-  }
-  
-  .btn-outline-pale-yellow.disabled, .btn-outline-pale-yellow:disabled {
+}
+
+.btn-outline-pale-yellow.disabled,
+.btn-outline-pale-yellow:disabled {
 	color: #ffe484;
 	background-color: transparent;
-  }
-  
-  .btn-outline-pale-yellow:not(:disabled):not(.disabled):active, .btn-outline-pale-yellow:not(:disabled):not(.disabled).active,
-  .show > .btn-outline-pale-yellow.dropdown-toggle {
+}
+
+.btn-outline-pale-yellow:not(:disabled):not(.disabled):active,
+.btn-outline-pale-yellow:not(:disabled):not(.disabled).active,
+.show>.btn-outline-pale-yellow.dropdown-toggle {
 	color: #007bff;
 	background-color: #ffe484;
 	border-color: #ffe484;
-  }
-  
-  .btn-outline-pale-yellow:not(:disabled):not(.disabled):active:focus, .btn-outline-pale-yellow:not(:disabled):not(.disabled).active:focus,
-  .show > .btn-outline-pale-yellow.dropdown-toggle:focus {
+}
+
+.btn-outline-pale-yellow:not(:disabled):not(.disabled):active:focus,
+.btn-outline-pale-yellow:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-pale-yellow.dropdown-toggle:focus {
 	box-shadow: 0 0 0 0.2rem rgba(255, 228, 132, 0.5);
-  }
+}

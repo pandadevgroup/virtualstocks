@@ -16,9 +16,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressRouterModule } from "@ngx-progressbar/router";
 
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
+import { CollapseModule } from "ngx-bootstrap/collapse";
 
 import { environment } from "@env/environment";
 
@@ -57,9 +55,7 @@ import { CoreRoutingModule } from "./core-routing.module";
 		NgProgressModule.forRoot(),
 		NgProgressRouterModule,
 
-		MatToolbarModule,
-		MatButtonModule,
-		MatIconModule,
+		CollapseModule.forRoot(),
 
 		CoreRoutingModule
 	],
