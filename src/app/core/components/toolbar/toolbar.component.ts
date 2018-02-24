@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 })
 export class ToolbarComponent {
 	@Input() loggedIn: boolean = false;
-	@Output() search: EventEmitter<string> = new EventEmitter();
+	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
 
 	searchForm = new FormGroup({
 		ticker: new FormControl()
@@ -21,7 +21,7 @@ export class ToolbarComponent {
 
 	onSubmit() {
 		if (this.ticker && this.ticker.trim() !== "") {
-			this.search.emit(this.ticker.trim());
+			this.tickerSearch.emit(this.ticker.trim());
 			this.searchForm.get("ticker").setValue("");
 		}
 	}
