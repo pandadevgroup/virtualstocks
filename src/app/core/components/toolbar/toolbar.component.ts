@@ -1,5 +1,5 @@
 import { Component, Input, Output, ChangeDetectionStrategy, ViewChild, ElementRef, EventEmitter } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "vs-toolbar",
@@ -10,33 +10,19 @@ import { FormControl } from "@angular/forms";
 export class ToolbarComponent {
 	@Input() loggedIn: boolean = false;
 	@Output() search: EventEmitter<string> = new EventEmitter();
-	@ViewChild("search") searchRef: ElementRef;
 
-	showSearch = false;
-	searchControl = new FormControl();
+	searchForm = new FormGroup({
+		ticker: new FormControl()
+	});
 
-	onSearchClick() {
-		this.showSearch = !this.showSearch;
-		if (this.showSearch) this.searchRef.nativeElement.focus();
+	get ticker() {
+		return this.searchForm.get("ticker").value;
 	}
 
-	onEnter() {
-		this.runSearch();
-		this.showSearch = !this.showSearch;
-	}
-
-	onBlur() {
-		this.hideSearch();
-	}
-
-	runSearch() {
-		if (this.searchControl.value && this.searchControl.value.trim() !== "") {
-			this.search.emit(this.searchControl.value.trim());
-			this.searchControl.setValue("");
+	onSubmit() {
+		if (this.ticker && this.ticker.trim() !== "") {
+			this.search.emit(this.ticker.trim());
+			this.searchForm.get("ticker").setValue("");
 		}
-	}
-
-	hideSearch() {
-		this.showSearch = false;
 	}
 }
