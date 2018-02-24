@@ -11,6 +11,7 @@ import { environment } from "@env/environment";
 import { AppComponent } from "@app/core/containers";
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
 	imports: [
@@ -20,7 +21,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 		CoreModule,
 		AuthModule,
 		StocksModule,
-		ModalModule.forRoot()
+		ModalModule.forRoot(),
+		CollapseModule.forRoot()
+
 	],
 	providers: [],
 	bootstrap: [AppComponent]

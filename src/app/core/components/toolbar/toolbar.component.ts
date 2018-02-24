@@ -1,6 +1,6 @@
 import { Component, Input, Output, ChangeDetectionStrategy, ViewChild, ElementRef, EventEmitter } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 @Component({
 	selector: "vs-toolbar",
 	templateUrl: "toolbar.component.html",
