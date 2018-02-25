@@ -21,12 +21,22 @@
 	}
 }
 
-@media(max-width: 576px) {
+.search-button {
+	display: none;
+}
+
+@media(max-width: 900px) {
+	.search-button {
+		display: inherit;
+	}
 	.navbar {
 		overflow-x: hidden;
 	}
+	.navbar-brand--hidden {
+		display: none !important;
+	}
 	.mobile-nav {
-		max-width: calc(100% - 2.175rem);
+		max-width: calc(100% - 1.9rem);
 		transition: max-width 0.3s;
 	}
 	.mobile-nav--hidden {
@@ -37,15 +47,21 @@
 		overflow-x: auto;
 	}
 	.ticker-search__container {
+		order: 3;
 		transition: all 0.3s;
 		width: 0;
-		input { display: none; }
+		input {
+			display: none;
+			margin-left: 0;
+		}
 	}
 	.ticker-search__container--visible {
-		display: flex;
 		width: calc(100% - 3.175rem);
 		margin-right: 0.5rem;
-		input { display: inline-block; }
+		input {
+			display: inline-block;
+			margin-left: inherit;
+		}
 	}
 	.ticker-search {
 		width: 100%;
@@ -75,8 +91,8 @@
 	background-color: transparent;
 	border: none;
 	outline: none;
-	width: 1.875rem;
-	height: 1.875rem;
+	width: 1.6rem;
+	height: 1.6rem;
 	margin-left: 0.3rem;
 	transition: background-color 0.3s;
 }
