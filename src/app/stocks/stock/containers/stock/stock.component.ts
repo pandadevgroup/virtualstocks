@@ -28,6 +28,7 @@ export class StockComponent implements OnInit, OnDestroy {
 			map(state => state.state.params.ticker),
 			filter(ticker => !!ticker),
 			tap((ticker) => this.store.dispatch(new fromStocks.QueryStockDetail(ticker))),
+			tap((ticker) => this.store.dispatch(new fromStocks.QueryStockChart({ ticker, range: "1m" }))),
 			switchMap(() => this.store.select(fromStocks.getStockDetail))
 		);
 
