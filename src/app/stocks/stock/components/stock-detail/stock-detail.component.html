@@ -3,14 +3,17 @@ Stock Detail
 <div class="row">
 
 	<div class="col-lg-9 col-md-8">
+		<canvas baseChart
+			[datasets]="lineChartData"
+			[labels]="lineChartLabels"
+            [options]="{ responsive: true }"
+			chartType="line">
+		</canvas>
+		<hr>
 		<div class="card">
 			<div class="card-body">
 				<pre>{{ stock | json }}</pre>
 			</div>
-		</div>
-		<hr>
-		<div class="canvas__container">
-			<canvas #canvas></canvas>
 		</div>
 	</div>
 	<!-- TODO: make the smaller column appear on top instead of bottom when the sm/xs breakpoint is exceeded-->
