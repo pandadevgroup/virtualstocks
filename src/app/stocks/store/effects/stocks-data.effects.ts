@@ -33,5 +33,15 @@ export class StocksDataEffects {
 				catchError(error => of(new fromActions.QueryStockDetailFail(error)))
 			)
 		)
-	)
+	);
+
+	@Effect()
+	queryStockChart$ = this.actions$.ofType(fromActions.QUERY_STOCK_CHART).pipe(
+		switchMap((action: fromActions.QueryStockChart) =>
+			this.stocksService.getStockChart(action.payload.ticker, action.payload.range).pipe(
+				map(data => new fromActions.QueryStockChartSuccess(data)),
+				catchError(error => of(new fromActions.QueryStockChartFail(error)))
+			)
+		)
+	);
 }
