@@ -22,19 +22,27 @@
 }
 
 @media(max-width: 576px) {
-	.mobile-nav__container {
-		text-align: center;
-		width: 100%;
-	}
 	.mobile-nav {
 		max-width: calc(100% - 2.175rem);
+		transition: max-width 0.3s;
+	}
+	.mobile-nav--hidden {
+		max-width: 0;
 	}
 	.navbar-nav {
 		flex-direction: row;
 		overflow-x: auto;
 	}
 	.ticker-search__container {
-		width: 100%;
+		transition: all 0.3s;
+		width: 0;
+		input { display: none; }
+	}
+	.ticker-search__container--visible {
+		display: flex;
+		width: calc(100% - 3.175rem);
+		margin-right: 0.5rem;
+		input { display: inline-block; }
 	}
 	.ticker-search {
 		width: 100%;
@@ -72,4 +80,5 @@
 
 .search-button--active {
 	animation: ripple 1s ease-out;
+	margin: 0;
 }
