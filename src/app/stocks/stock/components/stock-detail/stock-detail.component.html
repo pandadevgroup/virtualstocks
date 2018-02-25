@@ -43,5 +43,26 @@ Stock Detail
 				for {{ quantity * stock?.latestPrice | currency }}
 			</button>
 		</form>
+		<form [formGroup]="transactionForm" (ngSubmit)="onTransaction('sell')">
+			<h3>SELL {{ stock?.ticker }}</h3>
+
+			<div class="input-group mb-3">
+				<input type="number"
+					class="form-control"
+					placeholder="QTY"
+					formControlName="quantity"
+					min="0"
+					aria-label="Quantity"
+					aria-describedby="share-addon">
+				<div class="input-group-append">
+					<span class="input-group-text" id="share-addon">${{ stock?.latestPrice }} a share</span>
+				</div>
+
+			</div>
+			<button class="btn btn-primary btn-block" type="submit">
+				Sell {{ quantity }} {{ quantity | i18nPlural: shareQuantityMsgMapping }}
+				for {{ quantity * stock?.latestPrice | currency }}
+			</button>
+		</form>
 	</div>
 </div>
