@@ -20,7 +20,7 @@ export class TransactionsService {
 	getTransactions(): Observable<StockTransaction[]> {
 		return this.db.collection<StockTransaction>(
 			"transactions",
-			ref => ref.where("uid", "==", this.authService.userId)
+			ref => ref.where("uid", "==", this.authService.userId).orderBy("timestamp", "desc")
 		).valueChanges();
 	}
 }
