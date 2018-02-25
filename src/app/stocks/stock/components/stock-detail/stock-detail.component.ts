@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
-import { StockDetail, StockTransactionType } from "@app/stocks/models";
+import { StockDetail, StockTransactionType, StockChart } from "@app/stocks/models";
 import { User } from "@app/auth";
 
 @Component({
@@ -11,6 +11,7 @@ import { User } from "@app/auth";
 })
 export class StockDetailComponent {
 	@Input() stock: StockDetail;
+	@Input() chart: StockChart;
 	@Input() user: User;
 	@Output() transaction: EventEmitter<{ stock, uid, type, quantity }> = new EventEmitter();
 

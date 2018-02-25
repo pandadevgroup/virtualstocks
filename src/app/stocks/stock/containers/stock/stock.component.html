@@ -2,6 +2,7 @@
 
 <vs-stock-detail
 	[stock]="stock$ | async"
+	[chart]="chart$ | async"
 	[user]="user$ | async"
 	(transaction)="onTransaction($event)">
 </vs-stock-detail>
