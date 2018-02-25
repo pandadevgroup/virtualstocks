@@ -22,6 +22,9 @@
 }
 
 @media(max-width: 576px) {
+	.navbar {
+		overflow-x: hidden;
+	}
 	.mobile-nav {
 		max-width: calc(100% - 2.175rem);
 		transition: max-width 0.3s;
