@@ -3,12 +3,7 @@ Stock Detail
 <div class="row">
 
 	<div class="col-lg-9 col-md-8">
-		<canvas baseChart
-			[datasets]="lineChartData"
-			[labels]="lineChartLabels"
-            [options]="{ responsive: true }"
-			chartType="line">
-		</canvas>
+		<vs-stock-chart></vs-stock-chart>
 		<hr>
 		<div class="card">
 			<div class="card-body">

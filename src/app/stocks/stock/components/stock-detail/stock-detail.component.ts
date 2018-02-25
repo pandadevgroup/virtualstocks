@@ -23,11 +23,6 @@ export class StockDetailComponent {
 		return this.transactionForm.get("quantity").value;
 	}
 
-	lineChartData = [
-		{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
-	];
-	lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
 	constructor(private fb: FormBuilder) {}
 
 	ngOnInit() {
