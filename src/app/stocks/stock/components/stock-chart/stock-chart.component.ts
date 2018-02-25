@@ -22,7 +22,9 @@ export class StockChartComponent {
 
 	chartData = null;
 	chartLabels = null;
-
+	legend = {
+		display:false
+	}
 	private updateChartData(data: StockChart) {
 		let chartData = [];
 		let chartLabels = [];
@@ -35,9 +37,10 @@ export class StockChartComponent {
 		this.chartData = [
 			{
 				data: chartData,
-				label: "Stock Price"
+				label: "Close"
 			}
 		];
 		this.chartLabels = chartLabels;
+		
 	}
 }
