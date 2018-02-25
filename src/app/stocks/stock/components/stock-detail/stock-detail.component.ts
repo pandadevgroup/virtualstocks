@@ -15,11 +15,9 @@ export class StockDetailComponent {
 
 	@Input() stock: StockDetail;
 	@Input() user: User;
-	@Output() transaction: EventEmitter<{ stock, uid, type }> = new EventEmitter();
+	@Output() transaction: EventEmitter<{ stock, uid, type, quantity }> = new EventEmitter();
 
 	ngOnInit() {
-		// Enter your code here I guess for testing
-
 		var detailChart = new Chart(this.canvasEl.nativeElement.getContext("2d"), {
 			type: 'line',
 			data: {
@@ -57,6 +55,8 @@ export class StockDetailComponent {
 	onUserAction(type: StockTransactionType) {
 		const stock = this.stock;
 		const uid = this.user.id;
-		this.transaction.emit({ stock, uid, type });
+		// TODO fix quantity
+		const quantity = 10;
+		this.transaction.emit({ stock, uid, type, quantity });
 	}
 }

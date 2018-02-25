@@ -3,5 +3,5 @@
 <vs-stock-detail
 	[stock]="stock$ | async"
 	[user]="user$ | async"
-	(transaction)="openTransactionDialog($event)">
+	(transaction)="onTransaction($event)">
 </vs-stock-detail>
