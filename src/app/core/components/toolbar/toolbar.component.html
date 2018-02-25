@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 px-md-3">
-	<a class="navbar-brand" routerLink="/">Virtual Stocks</a>
+	<a class="navbar-brand d-none d-sm-inline-block" routerLink="/">Virtual Stocks</a>
 
 	<form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()" *ngIf="loggedIn">
 		<input class="ticker-search form-control px-3 ml-5"
