@@ -1,8 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 px-md-3">
 	<a class="navbar-brand d-none d-sm-inline-block" routerLink="/">Virtual Stocks</a>
 
-	<form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()" *ngIf="loggedIn">
-		<input class="ticker-search form-control px-3 ml-5"
+	<form class="form-inline my-2 my-lg-0 ticker-search__container mx-2 mx-sm-0"
+			[formGroup]="searchForm"
+			(ngSubmit)="onSubmit()"
+			*ngIf="loggedIn">
+		<input class="ticker-search form-control px-3 ml-sm-5"
 			type="search"
 			placeholder="Search Stocks"
 			aria-label="Search Stocks"

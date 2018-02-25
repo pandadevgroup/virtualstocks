@@ -30,4 +30,13 @@
 		flex-direction: row;
 		overflow-x: auto;
 	}
+	.ticker-search__container {
+		width: 100%;
+	}
+	.ticker-search {
+		width: 100%;
+		&:focus {
+			width: 100%;
+		}
+	}
 }
