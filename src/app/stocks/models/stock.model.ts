@@ -49,3 +49,25 @@ export interface BatchStockData {
 		price: number
 	}
 }
+
+export interface StockChartDataPoint {
+	date: string;
+	minute: string;
+	label: string;
+	high: number;
+	low: number;
+	average: number;
+	volume: number;
+	notional: number;
+	numberOfTrades: number;
+	marketHigh: number;
+	marketLow: number;
+	marketAverage: number;
+	marketVolume: number;
+	marketNotional: number;
+	marketNumberOfTrades: number;
+	changeOverTime: number;
+	marketChangeOverTime: number;
+}
+
+export interface StockChart extends Array<StockChartDataPoint> {}
