@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 import * as Chart from "chart.js";
 
@@ -16,6 +17,17 @@ export class StockDetailComponent {
 	@Input() stock: StockDetail;
 	@Input() user: User;
 	@Output() transaction: EventEmitter<{ stock, uid, type, quantity }> = new EventEmitter();
+
+	transactionForm = this.fb.group({
+		quantity: 1
+	});
+	shareQuantityMsgMapping: { [k: string]: string } = { "=1": "share", "other": "shares" };
+
+	get quantity() {
+		return this.transactionForm.get("quantity").value;
+	}
+
+	constructor(private fb: FormBuilder) {}
 
 	ngOnInit() {
 		var detailChart = new Chart(this.canvasEl.nativeElement.getContext("2d"), {
