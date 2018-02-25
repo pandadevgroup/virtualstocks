@@ -10,9 +10,6 @@ import { environment } from "@env/environment";
 
 import { AppComponent } from "@app/core/containers";
 
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-
 @NgModule({
 	imports: [
 		BrowserModule,
@@ -20,10 +17,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 		CoreModule,
 		AuthModule,
-		StocksModule,
-		ModalModule.forRoot(),
-		CollapseModule.forRoot()
-
+		StocksModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
