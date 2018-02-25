@@ -18,6 +18,11 @@ export const getStockDetail = createSelector(
 	fromStocks.getStocksDetail
 );
 
+export const getStockChart = createSelector(
+	getStocksDataState,
+	fromStocks.getStocksChart
+);
+
 export const getStockError = createSelector(
 	getStocksDataState,
 	fromStocks.getStocksError
