@@ -14,6 +14,7 @@ export class ToolbarComponent {
 	searchForm = new FormGroup({
 		ticker: new FormControl()
 	});
+	searchActive = false;
 
 	get ticker() {
 		return this.searchForm.get("ticker").value;
@@ -24,5 +25,9 @@ export class ToolbarComponent {
 			this.tickerSearch.emit(this.ticker.trim());
 			this.searchForm.get("ticker").setValue("");
 		}
+	}
+
+	openSearch() {
+		this.searchActive = true;
 	}
 }
