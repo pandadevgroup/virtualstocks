@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { BatchStockData, StockDetail, StockChart, StockChartRange } from "@app/stocks/models";
+import { BatchStockData, StockDetail, StockChart, StockChartRange, IEXMonthChartEntry } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -35,7 +35,17 @@ export class StocksService {
 
 	getStockChart(ticker: string, range: StockChartRange = "1m"): Observable<StockChart> {
 		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}`;
+
+		if (range != "1m") throw "Error: Write code for range != 1m";
+
 		return this.http
-			.get<StockChart>(queryUrl);
+			.get<IEXMonthChartEntry[]>(queryUrl).pipe(
+				map(entries => entries.map(entry => {
+					return {
+						label: entry.label,
+						value: entry.close
+					}
+				}))
+			);
 	}
 }

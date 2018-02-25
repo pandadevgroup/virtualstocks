@@ -9,16 +9,35 @@ import { StockChart } from "@app/stocks/models";
 			[datasets]="chartData"
 			[labels]="chartLabels"
             [options]="{ responsive: true }"
-			chartType="line">
+			chartType="line"
+			*ngIf="chartData">
 		</canvas>
 	`,
 	styleUrls: ["stock-chart.component.scss"]
 })
 export class StockChartComponent {
-	@Input() chart: StockChart;
+	@Input() set chart(data: StockChart) {
+		if (data) this.updateChartData(data);
+	}
 
-	chartData = [
-		{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
-	];
-	chartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+	chartData = null;
+	chartLabels = null;
+
+	private updateChartData(data: StockChart) {
+		let chartData = [];
+		let chartLabels = [];
+
+		data.forEach(dataPoint => {
+			chartData.push(dataPoint.value);
+			chartLabels.push(dataPoint.label);
+		});
+
+		this.chartData = [
+			{
+				data: chartData,
+				label: "Stock Price"
+			}
+		];
+		this.chartLabels = chartLabels;
+	}
 }

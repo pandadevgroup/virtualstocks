@@ -50,7 +50,7 @@ export interface BatchStockData {
 	}
 }
 
-export interface StockChartDataPoint {
+export interface IEXDayChartEntry {
 	date: string;
 	minute: string;
 	label: string;
@@ -70,6 +70,26 @@ export interface StockChartDataPoint {
 	marketChangeOverTime: number;
 }
 
-export interface StockChart extends Array<StockChartDataPoint> {}
+export interface IEXMonthChartEntry {
+	date: string;
+	open: number;
+	high: number;
+	low: number;
+	close: number;
+	volume: number;
+	unadjustedVolume: number;
+	change: number;
+	changePercent: number;
+	vwap: number;
+	label: string;
+	changeOverTime: number;
+}
+
+export interface StockChartEntry {
+	label: string;
+	value: number;
+}
+
+export interface StockChart extends Array<StockChartEntry> {}
 
 export type StockChartRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
