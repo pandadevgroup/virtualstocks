@@ -64,11 +64,10 @@ export class StockDetailComponent {
 		});
 	}
 
-	onUserAction(type: StockTransactionType) {
+	onTransaction(type: StockTransactionType) {
 		const stock = this.stock;
 		const uid = this.user.id;
-		// TODO fix quantity
-		const quantity = 10;
+		const quantity = this.quantity;
 		this.transaction.emit({ stock, uid, type, quantity });
 	}
 }

@@ -20,9 +20,9 @@ Stock Detail
 			<h3>{{ stock?.ticker }}</h3>
 			<p class="text-muted">{{ stock?.companyName }} </p>
 			<h4 class="text-success">$ {{ stock?.latestPrice }}</h4>
-			<vs-stock-actions (userAction)="onUserAction($event)"></vs-stock-actions>
+			<vs-stock-actions (userAction)="onTransaction($event)"></vs-stock-actions>
 		</div>
-		<form [formGroup]="transactionForm">
+		<form [formGroup]="transactionForm" (ngSubmit)="onTransaction('buy')">
 			<h3>BUY {{ stock?.ticker }}</h3>
 
 			<div class="input-group mb-3">
@@ -38,7 +38,7 @@ Stock Detail
 				</div>
 
 			</div>
-			<button class="btn btn-primary btn-block">
+			<button class="btn btn-primary btn-block" type="submit">
 				Buy {{ quantity }} {{ quantity | i18nPlural: shareQuantityMsgMapping }}
 				for {{ quantity * stock?.latestPrice | currency }}
 			</button>
