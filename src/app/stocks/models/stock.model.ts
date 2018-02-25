@@ -71,3 +71,5 @@ export interface StockChartDataPoint {
 }
 
 export interface StockChart extends Array<StockChartDataPoint> {}
+
+export type StockChartRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";

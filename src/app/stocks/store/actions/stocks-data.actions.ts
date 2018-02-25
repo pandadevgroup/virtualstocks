@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BatchStockData, StockDetail } from "@app/stocks/models";
+import { BatchStockData, StockDetail, StockChartRange, StockChart } from "@app/stocks/models";
 
 // Batch stocks
 export const QUERY_BATCH_STOCK_PRICES = "[Stocks] Query Batch Stock Prices";
@@ -43,6 +43,25 @@ export class QueryStockDetailFail {
 	constructor(public payload: any) {}
 }
 
+// Stock Chart
+export const QUERY_STOCK_CHART = "[Stocks] Query Stock Chart";
+export const QUERY_STOCK_CHART_SUCCESS = "[Stocks] Query Stock Chart Success";
+export const QUERY_STOCK_CHART_FAIL = "[Stocks] Query Stock Chart Fail";
+
+export class QueryStockChart {
+	readonly type = QUERY_STOCK_CHART;
+	constructor(public payload: { ticker, range: StockChartRange }) {}
+}
+export class QueryStockChartSuccess {
+	readonly type = QUERY_STOCK_CHART_SUCCESS;
+	constructor(public payload: StockChart) {}
+}
+export class QueryStockChartFail {
+	readonly type = QUERY_STOCK_CHART_FAIL;
+	constructor(public payload: any) {}
+}
+
+// Clear Stock
 export class ClearStockDetail {
 	readonly type = CLEAR_STOCK_DETAIL;
 }
@@ -54,4 +73,7 @@ export type StocksDataAction =
 	| QueryStockDetail
 	| QueryStockDetailFail
 	| QueryStockDetailSuccess
+	| QueryStockChart
+	| QueryStockChartSuccess
+	| QueryStockChartFail
 	| ClearStockDetail;
