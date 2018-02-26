@@ -21,7 +21,7 @@ export class StockDetailComponent {
 	shareQuantityMsgMapping: { [k: string]: string } = { "=1": "share", "other": "shares" };
 
 	get quantity() {
-		return this.transactionForm.get("quantity").value;
+		return this.transactionForm.get("quantity").value || 0;
 	}
 
 	constructor(private fb: FormBuilder) {}
