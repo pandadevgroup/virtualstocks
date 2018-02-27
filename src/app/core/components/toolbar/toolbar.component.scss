@@ -33,7 +33,7 @@
 		overflow-x: hidden;
 	}
 	.mobile-nav {
-		max-width: calc(100% - 1.9rem);
+		max-width: calc(100% - 2.4rem);
 		transition: max-width 0.3s;
 	}
 	.mobile-nav--hidden {
@@ -48,7 +48,7 @@
 		transition: all 0.3s;
 		width: 0;
 		input {
-			display: none;
+			opacity: 0;
 			margin-left: 0;
 		}
 	}
@@ -56,7 +56,7 @@
 		width: calc(100% - 3.175rem);
 		margin-right: 0.5rem;
 		input {
-			display: inline-block;
+			opacity: 1;
 			margin-left: inherit;
 		}
 	}
@@ -90,7 +90,7 @@
 	outline: none;
 	width: 1.6rem;
 	height: 1.6rem;
-	margin-left: 0.3rem;
+	margin-left: 0.8rem;
 	transition: background-color 0.3s;
 }
 
