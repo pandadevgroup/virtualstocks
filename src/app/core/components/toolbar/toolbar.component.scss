@@ -32,9 +32,6 @@
 	.navbar {
 		overflow-x: hidden;
 	}
-	.navbar-brand--hidden {
-		display: none !important;
-	}
 	.mobile-nav {
 		max-width: calc(100% - 1.9rem);
 		transition: max-width 0.3s;
