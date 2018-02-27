@@ -41,13 +41,15 @@
 	}
 	.navbar {
 		overflow-x: hidden;
+		overflow-y: hidden;
+		height: 3.5rem;
 	}
 	.mobile-nav {
 		width: 100%;
 		transition: width 0.3s;
 	}
 	.mobile-nav--search {
-		width: calc(100% - 2.7rem);
+		width: calc(100% - 2.4rem);
 	}
 	.mobile-nav--hidden {
 		width: 0;
@@ -66,7 +68,7 @@
 		}
 	}
 	.ticker-search__container--visible {
-		width: calc(100% - 2.7rem);
+		width: calc(100% - 2.4rem);
 		margin-right: 0.5rem;
 		margin-right: 0.5rem;
 		input {
