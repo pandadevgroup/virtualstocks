@@ -1,6 +1,11 @@
 # virtualstocks.io
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
+The official virtual stocks repo. Open source and better than ever!
+
+
+# Getting Started 
+
+This project is run on [Angular 2.0](angular.io). Here's how to get started.
 
 ## Development server
 
