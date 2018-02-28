@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
 	"e2e": "ng e2e",
-	"deployBleeding": "ngh --repo=\"https:\/\/github.com\/virtualstocks\/bleeding\" -m \"build\" --branch \"master\""
+	"deployBleeding": "ng build --prod --base-href \"https:\/\/virtualstocks.github.io\/bleeding\" && ngh --repo=\"https:\/\/github.com\/virtualstocks\/bleeding\" -m \"build\" --branch \"master\""
   },
   "private": true,
   "dependencies": {
