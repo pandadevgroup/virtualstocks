@@ -9,32 +9,52 @@
 
 	transition: background-color 0.2s;
 
-	&:hover {
-		background-color: #0d5bdd;
-	}
-}
-
-.login-button__icon {
-	background-color: white;
-	display: table-cell;
-	vertical-align: middle;
-	line-height: 0;
-	padding: 8px;
-
-	img {
-		display: inline-block;
+	.login-button__icon {
+		background-color: white;
+		display: table-cell;
 		vertical-align: middle;
-		height: 18px;
-		width: 18px;
-	}
-}
+		line-height: 0;
+		padding: 8px;
 
-.login-button__text {
-	display: table-cell;
-	vertical-align: middle;
-	font-size: 14px;
-	padding-left: 16px;
-	padding-right: 16px;
-	line-height: 18px;
-	color: white;
+		img {
+			display: inline-block;
+			vertical-align: middle;
+			height: 18px;
+			width: 18px;
+		}
+	}
+
+	.login-button__text {
+		display: table-cell;
+		vertical-align: middle;
+		font-size: 14px;
+		padding-left: 16px;
+		padding-right: 16px;
+		line-height: 18px;
+		color: white;
+	}
+
+	&--google {
+		&:hover {
+			background-color: #0d5bdd;
+		}
+	}
+
+	&--facebook {
+		background-color: #3b5998;
+
+		&:hover {
+			background-color: #263961;
+		}
+
+		.login-button__icon {
+			background-color: transparent;
+			padding-right: 0;
+			padding-left: 12px;
+		}
+
+		.login-button__text {
+			padding-left: 12px;
+		}
+	}
 }

@@ -3,7 +3,9 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 @Component({
 	selector: "vs-login-button",
 	template: `
-		<button type="button" class="login-button" (click)="onClick()">
+		<button type="button" class="login-button" (click)="onClick()"
+				[class.login-button--google]="type == 'google'"
+				[class.login-button--facebook]="type == 'facebook'">
 			<span class="login-button__icon">
 				<img [src]="'/assets/' + type + '.svg'">
 			</span>

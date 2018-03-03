@@ -11,8 +11,8 @@
 			</div>
 
 			<div class="login__footer text-center bg-light">
-				<!-- <button class="btn btn-primary" (click)="login()">Login with Google</button> -->
-				<vs-login-button type="google">Log in with Google</vs-login-button>
+				<vs-login-button type="google" (login)="login()">Log in with Google</vs-login-button>
+				<vs-login-button type="facebook" (login)="login()">Log in with Facebook</vs-login-button>
 			</div>
 		</div>
 	</div>
