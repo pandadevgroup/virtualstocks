@@ -3,9 +3,33 @@
 	border-radius: 0.2rem;
 }
 
+.login__body {
+	padding: 2rem;
+}
+
+.login__form {
+	.login__field {
+		position: relative;
+
+		&:focus {
+			z-index: 2;
+		}
+	}
+	.login__field--email {
+		margin-bottom: -1px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.login__field--password {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}
+
 .login__footer {
 	padding: 1.5rem;
 	display: flex;
 	justify-content: space-around; // IE 10+
 	justify-content: space-evenly;
+	background-color: #f7f7f7;
 }
