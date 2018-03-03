@@ -43,6 +43,10 @@
 		overflow-x: hidden;
 		overflow-y: hidden;
 		height: 3.5rem;
+		::-webkit-scrollbar {
+			height: 0px;  /* remove scrollbar space */
+			background: transparent;  /* optional: just make scrollbar invisible */
+		}
 	}
 	.mobile-nav {
 		width: 100%;
