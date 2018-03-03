@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "vs-login-button",
 	template: `
-		<button class="login-button">
+		<button type="button" class="login-button" (click)="onClick()">
 			<span class="login-button__icon">
 				<img src="/assets/google.svg">
 			</span>
@@ -14,4 +14,6 @@ import { Component } from "@angular/core";
 	`,
 	styleUrls: ["./login-button.component.scss"]
 })
-export class LoginButtonComponent {}
+export class LoginButtonComponent {
+	onClick() {}
+}

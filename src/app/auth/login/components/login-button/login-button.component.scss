@@ -5,6 +5,13 @@
 	text-align: left;
 	border-radius: 2px;
 	padding: 1px;
+	cursor: pointer;
+
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: #0d5bdd;
+	}
 }
 
 .login-button__icon {
