@@ -23,17 +23,16 @@
 						<input type="checkbox" class="custom-control-input" id="rememberMe">
 						<label class="custom-control-label" for="rememberMe">Remember Me</label>
 					</div>
-					<button type="submit" class="btn btn-primary btn-block mb-2">Sign In</button>
+					<button type="submit" class="btn btn-primary btn-block mb-1">Sign In</button>
+					<p class="help-text text-center mb-0">
+						<a routerLink="/register" class="text-dark">Create Account</a>
+						-
+						<a routerLink="/forgot-password" class="text-dark">Forgot Password?</a>
+					</p>
 				</form>
 			</div>
 
 			<div class="login__footer">
-				<p class="help-text">
-					<a routerLink="/register" class="text-dark">Create Account</a>
-					-
-					<a routerLink="/forgot-password" class="text-dark">Forgot Password?</a>
-				</p>
-				<div class="w-100"></div>
 				<vs-login-button type="google" (login)="login()">Sign in with Google</vs-login-button>
 				<!-- <vs-login-button type="facebook" (login)="login()">Sign in with Facebook</vs-login-button> -->
 			</div>
