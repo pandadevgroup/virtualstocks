@@ -1,6 +1,7 @@
 .login__container {
 	border: 1px solid #ccc;
 	border-radius: 0.2rem;
+	max-width: 30rem;
 }
 
 .login__body {
@@ -8,22 +9,7 @@
 }
 
 .login__form {
-	.login__field {
-		position: relative;
 
-		&:focus {
-			z-index: 2;
-		}
-	}
-	.login__field--email {
-		margin-bottom: -1px;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-	.login__field--password {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-	}
 }
 
 .login__footer {
