@@ -1,20 +1,30 @@
 .login-button {
 	border: #4285F4;
+	background-color: #4285F4;
 
-	width: 220px;
     min-height: 40px;
 	padding: 8px 16px;
 	text-align: left;
+	border-radius: 2px;
 }
 
 .login-button__icon {
+	background-color: white;
+	display: table-cell;
+	vertical-align: middle;
+
 	img {
 		display: inline-block;
+		vertical-align: middle;
 		height: 18px;
 		width: 18px;
 	}
 }
 
 .login-button__text {
-	background-color: #4285F4;
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 14px;
+	padding-left: 16px;
+	color: white;
 }
