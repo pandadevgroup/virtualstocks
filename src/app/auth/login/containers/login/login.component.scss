@@ -6,6 +6,7 @@
 
 .login__body {
 	padding: 2rem;
+	padding-bottom: 1.5rem;
 }
 
 .login__form {
@@ -15,7 +16,14 @@
 .login__footer {
 	padding: 1.5rem;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-around; // IE 10+
 	justify-content: space-evenly;
 	background-color: #f7f7f7;
+
+	.help-text {
+		a {
+			text-decoration: none;
+		}
+	}
 }
