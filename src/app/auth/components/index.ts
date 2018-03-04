@@ -1,5 +1,5 @@
-import { LoginButtonComponent } from "./login-button/login-button.component";
+import { AuthButtonComponent } from "./auth-button/auth-button.component";
 
-export const components: any[] = [ LoginButtonComponent ];
+export const components: any[] = [ AuthButtonComponent ];
 
-export * from "./login-button/login-button.component";
+export * from "./auth-button/auth-button.component";
