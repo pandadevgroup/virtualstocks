@@ -7,7 +7,7 @@ import * as fromAuth from "@app/auth/store";
 
 @Component({
 	templateUrl: "login.component.html",
-	styleUrls: ["login.component.scss"]
+	styleUrls: ["login.component.scss", "../auth.styles.scss"]
 })
 export class LoginComponent {
 

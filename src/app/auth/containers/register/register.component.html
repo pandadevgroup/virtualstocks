@@ -1,1 +1,16 @@
-<h1 class="display-1">Register</h1>
+<div class="container-fluid">
+	<div class="row no-gutters justify-content-center">
+		<div class="col login__container">
+			<div class="login__body">
+				<h2 class="font-weight-normal text-center mb-4">Register</h2>
+
+				<vs-auth-form type="register"></vs-auth-form>
+			</div>
+
+			<div class="login__footer">
+				<vs-auth-button type="google" (action)="login()">Sign in with Google</vs-auth-button>
+				<!-- <vs-auth-button type="facebook" (action)="login()">Sign in with Facebook</vs-auth-button> -->
+			</div>
+		</div>
+	</div>
+</div>
