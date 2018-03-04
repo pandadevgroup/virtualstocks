@@ -10,17 +10,19 @@ import * as fromServices from "./services";
 import * as fromGuards from "./guards";
 
 import { reducers, effects } from "./store";
+
+import * as fromComponents from "./components";
 import * as fromContainers from "./containers";
 
 const routes: Routes = [
 	{
 		path: "login",
 		canActivate: [fromGuards.NoAuthGuard],
-		loadChildren: "./login/login.module#LoginModule"
+		component: fromContainers.LoginComponent
 	},
 	{
 		path: "register",
-		loadChildren: "./register/register.module#RegisterModule"
+		component: fromContainers.RegisterComponent
 	},
 	{ path: "logout", component: fromContainers.LogoutComponent }
 ];
@@ -38,7 +40,8 @@ const routes: Routes = [
 		...fromGuards.guards
 	],
 	declarations: [
-		...fromContainers.containers
+		...fromContainers.containers,
+		...fromComponents.components
 	]
 })
 export class AuthModule {}
