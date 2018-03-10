@@ -1,25 +1,25 @@
 {
   "configVersion": 1,
-  "index": "https://pandadevgroup.github.io/virtualstocks/index.html",
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "https://pandadevgroup.github.io/virtualstocks/favicon.ico",
-        "https://pandadevgroup.github.io/virtualstocks/index.html",
-        "https://pandadevgroup.github.io/virtualstocks/0.d4bc78a3724a3d16356c.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/1.e72b2d95151479addd95.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/2.57829f5d3e0776662d11.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/3.4c980a9679076dc0b84a.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/4.92fe8186ab449e496840.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/5.77c24b969b09cbd7acf2.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/6.1ff3e31fe20527e914ff.chunk.js",
-        "https://pandadevgroup.github.io/virtualstocks/inline.49ad1a51fa1f91c4425a.bundle.js",
-        "https://pandadevgroup.github.io/virtualstocks/main.15ed6231c497ad1d568d.bundle.js",
-        "https://pandadevgroup.github.io/virtualstocks/polyfills.f42e37fcd4c483fc8f60.bundle.js",
-        "https://pandadevgroup.github.io/virtualstocks/styles.c562e0fe55d1d6a62ae3.bundle.css"
+        "/favicon.ico",
+        "/index.html",
+        "/0.d4bc78a3724a3d16356c.chunk.js",
+        "/1.e72b2d95151479addd95.chunk.js",
+        "/2.57829f5d3e0776662d11.chunk.js",
+        "/3.4c980a9679076dc0b84a.chunk.js",
+        "/4.92fe8186ab449e496840.chunk.js",
+        "/5.77c24b969b09cbd7acf2.chunk.js",
+        "/6.1ff3e31fe20527e914ff.chunk.js",
+        "/inline.ed538b0173784f3a4f9d.bundle.js",
+        "/main.ec896c7a8b4e1c5dd195.bundle.js",
+        "/polyfills.f42e37fcd4c483fc8f60.bundle.js",
+        "/styles.c562e0fe55d1d6a62ae3.bundle.css"
       ],
       "patterns": []
     },
@@ -28,30 +28,30 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "https://pandadevgroup.github.io/virtualstocks/assets/facebook.svg",
-        "https://pandadevgroup.github.io/virtualstocks/assets/google.svg",
-        "https://pandadevgroup.github.io/virtualstocks/assets/ic_search_white_24px.svg"
+        "/assets/facebook.svg",
+        "/assets/google.svg",
+        "/assets/ic_search_white_24px.svg"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://pandadevgroup.github.io/virtualstocks/0.d4bc78a3724a3d16356c.chunk.js": "adb1ecd7df8ac3c183769cf2145336d1e8dcc1cb",
-    "https://pandadevgroup.github.io/virtualstocks/assets/facebook.svg": "1cbc8630f7720a59fe64de7f989e3d6a9b43f43e",
-    "https://pandadevgroup.github.io/virtualstocks/1.e72b2d95151479addd95.chunk.js": "bcc0647666317463fb858e518bb15ef54f523a5c",
-    "https://pandadevgroup.github.io/virtualstocks/assets/google.svg": "803a01b326db481666b86b75e7cb17e19bb3d2ac",
-    "https://pandadevgroup.github.io/virtualstocks/2.57829f5d3e0776662d11.chunk.js": "cac2bb17c4c6ce71db1af98803d8c352d75de3be",
-    "https://pandadevgroup.github.io/virtualstocks/assets/ic_search_white_24px.svg": "f0ecca20dca2abe1c9054c17bc84f5b88a899dbb",
-    "https://pandadevgroup.github.io/virtualstocks/3.4c980a9679076dc0b84a.chunk.js": "ed1aed4b306908ac36279f504741dce93227cdb3",
-    "https://pandadevgroup.github.io/virtualstocks/4.92fe8186ab449e496840.chunk.js": "688f3b59882a48578fc864cac03ca0d800d6e14f",
-    "https://pandadevgroup.github.io/virtualstocks/5.77c24b969b09cbd7acf2.chunk.js": "85734e07d76fa95abed04bfaa12d67f4e801c056",
-    "https://pandadevgroup.github.io/virtualstocks/6.1ff3e31fe20527e914ff.chunk.js": "1b4bdf9c0ad4cd62a385ea55a878cd5e1ee77665",
-    "https://pandadevgroup.github.io/virtualstocks/inline.49ad1a51fa1f91c4425a.bundle.js": "f8dcfc787a87a960e46cbc13237e19c8035d48c9",
-    "https://pandadevgroup.github.io/virtualstocks/main.15ed6231c497ad1d568d.bundle.js": "73a0b1def2d7eb433c4a8a910ed6e9caf8191f13",
-    "https://pandadevgroup.github.io/virtualstocks/polyfills.f42e37fcd4c483fc8f60.bundle.js": "50678cca732d451dda5e1b7e0a7c0aa3ac6a09f6",
-    "https://pandadevgroup.github.io/virtualstocks/styles.c562e0fe55d1d6a62ae3.bundle.css": "b3a86590a6e34b6b62c1a181528c835e75f01490",
-    "https://pandadevgroup.github.io/virtualstocks/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "https://pandadevgroup.github.io/virtualstocks/index.html": "2007ae988d25ad8e986a9c962cfad8eee4ae7c8a"
+    "/0.d4bc78a3724a3d16356c.chunk.js": "adb1ecd7df8ac3c183769cf2145336d1e8dcc1cb",
+    "/assets/facebook.svg": "1cbc8630f7720a59fe64de7f989e3d6a9b43f43e",
+    "/1.e72b2d95151479addd95.chunk.js": "bcc0647666317463fb858e518bb15ef54f523a5c",
+    "/assets/google.svg": "803a01b326db481666b86b75e7cb17e19bb3d2ac",
+    "/2.57829f5d3e0776662d11.chunk.js": "cac2bb17c4c6ce71db1af98803d8c352d75de3be",
+    "/assets/ic_search_white_24px.svg": "f0ecca20dca2abe1c9054c17bc84f5b88a899dbb",
+    "/3.4c980a9679076dc0b84a.chunk.js": "ed1aed4b306908ac36279f504741dce93227cdb3",
+    "/4.92fe8186ab449e496840.chunk.js": "688f3b59882a48578fc864cac03ca0d800d6e14f",
+    "/5.77c24b969b09cbd7acf2.chunk.js": "85734e07d76fa95abed04bfaa12d67f4e801c056",
+    "/6.1ff3e31fe20527e914ff.chunk.js": "1b4bdf9c0ad4cd62a385ea55a878cd5e1ee77665",
+    "/inline.ed538b0173784f3a4f9d.bundle.js": "2d13553b551cc1c08c2c633f22921ae0815be923",
+    "/main.ec896c7a8b4e1c5dd195.bundle.js": "8821ea73a5a8f0042f011678a42a76f751a8ab4f",
+    "/polyfills.f42e37fcd4c483fc8f60.bundle.js": "50678cca732d451dda5e1b7e0a7c0aa3ac6a09f6",
+    "/styles.c562e0fe55d1d6a62ae3.bundle.css": "b3a86590a6e34b6b62c1a181528c835e75f01490",
+    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/index.html": "fae0db9239e93df0fb2c77928240dc9dbd95167a"
   }
 }
