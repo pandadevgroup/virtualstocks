@@ -8,8 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-	"e2e": "ng e2e",
-	"bundle-report": "webpack-bundle-analyzer dist/stats.json",
+    "e2e": "ng e2e",
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "deployBleeding": "ng build --prod --base-href \"https://virtualstocks.github.io/bleeding\" && ngh --repo=\"https://github.com/virtualstocks/bleeding\" -m \"build\" --branch \"master\""
   },
   "private": true,
