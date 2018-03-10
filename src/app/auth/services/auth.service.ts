@@ -33,7 +33,7 @@ export class AuthService {
 		return this.db.doc<User>(`/users/${id}`).valueChanges();
 	}
 
-	login({ email, password }): Observable<User> {
+	login({ email, password }): Observable<any> {
 		return Observable.fromPromise(
 			this.af.auth.signInWithEmailAndPassword(email, password)
 		);
@@ -45,16 +45,14 @@ export class AuthService {
 		);
 	}
 
-	createUser({ name, email, password }): Observable<User> {
+	createUser({ name, email, password }): Observable<any> {
 		return Observable.fromPromise(
-			this.af.auth.createUserWithEmailAndPassword(email, password)
-		);
-	}
-
-	private loginWithCreds(authInfo: AuthInfo): Observable<User> {
-		return Observable.fromPromise(
-			this.af.auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
-		);
+			this.af.auth.createUserAndRetrieveDataWithEmailAndPassword(email, password)
+		).switchMap(data => {
+			return this.db.doc<User>(`/users/${data.user.uid}`).set({
+				name, email, id: data.user.uid
+			});
+		});
 	}
 
 	private parseAuthUser(user): Observable<User> {

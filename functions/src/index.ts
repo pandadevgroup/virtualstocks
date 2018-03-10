@@ -19,18 +19,16 @@ server.use(bodyParser.json());
 export const initializeUser = functions.auth.user().onCreate(event => {
 	const user = event.data;
 	const id = user.uid;
+	const name = user.displayName;
+	const email = user.email;
 
-	let createUser;
-	if (user.displayName) {
-		// Signed in with Google+ / Facebook
-
-		const name = user.displayName;
-		const email = user.email;
-
-		createUser = db.doc(`users/${id}`).set({
-			id, name, email
-		});
-	}
+	let userData: any = {
+		id, email
+	};
+	if (name) userData.name = name;
+	const createUser = db.doc(`users/${id}`).set(userData, {
+		merge: true
+	});
 
 	const createPortfolio = db.doc(`portfolios/${id}`).set({
 		stocks: [],

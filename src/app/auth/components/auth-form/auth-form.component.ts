@@ -51,11 +51,13 @@ export class AuthFormComponent {
 			this.form.get("email").setValidators([Validators.required, Validators.email]);
 			this.form.get("password").setValidators([Validators.required]);
 			this.form.get("password2").clearValidators();
+			this.form.clearValidators();
 		} else {
 			this.form.get("name").setValidators([Validators.required]);
 			this.form.get("email").setValidators([Validators.required, Validators.email]);
 			this.form.get("password").setValidators([Validators.required]);
 			this.form.get("password2").setValidators([Validators.required]);
+			this.form.setValidators(this.matchPasswordValidator());
 		}
 	}
 
