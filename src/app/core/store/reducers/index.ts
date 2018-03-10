@@ -3,6 +3,8 @@ import { ActionReducerMap, createFeatureSelector } from "@ngrx/store";
 
 import * as fromRouter from "@ngrx/router-store";
 
+import * as authActions from "@app/auth/store/actions";
+
 export interface RouterStateUrl {
 	url: string;
 	queryParams: Params;
@@ -16,6 +18,15 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
 	router: fromRouter.routerReducer
 };
+
+export function logoutMetaReducer(reducer) {
+	return function(state, action) {
+		return reducer(action.type === authActions.LOGOUT ? undefined : state, action);
+	};
+}
+export const metaReducers = [
+	logoutMetaReducer
+];
 
 export const getRouterState = createFeatureSelector<
 	fromRouter.RouterReducerState<RouterStateUrl>

@@ -45,7 +45,9 @@ import { CoreRoutingModule } from "./core-routing.module";
 		AngularFirestoreModule,
 		AngularFireAuthModule,
 
-		StoreModule.forRoot(fromStore.reducers),
+		StoreModule.forRoot(fromStore.reducers, {
+			metaReducers: fromStore.metaReducers
+		}),
 		EffectsModule.forRoot(fromStore.effects),
 		environment.production ? [] : StoreDevtoolsModule.instrument(),
 		StoreRouterConnectingModule.forRoot({
