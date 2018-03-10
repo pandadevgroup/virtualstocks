@@ -65,5 +65,8 @@ export type UserActions =
 	| LoginWithGoogle
 	| LoginSuccess
 	| LoginFailure
+	| CreateUser
+	| CreateUserSuccess
+	| CreateUserFail
 	| Logout
 	| SetUser;

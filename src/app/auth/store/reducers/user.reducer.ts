@@ -17,13 +17,15 @@ export const initialState: UserState = {
 
 export function reducer(state = initialState, action: fromUser.UserActions): UserState {
 	switch (action.type) {
-		case fromUser.LOGIN: {
+		case fromUser.LOGIN:
+		case fromUser.CREATE_USER: {
 			return {
 				...state,
 				error: null
 			};
 		}
-		case fromUser.LOGIN_SUCCESS: {
+		case fromUser.LOGIN_SUCCESS:
+		case fromUser.CREATE_USER_SUCCESS: {
 			const userData = action.payload;
 
 			return {
@@ -34,7 +36,8 @@ export function reducer(state = initialState, action: fromUser.UserActions): Use
 				error: null
 			};
 		}
-		case fromUser.LOGIN_FAILURE: {
+		case fromUser.LOGIN_FAILURE:
+		case fromUser.CREATE_USER_FAIL: {
 			const error = action.payload;
 
 			return {
