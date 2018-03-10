@@ -45,6 +45,12 @@ export class AuthService {
 		);
 	}
 
+	createUser({ name, email, password }): Observable<User> {
+		return Observable.fromPromise(
+			this.af.auth.createUserWithEmailAndPassword(email, password)
+		);
+	}
+
 	private loginWithCreds(authInfo: AuthInfo): Observable<User> {
 		return Observable.fromPromise(
 			this.af.auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
