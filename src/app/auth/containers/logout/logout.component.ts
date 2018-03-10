@@ -13,7 +13,8 @@ export class LogoutComponent {
 	ngOnInit() {
 		this.store.dispatch(new fromAuth.Logout());
 		this.store.dispatch(new fromRoot.Go({
-			path: ["/"]
+			path: ["/"],
+			extras: { replaceUrl: true }
 		}));
 	}
 }

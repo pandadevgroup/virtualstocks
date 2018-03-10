@@ -48,7 +48,8 @@ export class UserEffects {
 		.ofType(fromActions.LOGIN_SUCCESS)
 		.pipe(
 			map(() => new fromRoot.Go({
-				path: ["/home"]
+				path: ["/home"],
+				extras: { replaceUrl: true }
 			}))
 		);
 
@@ -70,7 +71,8 @@ export class UserEffects {
 		.ofType(fromActions.CREATE_USER_SUCCESS)
 		.pipe(
 			map(() => new fromRoot.Go({
-				path: ["/home"]
+				path: ["/home"],
+				extras: { replaceUrl: true }
 			}))
 		);
 
