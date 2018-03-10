@@ -9,7 +9,8 @@
 			"outDir": "dist",
 			"assets": [
 				"assets",
-				"favicon.ico"
+				"favicon.ico",
+				"CNAME"
 			],
 			"index": "index.html",
 			"main": "main.ts",
@@ -32,10 +33,7 @@
 				"dev": "environments/environment.ts",
 				"prod": "environments/environment.prod.ts"
 			},
-			"serviceWorker": true,
-			"assets": [
-				"CNAME"
-			]
+			"serviceWorker": true
 		}
 	],
 	"e2e": {
