@@ -1,4 +1,26 @@
 <ng-container *ngIf="transactions$ | async as transactions">
-	<p>{{ transactions.length }} Transactions</p>
-	<p *ngFor="let transaction of transactions">{{ transaction | json }}</p>
+	<h3>{{ transactions.length }} Transactions</h3>
+	<div class="list-group">
+
+		<a *ngFor="let transaction of transactions" 
+			class="transaction list-group-item {{transaction.error != null ? 'text-danger' : ''}}">
+			<span *ngIf="transaction.error != null">ERROR {{transaction.error}} | attempted to </span>
+			<b class="text-mutedd">{{ transaction.type }}</b>
+			<a routerLink="/stock/{{transaction.ticker}}" class="{{transaction.error != null ? 'text-danger' : ''}}">
+				{{transaction.ticker}}</a> | {{transaction.timestamp | date:'MMMM d, y, h:mm a'}} |
+			<span *ngIf="transaction.error == null">{{transaction.quantity}} share
+				<span *ngIf="transaction.quantity != 1">s</span> for 
+				${{transaction.price*transaction.quantity}}(${{transaction.price}} each)
+			</span>
+			<span *ngIf="transaction.error != null">{{transaction.quantity}} share
+				<span *ngIf="transaction.quantity != 1">s</span>
+			</span>
+		</a>
+	</div>
+	<hr>
+	<div class="card">
+		<div class="card-body">
+			<pre>{{transactions | json}}</pre>
+		</div>
+	</div>
 </ng-container>
