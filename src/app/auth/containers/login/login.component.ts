@@ -16,7 +16,12 @@ export class LoginComponent {
 		private userEffects: fromAuth.UserEffects
 	) {}
 
-	login() {
+	loginWithGoogle() {
 		this.store.dispatch(new fromAuth.LoginWithGoogle());
+	}
+
+	onLogin(loginInfo: { email, password, rememberMe }) {
+		// TODO: handle rememberMe
+		this.store.dispatch(new fromAuth.Login(loginInfo));
 	}
 }

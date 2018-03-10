@@ -34,7 +34,9 @@ export class AuthFormComponent {
 		this.form.get("password").markAsTouched();
 		this.form.get("password2").markAsTouched();
 		this.form.get("rememberMe").markAsTouched();
-		console.log(this.form.value, this.form.valid);
+		if (this.form.valid) {
+			this.action.emit(this.form.value);
+		}
 	}
 
 	isInvalid(controlName) {
