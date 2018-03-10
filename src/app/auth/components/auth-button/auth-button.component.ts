@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 				[class.auth-button--google]="type == 'google'"
 				[class.auth-button--facebook]="type == 'facebook'">
 			<span class="auth-button__icon">
-				<img [src]="'/assets/' + type + '.svg'">
+				<img [src]="'assets/' + type + '.svg'">
 			</span>
 			<span class="auth-button__text">
 				<ng-content></ng-content>
