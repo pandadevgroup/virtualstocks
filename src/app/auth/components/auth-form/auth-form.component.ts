@@ -29,7 +29,16 @@ export class AuthFormComponent {
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
+		this.form.get("name").markAsTouched();
+		this.form.get("email").markAsTouched();
+		this.form.get("password").markAsTouched();
+		this.form.get("password2").markAsTouched();
+		this.form.get("rememberMe").markAsTouched();
 		console.log(this.form.value, this.form.valid);
+	}
+
+	isInvalid(controlName) {
+		return this.form.get(controlName).touched && this.form.get(controlName).invalid;
 	}
 
 	private updateValidators(type) {
@@ -38,13 +47,11 @@ export class AuthFormComponent {
 			this.form.get("email").setValidators([Validators.required, Validators.email]);
 			this.form.get("password").setValidators([Validators.required]);
 			this.form.get("password2").clearValidators();
-			this.form.get("rememberMe").setValidators([Validators.required]);
 		} else {
 			this.form.get("name").setValidators([Validators.required]);
 			this.form.get("email").setValidators([Validators.required, Validators.email]);
 			this.form.get("password").setValidators([Validators.required]);
 			this.form.get("password2").setValidators([Validators.required]);
-			this.form.get("rememberMe").clearValidators();
 		}
 	}
 }
