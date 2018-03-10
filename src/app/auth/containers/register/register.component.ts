@@ -21,7 +21,7 @@ export class RegisterComponent {
 		this.store.dispatch(new fromAuth.LoginWithGoogle());
 	}
 
-	register({ name, email, password }) {
-
+	register(info: { name, email, password }) {
+		this.store.dispatch(new fromAuth.CreateUser(info));
 	}
 }
