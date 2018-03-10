@@ -4,12 +4,16 @@
 			<div class="login__body">
 				<h2 class="font-weight-normal text-center mb-4">Register</h2>
 
-				<vs-auth-form type="register"></vs-auth-form>
+				<div class="text-danger mb-3 text-center" *ngIf="error$ | async as error">
+					{{ error.message || error }}
+				</div>
+
+				<vs-auth-form type="register" (action)="register($event)"></vs-auth-form>
 			</div>
 
 			<div class="login__footer">
-				<vs-auth-button type="google" (action)="login()">Sign in with Google</vs-auth-button>
-				<!-- <vs-auth-button type="facebook" (action)="login()">Sign in with Facebook</vs-auth-button> -->
+				<vs-auth-button type="google" (action)="loginWithGoogle()">Sign in with Google</vs-auth-button>
+				<!-- <vs-auth-button type="facebook" (action)="loginWithGoogle()">Sign in with Facebook</vs-auth-button> -->
 			</div>
 		</div>
 	</div>
