@@ -21,7 +21,7 @@ export class UserEffects {
 	login$ = this.actions$
 		.ofType(fromActions.LOGIN)
 		.pipe(
-			switchMap(authInfo => this.authService.login(authInfo).pipe(
+			switchMap((action: fromActions.Login) => this.authService.login(action.payload).pipe(
 				switchMap(() => this.authService.user),
 				filter(user => !!user),
 				take(1),

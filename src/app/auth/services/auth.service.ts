@@ -33,8 +33,10 @@ export class AuthService {
 		return this.db.doc<User>(`/users/${id}`).valueChanges();
 	}
 
-	login(authInfo): Observable<User> {
-		return null;
+	login({ email, password }): Observable<User> {
+		return Observable.fromPromise(
+			this.af.auth.signInWithEmailAndPassword(email, password)
+		);
 	}
 
 	loginWithGoogle(): Observable<any> {
