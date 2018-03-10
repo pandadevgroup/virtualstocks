@@ -39,7 +39,7 @@
 		<label for="password2">Confirm Password</label>
 		<input type="password"
 				class="form-control"
-				[class.is-invalid]="isInvalid('password2')"
+				[class.is-invalid]="isInvalid('password2') || form.hasError('differentPasswords')"
 				id="password2"
 				formControlName="password2"
 				placeholder="Confirm Password">

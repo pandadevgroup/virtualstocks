@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators, ValidatorFn, AbstractControl } from "@angular/forms";
 
 @Component({
 	selector: "vs-auth-form",
@@ -24,6 +24,8 @@ export class AuthFormComponent {
 		password: ["", Validators.required],
 		password2: ["", Validators.required],
 		rememberMe: false
+	}, {
+		validator: this.matchPasswordValidator()
 	});
 
 	constructor(private fb: FormBuilder) {}
@@ -55,5 +57,16 @@ export class AuthFormComponent {
 			this.form.get("password").setValidators([Validators.required]);
 			this.form.get("password2").setValidators([Validators.required]);
 		}
+	}
+
+	private matchPasswordValidator(): ValidatorFn {
+		return (control: AbstractControl): { [key: string]: any } => {
+			const password = control.get("password").value;
+			const password2 = control.get("password2").value;
+			if (password2 === password) {
+				return null;
+			}
+			return { "differentPasswords": true };
+		};
 	}
 }
