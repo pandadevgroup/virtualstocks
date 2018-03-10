@@ -4,4 +4,4 @@
 	[stocks]="stocks$ | async"
 	[stockPrices]="stockPrices$ | async">
 </vs-portfolio-stocks-list>
-<p>Portfolio Cash: {{ (portfolio$ | async).cash }}</p>
+<p>Portfolio Cash: {{ (portfolio$ | async).cash | currency }}</p>
