@@ -33,6 +33,10 @@ export class AuthService {
 		return this.db.doc<User>(`/users/${id}`).valueChanges();
 	}
 
+	login(authInfo): Observable<User> {
+		return null;
+	}
+
 	loginWithGoogle(): Observable<any> {
 		return Observable.fromPromise(
 			this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())

@@ -18,6 +18,19 @@ export class UserEffects {
 	constructor(private actions$: Actions, private authService: AuthService) {}
 
 	@Effect()
+	login$ = this.actions$
+		.ofType(fromActions.LOGIN)
+		.pipe(
+			switchMap(authInfo => this.authService.login(authInfo).pipe(
+				switchMap(() => this.authService.user),
+				filter(user => !!user),
+				take(1),
+				map(user => new fromActions.LoginSuccess(user)),
+				catchError(error => of(new fromActions.LoginFailure(error)))
+			))
+		);
+
+	@Effect()
 	loginWithGoogle$ = this.actions$
 		.ofType(fromActions.LOGIN_WITH_GOOGLE)
 		.pipe(
