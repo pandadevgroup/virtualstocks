@@ -52,6 +52,28 @@ export class UserEffects {
 			}))
 		);
 
+	@Effect()
+	createUser$ = this.actions$
+		.ofType(fromActions.CREATE_USER)
+		.pipe(
+			switchMap((action: fromActions.CreateUser) => this.authService.createUser(action.payload).pipe(
+				switchMap(() => this.authService.user),
+				filter(user => !!user),
+				take(1),
+				map(user => new fromActions.CreateUserSuccess(user)),
+				catchError(error => of(new fromActions.CreateUserFail(error)))
+			))
+		);
+
+	@Effect()
+	createUserSuccess$ = this.actions$
+		.ofType(fromActions.CREATE_USER_SUCCESS)
+		.pipe(
+			map(() => new fromRoot.Go({
+				path: ["/home"]
+			}))
+		);
+
 	@Effect({ dispatch: false })
 	logout$ = this.actions$
 		.ofType(fromActions.LOGOUT)
