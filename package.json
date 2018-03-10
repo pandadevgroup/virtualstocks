@@ -10,7 +10,7 @@
     "lint": "ng lint",
 	"e2e": "ng e2e",
 	"bundle-report": "webpack-bundle-analyzer dist/stats.json",
-    "deploy": "ng build --prod --base-href \"https://pandadevgroup.github.io/virtualstocks/\" && ngh -m \"build\""
+    "deploy": "ng build --prod && ngh -m \"Build\""
   },
   "private": true,
   "dependencies": {
