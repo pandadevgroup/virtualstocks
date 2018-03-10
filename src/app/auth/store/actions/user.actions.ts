@@ -32,6 +32,26 @@ export class Logout implements Action {
 	readonly type = LOGOUT;
 }
 
+// Create User
+export const CREATE_USER = "[Auth] Create User";
+export const CREATE_USER_SUCCESS = "[Auth] Create User Success";
+export const CREATE_USER_FAIL = "[Auth] Create User Fail";
+
+export class CreateUser implements Action {
+	readonly type = CREATE_USER;
+	constructor(public payload: { name, email, password }) {}
+}
+
+export class CreateUserSuccess implements Action {
+	readonly type = CREATE_USER_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class CreateUserFail implements Action {
+	readonly type = CREATE_USER_FAIL;
+	constructor(public payload: any) {}
+}
+
 // Set User
 export const SET_USER = "[Auth] Set User";
 
