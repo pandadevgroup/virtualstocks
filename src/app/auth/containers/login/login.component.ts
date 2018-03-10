@@ -10,6 +10,7 @@ import * as fromAuth from "@app/auth/store";
 	styleUrls: ["login.component.scss", "../auth.styles.scss"]
 })
 export class LoginComponent {
+	error$ = this.store.select(fromAuth.getUserError);
 
 	constructor(
 		private store: Store<fromRoot.State>,
