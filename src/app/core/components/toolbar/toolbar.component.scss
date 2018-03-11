@@ -42,17 +42,7 @@
 	display: none;
 }
 
-.mobile-brand {
-	display: none !important;
-}
-
 @media(max-width: 576px) {
-	.mobile-brand {
-		display: inherit !important;
-	}
-	.desktop-brand {
-		display: none;
-	}
 	.search-button {
 		display: inherit;
 	}
@@ -65,45 +55,12 @@
 			background: transparent;  /* optional: just make scrollbar invisible */
 		}
 	}
-	.mobile-nav {
-		opacity: 1;
-		width: 100%;
-		transition: opacity 0.3s, width 0.3s;
-	}
-	.mobile-nav--search {
-		width: calc(100% - 2.4rem);
-	}
-	.mobile-nav--hidden {
-		opacity: 0;
-		width: 0;
-	}
 	.navbar-nav {
 		flex-direction: row;
 		overflow-x: auto;
 	}
 	.ticker-search__container {
-		order: 3;
-		transition: all 0.3s;
-		width: 0;
-		input {
-			opacity: 0;
-			margin-left: 0;
-		}
-	}
-	.ticker-search__container--visible {
-		width: calc(100% - 2.4rem);
-		margin-right: 0.5rem;
-		margin-right: 0.5rem;
-		input {
-			opacity: 1;
-			margin-left: inherit;
-		}
-	}
-	.ticker-search {
-		max-width: 100%;
-		&:focus {
-			max-width: 100%;
-		}
+		display: none;
 	}
 }
 

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary pl-0 pr-3 py-0">
 	<img src="assets/ic_menu_white_24px.svg" class="menu-icon">
 
-	<a class="navbar-brand desktop-brand"
+	<a class="navbar-brand"
 		routerLink="/">Virtual Stocks</a>
 
 	<form class="form-inline ticker-search__container mx-0"
@@ -17,13 +17,8 @@
 			(blur)="onSubmit()"
 			#search>
 	</form>
-	<div class="mobile-nav d-inline-block"
-			[class.mobile-nav--search]="loggedIn"
-			[class.mobile-nav--hidden]="searchActive">
-		<a class="nav-link navbar-brand mobile-brand px-0 mr-0 active d-inline-block" routerLink="/">Virtual Stocks</a>
-	</div>
+	<div class="mr-auto"></div>
 	<button class="search-button rounded-circle px-0 mt-1"
-			[class.search-button--active]="searchActive"
 			(click)="openSearch()"
 			*ngIf="loggedIn">
 		<img src="assets/ic_search_white_24px.svg">
