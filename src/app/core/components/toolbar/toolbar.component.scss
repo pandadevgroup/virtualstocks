@@ -40,12 +40,16 @@
 		display: inherit;
 	}
 	.navbar {
-		overflow-x: hidden;
-		overflow-y: hidden;
 		height: 3.5rem;
 		::-webkit-scrollbar {
 			height: 0px;  /* remove scrollbar space */
 			background: transparent;  /* optional: just make scrollbar invisible */
+		}
+
+		div.container {
+			overflow-x: hidden;
+			overflow-y: hidden;
+			height: 2.5rem;
 		}
 	}
 	.mobile-nav {

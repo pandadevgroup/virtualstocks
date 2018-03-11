@@ -1,7 +1,9 @@
-<h1 class="mat-display-1">Home Component</h1>
+<div class="container my-3 my-sm-5">
+	<h1>Home Component</h1>
 
-<vs-portfolio-stocks-list [stocks]="stocks$ | async"></vs-portfolio-stocks-list>
+	<vs-portfolio-stocks-list [stocks]="stocks$ | async"></vs-portfolio-stocks-list>
 
-<a routerLink="/stocks">Stocks Page</a>
-<a routerLink="/transactions">Transactions Page</a>
-<a routerLink="/portfolio">Portfolio Page</a>
+	<a routerLink="/stocks">Stocks Page</a>
+	<a routerLink="/transactions">Transactions Page</a>
+	<a routerLink="/portfolio">Portfolio Page</a>
+</div>
