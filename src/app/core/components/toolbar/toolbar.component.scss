@@ -66,6 +66,9 @@
 			background: transparent;  /* optional: just make scrollbar invisible */
 		}
 	}
+	.navbar-brand {
+		padding-bottom: 0px;
+	}
 	.navbar-nav {
 		flex-direction: row;
 		overflow-x: auto;
