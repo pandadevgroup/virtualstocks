@@ -8,7 +8,7 @@
 	<vs-toolbar [loggedIn]="loggedIn" (tickerSearch)="onStockSearch($event)" class="main__toolbar"></vs-toolbar>
 
 	<div class="main__content">
-		<vs-sidebar class="main__sidebar"></vs-sidebar>
+		<vs-sidebar class="main__sidebar" [loggedIn]="loggedIn"></vs-sidebar>
 		<div class="main__page">
 			<router-outlet></router-outlet>
 		</div>

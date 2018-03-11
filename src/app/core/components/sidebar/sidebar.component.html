@@ -25,8 +25,16 @@
 	</a>
 	<div class="mb-auto"></div>
 	<a class="sidebar__item"
-			routerLink="/logout">
+			routerLink="/logout"
+			*ngIf="loggedIn">
 		<img class="sidebar__item__icon" src="assets/ic_power_settings_new_black_24px.svg">
 		<span class="sidebar__item__text">Logout</span>
+	</a>
+	<a class="sidebar__item"
+			routerLink="/login"
+			routerLinkActive="sidebar__item--active"
+			*ngIf="!loggedIn">
+		<img class="sidebar__item__icon" src="assets/ic_account_circle_black_24px.svg">
+		<span class="sidebar__item__text">Login</span>
 	</a>
 </div>
