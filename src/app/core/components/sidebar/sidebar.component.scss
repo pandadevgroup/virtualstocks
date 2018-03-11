@@ -3,8 +3,10 @@
 	flex-direction: column;
 	padding: 0.5rem 0;
 	width: 17.5rem;
-	transition: width 0.3s;
+	transition: left 0.3s, width 0.3s;
 	overflow: hidden;
+	position: relative;
+	left: 0;
 
 	.sidebar__item {
 		display: inline-block;
@@ -35,7 +37,8 @@
 		width: 3.5rem;
 
 		@media(max-width: 768px) {
-			width: 0;
+			width: 17.5rem;
+			left: -17.5rem;
 		}
 	}
 }
