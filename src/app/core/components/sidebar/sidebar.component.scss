@@ -3,7 +3,7 @@
 	flex-direction: column;
 	padding: 0.5rem 0;
 	width: 17.5rem;
-	overflow: hidden;
+	overflow-x: hidden;
 	transition: width 0.3s;
 
 	.sidebar__item {
@@ -47,7 +47,7 @@
 	right: 0;
 	background-color: black;
 	opacity: 0;
-	transition: all 0.3s;
+	transition: opacity 0.3s;
 }
 
 .sidebar__item--brand {
@@ -63,8 +63,8 @@
 
 @media(max-width: 768px) {
 	.sidebar__item--brand {
-		display: inherit !important;
-		height: auto !important;
+		display: inline-block !important;
+		height: 3.75rem !important;
 		border-bottom: 1px solid #eee;
 		margin-bottom: 0.75rem;
 	}
