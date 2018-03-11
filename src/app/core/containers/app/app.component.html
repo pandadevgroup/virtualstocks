@@ -4,7 +4,7 @@
 	color="#FFCA28">
 </ng-progress>
 
-<div class="main__container">
+<div class="main__container" [class.overflow-hidden]="sidebarMobile">
 	<vs-toolbar [loggedIn]="loggedIn"
 			(tickerSearch)="onStockSearch($event)"
 			class="main__toolbar"
