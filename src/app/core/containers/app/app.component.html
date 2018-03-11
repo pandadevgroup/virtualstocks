@@ -8,13 +8,14 @@
 	<vs-toolbar [loggedIn]="loggedIn"
 			(tickerSearch)="onStockSearch($event)"
 			class="main__toolbar"
-			(toggleSidebar)="toggleSidebar()"></vs-toolbar>
+			(toggleSidebar)="toggleSidebarMobile()"></vs-toolbar>
 
 	<div class="main__content">
 		<vs-sidebar class="main__sidebar"
 				[loggedIn]="loggedIn"
 				[small]="sidebarSmall"
-				(toggleSidebar)="toggleSidebar()"></vs-sidebar>
+				[showMobile]="sidebarMobile"
+				(toggleSidebar)="toggleSidebarMobile()"></vs-sidebar>
 		<div class="main__page">
 			<router-outlet></router-outlet>
 		</div>

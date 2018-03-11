@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	loggedIn: boolean = false;
 	sidebarSmall = false;
+	sidebarMobile = false;
 	private ngUnsubscribe = new Subject();
 
 	constructor(
@@ -46,6 +47,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	toggleSidebar() {
 		this.sidebarSmall = !this.sidebarSmall;
+	}
+
+	toggleSidebarMobile() {
+		this.sidebarMobile = !this.sidebarMobile;
 	}
 
 	ngOnDestroy() {

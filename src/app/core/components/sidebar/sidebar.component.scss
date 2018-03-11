@@ -3,10 +3,8 @@
 	flex-direction: column;
 	padding: 0.5rem 0;
 	width: 17.5rem;
-	transition: left 0.3s, width 0.3s;
 	overflow: hidden;
-	position: relative;
-	left: 0;
+	transition: width 0.3s;
 
 	.sidebar__item {
 		display: inline-block;
@@ -34,11 +32,8 @@
 	}
 
 	&--small {
-		width: 3.5rem;
-
-		@media(max-width: 768px) {
-			width: 17.5rem;
-			left: -17.5rem;
+		@media(min-width: 768px) {
+			width: 3.5rem;
 		}
 	}
 }
@@ -47,8 +42,15 @@
 	.sidebar {
 		z-index: 1050;
 		position: fixed;
+		transition: left 0.3s;
 		top: 0;
+		left: -17.5rem;
 		bottom: 0;
+		width: 17.5rem;
+
+		&--show {
+			left: 0;
+		}
 	}
 	.sidebar__overlay {
 		position: fixed;

@@ -1,5 +1,6 @@
 <div class="sidebar bg-light h-100"
-		[class.sidebar--small]="!small">
+		[class.sidebar--small]="!small"
+		[class.sidebar--show]="showMobile">
 	<a class="sidebar__item"
 			routerLink="/home"
 			routerLinkActive="sidebar__item--active">
@@ -40,4 +41,4 @@
 	</a>
 </div>
 
-<div class="sidebar__overlay" [class.sidebar__overlay--visible]="small" (click)="onAction()"></div>
+<div class="sidebar__overlay" [class.sidebar__overlay--visible]="showMobile" (click)="onAction()"></div>

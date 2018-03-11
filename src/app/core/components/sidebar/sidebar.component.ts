@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 export class SidebarComponent {
 	@Input() loggedIn: boolean;
 	@Input() small: boolean;
+	@Input() showMobile: boolean;
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 
 	onAction() {
