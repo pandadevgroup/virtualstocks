@@ -16,6 +16,7 @@ import "rxjs/add/operator/takeUntil";
 export class AppComponent implements OnInit, OnDestroy {
 
 	loggedIn: boolean = false;
+	sidebarSmall = true;
 	private ngUnsubscribe = new Subject();
 
 	constructor(
@@ -41,6 +42,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new fromRoot.Go({
 			path: ["stock", ticker]
 		}));
+	}
+
+	toggleSidebar() {
+		this.sidebarSmall = !this.sidebarSmall;
 	}
 
 	ngOnDestroy() {

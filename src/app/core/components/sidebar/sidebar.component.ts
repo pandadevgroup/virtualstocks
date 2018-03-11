@@ -7,4 +7,5 @@ import { Component, Input } from "@angular/core";
 })
 export class SidebarComponent {
 	@Input() loggedIn: boolean;
+	@Input() small: boolean;
 }

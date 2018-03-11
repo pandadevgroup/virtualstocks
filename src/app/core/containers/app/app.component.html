@@ -5,10 +5,15 @@
 </ng-progress>
 
 <div class="main__container">
-	<vs-toolbar [loggedIn]="loggedIn" (tickerSearch)="onStockSearch($event)" class="main__toolbar"></vs-toolbar>
+	<vs-toolbar [loggedIn]="loggedIn"
+			(tickerSearch)="onStockSearch($event)"
+			class="main__toolbar"
+			(toggleSidebar)="toggleSidebar()"></vs-toolbar>
 
 	<div class="main__content">
-		<vs-sidebar class="main__sidebar" [loggedIn]="loggedIn"></vs-sidebar>
+		<vs-sidebar class="main__sidebar"
+				[loggedIn]="loggedIn"
+				[small]="sidebarSmall"></vs-sidebar>
 		<div class="main__page">
 			<router-outlet></router-outlet>
 		</div>

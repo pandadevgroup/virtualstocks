@@ -10,12 +10,12 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 export class ToolbarComponent {
 	@Input() loggedIn: boolean = false;
 	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
+	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 	@ViewChild("search") searchEl: ElementRef;
 
 	searchForm = new FormGroup({
 		ticker: new FormControl()
 	});
-	searchActive = false;
 
 	get ticker() {
 		return this.searchForm.get("ticker").value;
@@ -26,11 +26,12 @@ export class ToolbarComponent {
 			this.tickerSearch.emit(this.ticker.trim());
 			this.searchForm.get("ticker").setValue("");
 		}
-		this.searchActive = false;
 	}
 
 	openSearch() {
-		this.searchActive = true;
-		setTimeout(() => this.searchEl.nativeElement.focus(), 0);
+	}
+
+	onMenuClick() {
+		this.toggleSidebar.emit();
 	}
 }
