@@ -43,7 +43,9 @@
 @media(max-width: 768px) {
 	.sidebar {
 		z-index: 1050;
-		position: relative;
+		position: fixed;
+		top: 0;
+		bottom: 0;
 	}
 	.sidebar__overlay {
 		position: fixed;
