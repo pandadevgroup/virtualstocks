@@ -4,8 +4,13 @@
 	color="#FFCA28">
 </ng-progress>
 
-<vs-toolbar [loggedIn]="loggedIn" (tickerSearch)="onStockSearch($event)"></vs-toolbar>
+<div class="main__container">
+	<vs-toolbar [loggedIn]="loggedIn" (tickerSearch)="onStockSearch($event)" class="main__toolbar"></vs-toolbar>
 
-<div id="main">
-	<router-outlet></router-outlet>
+	<div class="main__content">
+		<vs-sidebar class="main__sidebar"></vs-sidebar>
+		<div class="main__page">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
 </div>

@@ -1,0 +1,14 @@
+.main__container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.main__content {
+		flex: 1;
+		display: flex;
+
+		.main__page {
+			flex: 1;
+		}
+	}
+}
