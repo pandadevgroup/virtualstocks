@@ -3,6 +3,17 @@
 	padding: 1rem;
 	cursor: pointer;
 }
+.menu-icon--mobile {
+	display: none;
+}
+@media(max-width: 768px) {
+	.menu-icon {
+		display: none;
+	}
+	.menu-icon--mobile {
+		display: inline-block;
+	}
+}
 .navbar-brand {
 	padding-bottom: 4px;
 	padding-top: 0;

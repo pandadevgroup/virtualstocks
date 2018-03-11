@@ -8,7 +8,8 @@
 	<vs-toolbar [loggedIn]="loggedIn"
 			(tickerSearch)="onStockSearch($event)"
 			class="main__toolbar"
-			(toggleSidebar)="toggleSidebarMobile()"></vs-toolbar>
+			(toggleSidebar)="toggleSidebar()"
+			(toggleSidebarMobile)="toggleSidebarMobile()"></vs-toolbar>
 
 	<div class="main__content">
 		<vs-sidebar class="main__sidebar"

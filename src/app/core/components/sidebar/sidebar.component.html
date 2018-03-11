@@ -3,39 +3,45 @@
 		[class.sidebar--show]="showMobile">
 	<a class="sidebar__item"
 			routerLink="/home"
-			routerLinkActive="sidebar__item--active">
+			routerLinkActive="sidebar__item--active"
+			(click)="onAction()">
 		<img class="sidebar__item__icon" src="assets/ic_dashboard_black_24px.svg">
 		<span class="sidebar__item__text">Dashboard</span>
 	</a>
 	<a class="sidebar__item"
 			routerLink="/stocks"
-			routerLinkActive="sidebar__item--active">
+			routerLinkActive="sidebar__item--active"
+			(click)="onAction()">
 		<img class="sidebar__item__icon" src="assets/ic_assessment_black_24px.svg">
 		<span class="sidebar__item__text">Stocks</span>
 	</a>
 	<a class="sidebar__item"
 			routerLink="/portfolio"
-			routerLinkActive="sidebar__item--active">
+			routerLinkActive="sidebar__item--active"
+			(click)="onAction()">
 		<img class="sidebar__item__icon" src="assets/ic_work_black_24px.svg">
 		<span class="sidebar__item__text">Portfolio</span>
 	</a>
 	<a class="sidebar__item"
 			routerLink="/transactions"
-			routerLinkActive="sidebar__item--active">
+			routerLinkActive="sidebar__item--active"
+			(click)="onAction()">
 		<img class="sidebar__item__icon" src="assets/ic_swap_vert_black_24px.svg">
 		<span class="sidebar__item__text">Transactions</span>
 	</a>
 	<div class="mb-auto"></div>
 	<a class="sidebar__item"
 			routerLink="/logout"
-			*ngIf="loggedIn">
+			*ngIf="loggedIn"
+			(click)="onAction()">
 		<img class="sidebar__item__icon" src="assets/ic_power_settings_new_black_24px.svg">
 		<span class="sidebar__item__text">Logout</span>
 	</a>
 	<a class="sidebar__item"
 			routerLink="/login"
 			routerLinkActive="sidebar__item--active"
-			*ngIf="!loggedIn">
+			*ngIf="!loggedIn"
+			(click)="onAction()">
 		<img class="sidebar__item__icon" src="assets/ic_account_circle_black_24px.svg">
 		<span class="sidebar__item__text">Login</span>
 	</a>

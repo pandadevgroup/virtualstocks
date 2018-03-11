@@ -11,6 +11,7 @@ export class ToolbarComponent {
 	@Input() loggedIn: boolean = false;
 	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
+	@Output() toggleSidebarMobile: EventEmitter<any> = new EventEmitter();
 	@ViewChild("search") searchEl: ElementRef;
 
 	searchForm = new FormGroup({
@@ -33,5 +34,9 @@ export class ToolbarComponent {
 
 	onMenuClick() {
 		this.toggleSidebar.emit();
+	}
+
+	onMobileMenuClick() {
+		this.toggleSidebarMobile.emit();
 	}
 }
