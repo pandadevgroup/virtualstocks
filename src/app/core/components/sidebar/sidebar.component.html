@@ -1,23 +1,32 @@
 <div class="sidebar bg-light h-100">
-	<div class="sidebar__item">
+	<a class="sidebar__item"
+			routerLink="/home"
+			routerLinkActive="sidebar__item--active">
 		<img class="sidebar__item__icon" src="assets/ic_dashboard_black_24px.svg">
 		<span class="sidebar__item__text">Dashboard</span>
-	</div>
-	<div class="sidebar__item">
+	</a>
+	<a class="sidebar__item"
+			routerLink="/stocks"
+			routerLinkActive="sidebar__item--active">
 		<img class="sidebar__item__icon" src="assets/ic_assessment_black_24px.svg">
 		<span class="sidebar__item__text">Stocks</span>
-	</div>
-	<div class="sidebar__item">
+	</a>
+	<a class="sidebar__item"
+			routerLink="/portfolio"
+			routerLinkActive="sidebar__item--active">
 		<img class="sidebar__item__icon" src="assets/ic_work_black_24px.svg">
 		<span class="sidebar__item__text">Portfolio</span>
-	</div>
-	<div class="sidebar__item">
+	</a>
+	<a class="sidebar__item"
+			routerLink="/transactions"
+			routerLinkActive="sidebar__item--active">
 		<img class="sidebar__item__icon" src="assets/ic_swap_vert_black_24px.svg">
 		<span class="sidebar__item__text">Transactions</span>
-	</div>
+	</a>
 	<div class="mb-auto"></div>
-	<div class="sidebar__item">
+	<a class="sidebar__item"
+			routerLink="/logout">
 		<img class="sidebar__item__icon" src="assets/ic_power_settings_new_black_24px.svg">
 		<span class="sidebar__item__text">Logout</span>
-	</div>
+	</a>
 </div>

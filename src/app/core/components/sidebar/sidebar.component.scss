@@ -5,6 +5,14 @@
 	width: 17.5rem;
 
 	.sidebar__item {
+		display: inline-block;
+		text-decoration: none;
+		color: rgba(0, 0, 0, 0.87);
+
+		&--active {
+			background-color: white;
+		}
+
 		&__icon {
 			opacity: 0.54;
 			height: 24px;
