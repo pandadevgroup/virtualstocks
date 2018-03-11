@@ -50,7 +50,25 @@
 	transition: all 0.3s;
 }
 
+.sidebar__item--brand {
+	display: none !important;
+	.sidebar__item__text {
+		margin-left: 0.5rem;
+	}
+}
+
+.sidebar__item__text--big {
+	font-size: 1.5rem;
+}
+
 @media(max-width: 768px) {
+	.sidebar__item--brand {
+		display: inherit !important;
+		height: auto !important;
+		border-bottom: 1px solid #eee;
+		margin-bottom: 0.75rem;
+	}
+
 	.sidebar {
 		z-index: 1050;
 		position: fixed;

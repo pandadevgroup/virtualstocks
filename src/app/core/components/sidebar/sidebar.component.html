@@ -1,6 +1,11 @@
 <div class="sidebar bg-light h-100"
 		[class.sidebar--small]="!small"
 		[class.sidebar--show]="showMobile">
+	<a class="sidebar__item sidebar__item--brand"
+			routerLink="/"
+			(click)="onAction()">
+		<span class="sidebar__item__text sidebar__item__text--big">Virtual Stocks</span>
+	</a>
 	<a class="sidebar__item"
 			routerLink="/home"
 			routerLinkActive="sidebar__item--active"
