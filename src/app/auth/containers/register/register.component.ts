@@ -11,6 +11,7 @@ import * as fromAuth from "@app/auth/store";
 })
 export class RegisterComponent {
 	error$ = this.store.select(fromAuth.getUserError);
+	loading$ = this.store.select(fromAuth.getUserLoading);
 
 	constructor(
 		private store: Store<fromRoot.State>,

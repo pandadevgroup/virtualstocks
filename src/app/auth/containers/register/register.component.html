@@ -1,7 +1,11 @@
 <div class="container-fluid">
 	<div class="row no-gutters justify-content-center">
-		<div class="col login__container">
-			<div class="login__body">
+		<div class="col auth__container">
+			<div class="auth__overlay" [class.auth__overlay--show]="loading$ | async">
+				<h3 class="font-weight-normal pb-5">Loading...</h3>
+			</div>
+
+			<div class="auth__body">
 				<h2 class="font-weight-normal text-center mb-4">Register</h2>
 
 				<div class="text-danger mb-3 text-center" *ngIf="error$ | async as error">
@@ -11,7 +15,7 @@
 				<vs-auth-form type="register" (action)="register($event)"></vs-auth-form>
 			</div>
 
-			<div class="login__footer">
+			<div class="auth__footer">
 				<vs-auth-button type="google" (action)="loginWithGoogle()">Sign in with Google</vs-auth-button>
 				<!-- <vs-auth-button type="facebook" (action)="loginWithGoogle()">Sign in with Facebook</vs-auth-button> -->
 			</div>
