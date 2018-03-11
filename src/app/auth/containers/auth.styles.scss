@@ -1,5 +1,7 @@
 .auth__container {
-	border: 1px solid #ccc;
+	@media(min-width: 576px) {
+		border: 1px solid #ccc;
+	}
 	border-radius: 0.2rem;
 	max-width: 30rem;
 	position: relative;
@@ -27,7 +29,10 @@
 }
 
 .auth__body {
-	padding: 2rem;
+	padding: 1rem;
+	@media(min-width: 576px) {
+		padding: 2rem;
+	}
 	padding-bottom: 1.5rem;
 }
 
