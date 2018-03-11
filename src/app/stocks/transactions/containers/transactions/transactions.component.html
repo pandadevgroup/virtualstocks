@@ -8,8 +8,8 @@
 			<b class="text-mutedd">{{ transaction.type }}</b>
 			<a routerLink="/stock/{{transaction.ticker}}" class="{{transaction.error != null ? 'text-danger' : ''}}">
 				{{transaction.ticker}}</a> | {{transaction.timestamp | date:'MMMM d, y, h:mm a'}} |
-			<span *ngIf="transaction.error == null">{{transaction.quantity}} share
-				<span *ngIf="transaction.quantity != 1">s</span> for 
+			<span *ngIf="transaction.error == null">{{transaction.quantity}} 
+				share<span *ngIf="transaction.quantity != 1">s</span> for 
 				${{transaction.price*transaction.quantity}}(${{transaction.price}} each)
 			</span>
 			<span *ngIf="transaction.error != null">{{transaction.quantity}} share
