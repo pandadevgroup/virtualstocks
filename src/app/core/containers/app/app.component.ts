@@ -16,7 +16,7 @@ import "rxjs/add/operator/takeUntil";
 export class AppComponent implements OnInit, OnDestroy {
 
 	loggedIn: boolean = false;
-	sidebarSmall = true;
+	sidebarSmall = false;
 	private ngUnsubscribe = new Subject();
 
 	constructor(

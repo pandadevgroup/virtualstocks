@@ -42,14 +42,14 @@
 	display: none;
 }
 
+.navbar {
+	height: 3.5rem;
+}
 @media(max-width: 576px) {
 	.search-button {
 		display: inherit;
 	}
 	.navbar {
-		overflow-x: hidden;
-		overflow-y: hidden;
-		height: 3.5rem;
 		::-webkit-scrollbar {
 			height: 0px;  /* remove scrollbar space */
 			background: transparent;  /* optional: just make scrollbar invisible */

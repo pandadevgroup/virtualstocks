@@ -1,5 +1,5 @@
 <div class="sidebar bg-light h-100"
-		[class.sidebar--small]="small">
+		[class.sidebar--small]="!small">
 	<a class="sidebar__item"
 			routerLink="/home"
 			routerLinkActive="sidebar__item--active">
@@ -39,3 +39,5 @@
 		<span class="sidebar__item__text">Login</span>
 	</a>
 </div>
+
+<div class="sidebar__overlay" [class.sidebar__overlay--visible]="small" (click)="onBackdropClick()"></div>
