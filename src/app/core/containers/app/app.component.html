@@ -14,7 +14,7 @@
 		<vs-sidebar class="main__sidebar"
 				[loggedIn]="loggedIn"
 				[small]="sidebarSmall"
-				(backdropClick)="toggleSidebar()"></vs-sidebar>
+				(toggleSidebar)="toggleSidebar()"></vs-sidebar>
 		<div class="main__page">
 			<router-outlet></router-outlet>
 		</div>

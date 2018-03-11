@@ -8,9 +8,9 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 export class SidebarComponent {
 	@Input() loggedIn: boolean;
 	@Input() small: boolean;
-	@Output() backdropClick: EventEmitter<any> = new EventEmitter();
+	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 
-	onBackdropClick() {
-		this.backdropClick.emit();
+	onAction() {
+		this.toggleSidebar.emit();
 	}
 }
