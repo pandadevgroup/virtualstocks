@@ -75,29 +75,29 @@
 	}
 	.ticker-search__container {
 		display: none;
+		&--mobile {
+			display: block;
+		}
 	}
 	.navbar--searching {
 		display: none;
 	}
 	.navbar-search--visible {
-		display: block !important;
+		display: flex !important;
 	}
 }
 
-@keyframes ripple {
-	0% {
-		background-color: transparent;
-	}
-
-	20% {
-		background-color: rgba(255,255,255,0.2);
-	}
-
-	100% {
-		background-color: transparent;
+.ticker-search-mobile__container {
+	flex: 1;
+}
+.ticker-search-mobile {
+	background-color: transparent !important;
+	border: 0 !important;
+	&:focus {
+		outline: none;
+		box-shadow: none;
 	}
 }
-
 
 .search-button {
 	float: right;

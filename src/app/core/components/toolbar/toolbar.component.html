@@ -7,7 +7,6 @@
 		routerLink="/">Virtual Stocks</a>
 
 	<form class="form-inline ticker-search__container mx-0"
-			[class.ticker-search__container--visible]="searchActive"
 			[formGroup]="searchForm"
 			(ngSubmit)="onSubmit()"
 			*ngIf="loggedIn">
@@ -31,12 +30,11 @@
 		[class.navbar-search--visible]="searchActive">
 	<img src="assets/ic_arrow_back_black_24px.svg" class="menu-icon" (click)="closeSearch()">
 
-	<form class="form-inline ticker-search__container mx-0"
-			[class.ticker-search__container--visible]="searchActive"
+	<form class="form-inline ticker-search-mobile__container mx-0"
 			[formGroup]="searchForm"
 			(ngSubmit)="onSubmit()"
 			*ngIf="loggedIn">
-		<input class="ticker-search form-control px-3"
+		<input class="ticker-search-mobile form-control"
 			type="search"
 			placeholder="Search Stocks"
 			aria-label="Search Stocks"
