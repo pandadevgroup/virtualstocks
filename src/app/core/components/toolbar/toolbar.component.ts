@@ -13,6 +13,7 @@ export class ToolbarComponent {
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 	@Output() toggleSidebarMobile: EventEmitter<any> = new EventEmitter();
 	@ViewChild("search") searchEl: ElementRef;
+	searchActive = false;
 
 	searchForm = new FormGroup({
 		ticker: new FormControl()
@@ -30,6 +31,11 @@ export class ToolbarComponent {
 	}
 
 	openSearch() {
+		this.searchActive = true;
+	}
+
+	closeSearch() {
+		this.searchActive = false;
 	}
 
 	onMenuClick() {

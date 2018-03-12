@@ -7,7 +7,7 @@
 	display: none;
 }
 @media(max-width: 768px) {
-	.menu-icon {
+	.menu-icon--desktop {
 		display: none;
 	}
 	.menu-icon--mobile {
@@ -75,6 +75,12 @@
 	}
 	.ticker-search__container {
 		display: none;
+	}
+	.navbar--searching {
+		display: none;
+	}
+	.navbar-search--visible {
+		display: block !important;
 	}
 }
 
