@@ -40,14 +40,15 @@
 
 .sidebar__overlay {
 	position: fixed;
-	z-index: -1;
-	top: 0;
+	z-index: 1040;
 	height: 100vh;
+	top: 0;
 	left: 0;
 	right: 0;
 	background-color: black;
 	opacity: 0;
-	transition: opacity 0.3s;
+	transition: opacity 0.3s, left 0.2s;
+	pointer-events: none;
 }
 
 .sidebar__item--brand {
@@ -87,7 +88,7 @@
 	}
 
 	.sidebar__overlay--visible {
-		z-index: 1040;
 		opacity: 0.48;
+		pointer-events: auto;
 	}
 }
