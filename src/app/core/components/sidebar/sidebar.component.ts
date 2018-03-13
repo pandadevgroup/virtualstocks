@@ -12,6 +12,6 @@ export class SidebarComponent {
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 
 	onAction() {
-		this.toggleSidebar.emit();
+		if (this.showMobile) this.toggleSidebar.emit();
 	}
 }
