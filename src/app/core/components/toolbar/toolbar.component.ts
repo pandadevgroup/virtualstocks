@@ -40,11 +40,6 @@ export class ToolbarComponent {
 		setTimeout(() => el.blur(), 0);
 	}
 
-	cancelSearch() {
-		this.searchActive = false;
-		this.clearSearch();
-	}
-
 	clearSearch() {
 		this.searchForm.get("ticker").setValue("");
 	}
