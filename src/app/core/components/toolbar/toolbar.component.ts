@@ -12,7 +12,6 @@ export class ToolbarComponent {
 	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 	@Output() toggleSidebarMobile: EventEmitter<any> = new EventEmitter();
-	@ViewChild("search") searchEl: ElementRef;
 	searchActive = false;
 
 	searchForm = new FormGroup({
@@ -23,19 +22,22 @@ export class ToolbarComponent {
 		return this.searchForm.get("ticker").value;
 	}
 
-	onSubmit() {
+	onSubmit(el) {
 		if (this.ticker && this.ticker.trim() !== "") {
 			this.tickerSearch.emit(this.ticker.trim());
 			this.searchForm.get("ticker").setValue("");
+			this.closeSearch(el);
 		}
 	}
 
-	openSearch() {
+	openSearch(el) {
 		this.searchActive = true;
+		setTimeout(() => el.focus(), 0);
 	}
 
-	closeSearch() {
+	closeSearch(el) {
 		this.searchActive = false;
+		setTimeout(() => el.blur(), 0);
 	}
 
 	onMenuClick() {
