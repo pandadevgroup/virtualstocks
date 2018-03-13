@@ -10,7 +10,7 @@
 		placeholder="Search Stocks"
 		aria-label="Search Stocks"
 		formControlName="ticker"
-		(blur)="onSubmit(mobileSearch)"
+		(blur)="cancelSearch()"
 		#mobileSearch>
 	</form>
 </nav>
@@ -32,7 +32,7 @@
 			placeholder="Search Stocks"
 			aria-label="Search Stocks"
 			formControlName="ticker"
-			(blur)="onSubmit(search)"
+			(blur)="clearSearch()"
 			#search>
 	</form>
 	<div class="mr-auto"></div>
