@@ -40,6 +40,7 @@
 	padding: 1.5rem;
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center; // iPads
 	justify-content: space-around; // IE 10+
 	justify-content: space-evenly;
 	background-color: #f7f7f7;
