@@ -4,20 +4,24 @@
 	color="#FFCA28">
 </ng-progress>
 
-<div class="main__container" [class.overflow-hidden]="sidebarMobile">
-	<vs-toolbar [loggedIn]="loggedIn"
-			(tickerSearch)="onStockSearch($event)"
-			class="main__toolbar"
-			(toggleSidebar)="toggleSidebar()"
-			(toggleSidebarMobile)="toggleSidebarMobile()"></vs-toolbar>
+<vs-toolbar [loggedIn]="loggedIn"
+		(tickerSearch)="onStockSearch($event)"
+		class="toolbar"
+		(toggleSidebar)="toggleSidebar()"
+		(toggleSidebarMobile)="toggleSidebarMobile()"></vs-toolbar>
 
-	<div class="main__content">
-		<vs-sidebar class="main__sidebar"
-				[loggedIn]="loggedIn"
-				[small]="sidebarSmall"
-				[showMobile]="sidebarMobile"
-				(toggleSidebar)="toggleSidebarMobile()"></vs-sidebar>
-		<div class="main__page">
+<vs-sidebar class="sidebar"
+		[loggedIn]="loggedIn"
+		[small]="sidebarSmall"
+		[showMobile]="sidebarMobile"
+		(toggleSidebar)="toggleSidebarMobile()"></vs-sidebar>
+
+<div class="main__page">
+	<div class="main__container"
+		[class.overflow-hidden]="sidebarMobile"
+		[class.main__container--sidenav-big]="!sidebarSmall"
+		[class.main__container--sidenav-small]="sidebarSmall">
+		<div class="main__content">
 			<router-outlet></router-outlet>
 		</div>
 	</div>

@@ -1,7 +1,8 @@
 .main__container {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	padding-top: 3.5rem;
+	transition: padding-left 0.3s;
 
 	.main__content {
 		flex: 1;
@@ -9,12 +10,44 @@
 
 		.main__page {
 			flex: 1;
-			height: 100%;
-			overflow-y: auto;
 		}
+	}
+
+	@media(min-width: 768px) {
+		&--sidenav-big {
+			padding-left: 17.5rem;
+		}
+
+		&--sidenav-small {
+			padding-left: 3.5rem;
+		}
+	}
+
+	@media(max-width: 768px) {
+		padding-left: 0;
 	}
 }
 
 .overflow-hidden {
 	overflow: hidden;
+}
+
+
+.sidebar {
+	position: fixed;
+	top: 3.5rem;
+	bottom: 0;
+	left: 0;
+
+	@media(max-width: 768px) {
+		z-index: 1050;
+	}
+}
+
+.toolbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
 }
