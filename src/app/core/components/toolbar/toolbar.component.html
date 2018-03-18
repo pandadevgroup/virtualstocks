@@ -3,15 +3,15 @@
 	<img src="assets/ic_arrow_back_black_24px.svg" class="menu-icon" (click)="closeSearch(mobileSearch)">
 
 	<form class="form-inline ticker-search-mobile__container mx-0"
-		[formGroup]="searchForm"
-		(ngSubmit)="onSubmit(mobileSearch)">
-	<input class="ticker-search-mobile form-control"
-		type="search"
-		placeholder="Search Stocks"
-		aria-label="Search Stocks"
-		formControlName="ticker"
-		(blur)="onSubmit(mobileSearch)"
-		#mobileSearch>
+			[formGroup]="searchForm"
+			(ngSubmit)="onSubmit(mobileSearch)">
+		<input class="ticker-search-mobile form-control"
+			type="search"
+			placeholder="Search Stocks"
+			aria-label="Search Stocks"
+			formControlName="ticker"
+			(blur)="onSubmit(mobileSearch)"
+			#mobileSearch>
 	</form>
 </nav>
 
