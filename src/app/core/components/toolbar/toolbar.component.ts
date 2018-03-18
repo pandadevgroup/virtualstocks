@@ -56,9 +56,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 				ticker: success ? this.searchResults[this.searchResultSelectedIndex].symbol : null,
 				search: this.ticker.trim().toUpperCase()
 			});
-			this.searchForm.get("ticker").setValue("");
-			this.closeSearch(el);
 		}
+		this.closeSearch(el);
 	}
 
 	openSearch(el) {
