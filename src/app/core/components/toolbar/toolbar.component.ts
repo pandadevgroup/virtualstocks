@@ -53,10 +53,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 	closeSearch(el) {
 		this.searchActive = false;
+		this.clearSearch();
 		setTimeout(() => el.blur(), 0);
 	}
 
 	clearSearch() {
+		this.partialTickerSearch.emit("");
 		this.searchForm.get("ticker").setValue("");
 	}
 

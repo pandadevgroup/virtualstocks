@@ -47,7 +47,8 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	onPartialStockSearch(search) {
-		this.store.dispatch(new fromStocks.StockSearch(search));
+		if (search == "") this.store.dispatch(new fromStocks.ClearStockSearch());
+		else this.store.dispatch(new fromStocks.StockSearch(search));
 	}
 
 	toggleSidebar() {
