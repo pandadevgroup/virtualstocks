@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { BatchStockData, StockDetail, StockChart, StockChartRange, IEXMonthChartEntry } from "@app/stocks/models";
+import { BatchStockData, StockDetail, StockChart, StockChartRange, IEXMonthChartEntry, StockSearchResult } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -47,5 +47,10 @@ export class StocksService {
 					}
 				}))
 			);
+	}
+
+	runStockSearch(search: string): Observable<StockSearchResult[]> {
+		const queryUrl = `http://api.virtualstocks.pandadevgroup.com/search/${search}`;
+		return this.http.get<StockSearchResult[]>(queryUrl);
 	}
 }

@@ -50,6 +50,15 @@ export interface BatchStockData {
 	}
 }
 
+export interface StockSearchResult {
+	symbol: string;
+	name: string;
+	date: string;
+	isEnabled: boolean;
+	type: string;
+	iexId: string;
+}
+
 export interface IEXDayChartEntry {
 	date: string;
 	minute: string;

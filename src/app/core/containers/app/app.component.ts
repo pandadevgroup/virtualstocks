@@ -3,6 +3,7 @@ import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, OnDestro
 import { Store } from "@ngrx/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth";
+import * as fromStocks from "@app/stocks/store";
 
 import { Subject } from "rxjs/Subject";
 import "rxjs/add/operator/takeUntil";
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	private ngUnsubscribe = new Subject();
 
 	constructor(
-		private store: Store<fromAuth.AuthState>,
+		private store: Store<fromRoot.State>,
 		private authService: fromAuth.AuthService,
 		private cd: ChangeDetectorRef
 	) {}
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	onPartialStockSearch(search) {
-		console.log(search);
+		this.store.dispatch(new fromStocks.StockSearch(search));
 	}
 
 	toggleSidebar() {

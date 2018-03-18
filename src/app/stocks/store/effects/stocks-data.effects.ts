@@ -7,6 +7,7 @@ import { switchMap, map, catchError, take, filter, tap } from "rxjs/operators";
 import * as fromRoot from "@app/core/store";
 import * as fromActions from "../actions";
 import { StocksService } from "@app/stocks/services";
+import { StockSearchResult } from "@app/stocks";
 
 @Injectable()
 export class StocksDataEffects {
@@ -41,6 +42,16 @@ export class StocksDataEffects {
 			this.stocksService.getStockChart(action.payload.ticker, action.payload.range).pipe(
 				map(data => new fromActions.QueryStockChartSuccess(data)),
 				catchError(error => of(new fromActions.QueryStockChartFail(error)))
+			)
+		)
+	);
+
+	@Effect()
+	stockSearch$ = this.actions$.ofType(fromActions.STOCK_SEARCH).pipe(
+		switchMap((action: fromActions.StockSearch) =>
+			this.stocksService.runStockSearch(action.payload).pipe(
+				map(results => new fromActions.StockSearchSuccess(results)),
+				catchError(error => of(new fromActions.StockSearchFail(error)))
 			)
 		)
 	);
