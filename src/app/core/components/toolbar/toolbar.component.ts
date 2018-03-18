@@ -13,7 +13,7 @@ import { StockSearchResult } from "@app/stocks";
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
 	@Input() loggedIn: boolean = false;
-	@Output() tickerSearch: EventEmitter<{ success: boolean, ticker: string | null, search: string }> = new EventEmitter();
+	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() partialTickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 	@Output() toggleSidebarMobile: EventEmitter<any> = new EventEmitter();
@@ -51,11 +51,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	onSubmit(el) {
 		if (this.ticker && this.ticker.trim() !== "") {
 			let success = this.searchResults.length > this.searchResultSelectedIndex;
-			this.tickerSearch.emit({
-				success,
-				ticker: success ? this.searchResults[this.searchResultSelectedIndex].symbol : null,
-				search: this.ticker.trim().toUpperCase()
-			});
+			this.tickerSearch.emit(success
+				? this.searchResults[this.searchResultSelectedIndex].symbol
+				: this.ticker.trim().toUpperCase()
+			);
 		}
 		this.closeSearch(el);
 	}
