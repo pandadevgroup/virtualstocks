@@ -38,7 +38,8 @@
 		<div class="ticker-search-result__container">
 			<div *ngFor="let result of searchResults, index as i"
 					class="ticker-search__result text-truncate py-2 px-3"
-					[class.ticker-search__result--highlight]="i == 0">
+					[class.ticker-search__result--highlight]="i == searchResultSelectedIndex"
+					(mouseenter)="setSelectedSearchResult(i)">
 				{{ result.symbol }} - {{ result.name }}
 			</div>
 		</div>

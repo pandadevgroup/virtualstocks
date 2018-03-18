@@ -13,12 +13,21 @@ import { StockSearchResult } from "@app/stocks";
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
 	@Input() loggedIn: boolean = false;
-	@Input() searchResults: StockSearchResult[] = [];
-	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
+	@Output() tickerSearch: EventEmitter<{ success: boolean, ticker: string | null, search: string }> = new EventEmitter();
 	@Output() partialTickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 	@Output() toggleSidebarMobile: EventEmitter<any> = new EventEmitter();
 	searchActive = false;
+	searchResultSelectedIndex = 0;
+
+	private _searchResults: StockSearchResult[] = [];
+	get searchResults() {
+		return this._searchResults;
+	}
+	@Input() set searchResults(searchResults: StockSearchResult[]) {
+		this._searchResults = searchResults;
+		this.searchResultSelectedIndex = 0;
+	}
 
 	searchForm = new FormGroup({
 		ticker: new FormControl()
@@ -41,7 +50,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 	onSubmit(el) {
 		if (this.ticker && this.ticker.trim() !== "") {
-			this.tickerSearch.emit(this.ticker.trim().toUpperCase());
+			let success = this.searchResults.length > this.searchResultSelectedIndex;
+			this.tickerSearch.emit({
+				success,
+				ticker: success ? this.searchResults[this.searchResultSelectedIndex].symbol : null,
+				search: this.ticker.trim().toUpperCase()
+			});
 			this.searchForm.get("ticker").setValue("");
 			this.closeSearch(el);
 		}
@@ -68,6 +82,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 	onMobileMenuClick() {
 		this.toggleSidebarMobile.emit();
+	}
+
+	setSelectedSearchResult(index: number) {
+		this.searchResultSelectedIndex = index;
 	}
 
 	ngOnDestroy() {

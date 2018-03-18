@@ -41,7 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	onStockSearch(ticker) {
+	onStockSearch({ success, ticker, search }: { success: boolean, ticker: string | null, search: string }) {
+		if (!success) return;
 		this.store.dispatch(new fromRoot.Go({
 			path: ["stock", ticker]
 		}));
