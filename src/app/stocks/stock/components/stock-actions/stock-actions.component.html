@@ -1,12 +1,18 @@
 <div>
 	{{ stock?.latestPrice | currency }} per share
 </div>
-<vs-stock-order-form [stock]="stock"
-	type="buy"
-	(transaction)="onTransaction($event, 'buy')">
-</vs-stock-order-form>
-<hr>
-<vs-stock-order-form [stock]="stock"
-	type="sell"
-	(transaction)="onTransaction($event, 'sell')">
-</vs-stock-order-form>
+
+<accordion [closeOthers]="true">
+	<accordion-group heading="Buy" [isOpen]="true">
+		<vs-stock-order-form [stock]="stock"
+			type="buy"
+			(transaction)="onTransaction($event, 'buy')">
+		</vs-stock-order-form>
+	</accordion-group>
+	<accordion-group heading="Sell">
+		<vs-stock-order-form [stock]="stock"
+			type="sell"
+			(transaction)="onTransaction($event, 'sell')">
+		</vs-stock-order-form>
+	</accordion-group>
+</accordion>
