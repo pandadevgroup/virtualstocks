@@ -1,8 +1,11 @@
-<div class="container-fluid container-fluid--padding">
+<div class="container-fluid container-fluid--padding pt-2" *ngIf="stock$ | async as stock; else loading">
+	<div class="w-100">
+		<vs-stock-title [stock]="stock"></vs-stock-title>
+	</div>
 	<div class="row">
 		<div class="col-lg-9 col-md-8">
 			<vs-stock-detail
-				[stock]="stock$ | async"
+				[stock]="stock"
 				[chart]="chart$ | async"
 				[user]="user$ | async">
 			</vs-stock-detail>
@@ -10,10 +13,12 @@
 
 		<div class="col-lg-3 col-md-4">
 			<vs-stock-actions
-				[stock]="stock$ | async"
+				[stock]="stock"
 				[user]="user$ | async"
 				(transaction)="onTransaction($event)">
 			</vs-stock-actions>
 		</div>
 	</div>
 </div>
+
+<div class="loading-spinner" #loading></div>
