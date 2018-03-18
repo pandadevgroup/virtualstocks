@@ -5,6 +5,7 @@
 </ng-progress>
 
 <vs-toolbar [loggedIn]="loggedIn"
+		(partialTickerSearch)="onPartialStockSearch($event)"
 		(tickerSearch)="onStockSearch($event)"
 		class="toolbar"
 		(toggleSidebar)="toggleSidebar()"

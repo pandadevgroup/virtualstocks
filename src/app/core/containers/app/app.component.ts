@@ -45,6 +45,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		}));
 	}
 
+	onPartialStockSearch(search) {
+		console.log(search);
+	}
+
 	toggleSidebar() {
 		this.sidebarSmall = !this.sidebarSmall;
 	}

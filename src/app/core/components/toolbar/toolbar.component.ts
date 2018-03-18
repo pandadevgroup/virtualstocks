@@ -31,16 +31,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.searchForm.get("ticker").valueChanges.pipe(
 			debounceTime(200)
-		).takeUntil(this.ngUnsubscribe).subscribe((search) => {
+		).takeUntil(this.ngUnsubscribe).subscribe((search: string) => {
 			search = search.trim();
 			if (search === "") return;
-			this.partialTickerSearch.emit(search);
+			this.partialTickerSearch.emit(search.toUpperCase());
 		});
 	}
 
 	onSubmit(el) {
 		if (this.ticker && this.ticker.trim() !== "") {
-			this.tickerSearch.emit(this.ticker.trim());
+			this.tickerSearch.emit(this.ticker.trim().toUpperCase());
 			this.searchForm.get("ticker").setValue("");
 			this.closeSearch(el);
 		}
