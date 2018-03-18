@@ -50,7 +50,7 @@ export class StocksService {
 	}
 
 	runStockSearch(search: string): Observable<StockSearchResult[]> {
-		const queryUrl = `https://api.virtualstocks.pandadevgroup.com/search/${search}`;
+		const queryUrl = `https://virtualstocksapi.pandadevgroup.com/search/${search}`;
 		return this.http.get<StockSearchResult[]>(queryUrl);
 	}
 }
