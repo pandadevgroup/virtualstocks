@@ -28,12 +28,18 @@
 			(ngSubmit)="onSubmit(search)"
 			*ngIf="loggedIn">
 		<input class="ticker-search form-control px-3"
+			[class.ticker-search--noborder]="searchResults && searchResults.length != 0"
 			type="search"
 			placeholder="Search Stocks"
 			aria-label="Search Stocks"
 			formControlName="ticker"
 			(blur)="clearSearch()"
 			#search>
+		<div class="ticker-search-result__container">
+			<div *ngFor="let result of searchResults" class="ticker-search__result text-truncate py-1 px-3">
+				{{ result.symbol }} - {{ result.name }}
+			</div>
+		</div>
 	</form>
 	<div class="mr-auto"></div>
 	<button class="search-button rounded-circle px-0 mt-1"

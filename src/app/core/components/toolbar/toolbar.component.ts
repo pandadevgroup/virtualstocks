@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 
 import { debounceTime, tap } from "rxjs/operators";
 import { Subject } from "rxjs/Subject";
+import { StockSearchResult } from "@app/stocks";
 
 @Component({
 	selector: "vs-toolbar",
@@ -12,6 +13,7 @@ import { Subject } from "rxjs/Subject";
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
 	@Input() loggedIn: boolean = false;
+	@Input() searchResults: StockSearchResult[] = [];
 	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() partialTickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
@@ -33,7 +35,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 			debounceTime(200)
 		).takeUntil(this.ngUnsubscribe).subscribe((search: string) => {
 			search = search.trim();
-			if (search === "") return;
 			this.partialTickerSearch.emit(search.toUpperCase());
 		});
 	}
@@ -58,7 +59,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	}
 
 	clearSearch() {
-		this.partialTickerSearch.emit("");
 		this.searchForm.get("ticker").setValue("");
 	}
 

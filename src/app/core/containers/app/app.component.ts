@@ -17,6 +17,7 @@ import "rxjs/add/operator/takeUntil";
 export class AppComponent implements OnInit, OnDestroy {
 
 	loggedIn: boolean = false;
+	searchResults = this.store.select(fromStocks.getStockSearchResults);
 	sidebarSmall = false;
 	sidebarMobile = false;
 	private ngUnsubscribe = new Subject();

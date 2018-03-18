@@ -81,7 +81,7 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 				error: action.payload
 			}
 		}
-		case fromStocks.CLEAR_STOCK_DETAIL: {
+		case fromStocks.CLEAR_STOCK_SEARCH: {
 			return {
 				...state,
 				error: null,
