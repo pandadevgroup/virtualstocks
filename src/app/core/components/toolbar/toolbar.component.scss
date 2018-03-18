@@ -23,23 +23,24 @@
 .ticker-search__container {
 	flex: 1;
 	position: relative;
+}
 
-	.ticker-search-result__container {
-		display: flex;
-		flex-direction: column;
-		position: absolute;
-		right: 0;
-		top: 100%;
+.ticker-search-result__container {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	width: 100%;
+	max-width: 20rem;
+
+	.ticker-search__result {
 		width: 100%;
-		max-width: 20rem;
+		cursor: pointer;
+		background-color: white;
 
-		.ticker-search__result {
-			width: 100%;
-			background-color: white;
-
-			&--highlight {
-				background-color: rgb(230,242,255);
-			}
+		&--highlight {
+			background-color: rgb(230,242,255);
 		}
 	}
 }
@@ -119,6 +120,13 @@
 
 .ticker-search-mobile__container {
 	flex: 1;
+
+	.ticker-search-result__container {
+		left: 0;
+		right: 0;
+		top: 3.5rem;
+		max-width: 100%;
+	}
 }
 .ticker-search-mobile {
 	background-color: transparent !important;
@@ -126,6 +134,16 @@
 	&:focus {
 		outline: none;
 		box-shadow: none;
+	}
+
+	&::placeholder {
+		text-transform: none;
+	}
+
+	&--withresults {
+		border-bottom: 1px solid #e6e6e6;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
 	}
 
 	text-transform: uppercase;

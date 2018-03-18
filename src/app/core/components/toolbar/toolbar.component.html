@@ -12,6 +12,15 @@
 			formControlName="ticker"
 			(blur)="onSubmit(mobileSearch)"
 			#mobileSearch>
+		<div class="ticker-search-result__container">
+			<div *ngFor="let result of searchResults, index as i"
+					class="ticker-search__result text-truncate py-2 px-3"
+					[class.ticker-search__result--highlight]="i == searchResultSelectedIndex"
+					(mouseenter)="setSelectedSearchResult(i)"
+					(mousedown)="onSearchResultClick(i, mobileSearch)">
+				{{ result.symbol }} - {{ result.name }}
+			</div>
+		</div>
 	</form>
 </nav>
 
@@ -39,7 +48,8 @@
 			<div *ngFor="let result of searchResults, index as i"
 					class="ticker-search__result text-truncate py-2 px-3"
 					[class.ticker-search__result--highlight]="i == searchResultSelectedIndex"
-					(mouseenter)="setSelectedSearchResult(i)">
+					(mouseenter)="setSelectedSearchResult(i)"
+					(mousedown)="onSearchResultClick(i, search)">
 				{{ result.symbol }} - {{ result.name }}
 			</div>
 		</div>

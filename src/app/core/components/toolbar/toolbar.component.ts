@@ -74,6 +74,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 	clearSearch() {
 		this.searchForm.get("ticker").setValue("");
+		this.searchResults = [];
 	}
 
 	onMenuClick() {
@@ -86,6 +87,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 	setSelectedSearchResult(index: number) {
 		this.searchResultSelectedIndex = index;
+	}
+
+	onSearchResultClick(index: number, searchEl: any) {
+		this.setSelectedSearchResult(index);
+		this.onSubmit(searchEl);
 	}
 
 	ngOnDestroy() {
