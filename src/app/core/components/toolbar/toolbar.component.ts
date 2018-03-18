@@ -13,6 +13,7 @@ import { Subject } from "rxjs/Subject";
 export class ToolbarComponent implements OnInit, OnDestroy {
 	@Input() loggedIn: boolean = false;
 	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
+	@Output() partialTickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
 	@Output() toggleSidebarMobile: EventEmitter<any> = new EventEmitter();
 	searchActive = false;
@@ -33,6 +34,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 		).takeUntil(this.ngUnsubscribe).subscribe((search) => {
 			search = search.trim();
 			if (search === "") return;
+			this.partialTickerSearch.emit(search);
 		});
 	}
 
