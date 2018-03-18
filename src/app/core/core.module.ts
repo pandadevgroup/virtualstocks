@@ -16,8 +16,6 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressRouterModule } from "@ngx-progressbar/router";
 
-import { CollapseModule } from "ngx-bootstrap/collapse";
-
 import { environment } from "@env/environment";
 
 import * as fromStore from "./store";
@@ -56,8 +54,6 @@ import { CoreRoutingModule } from "./core-routing.module";
 
 		NgProgressModule.forRoot(),
 		NgProgressRouterModule,
-
-		CollapseModule.forRoot(),
 
 		CoreRoutingModule
 	],

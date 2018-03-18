@@ -1,13 +1,16 @@
-import { Component, Input, Output, ChangeDetectionStrategy, ViewChild, ElementRef, EventEmitter } from "@angular/core";
+import { Component, Input, Output, ChangeDetectionStrategy, ViewChild, ElementRef, EventEmitter, OnInit, OnDestroy } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+
+import { debounceTime, tap } from "rxjs/operators";
+import { Subject } from "rxjs/Subject";
+
 @Component({
 	selector: "vs-toolbar",
 	templateUrl: "toolbar.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ["toolbar.component.scss"]
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit, OnDestroy {
 	@Input() loggedIn: boolean = false;
 	@Output() tickerSearch: EventEmitter<string> = new EventEmitter();
 	@Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
@@ -18,8 +21,19 @@ export class ToolbarComponent {
 		ticker: new FormControl()
 	});
 
+	private ngUnsubscribe: Subject<any> = new Subject();
+
 	get ticker() {
 		return this.searchForm.get("ticker").value;
+	}
+
+	ngOnInit() {
+		this.searchForm.get("ticker").valueChanges.pipe(
+			debounceTime(200)
+		).takeUntil(this.ngUnsubscribe).subscribe((search) => {
+			search = search.trim();
+			if (search === "") return;
+		});
 	}
 
 	onSubmit(el) {
@@ -50,5 +64,10 @@ export class ToolbarComponent {
 
 	onMobileMenuClick() {
 		this.toggleSidebarMobile.emit();
+	}
+
+	ngOnDestroy() {
+		this.ngUnsubscribe.next();
+		this.ngUnsubscribe.complete();
 	}
 }
