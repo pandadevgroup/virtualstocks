@@ -1,5 +1,10 @@
-<div>
-	{{ stock?.latestPrice | currency }} per share
+<div class="title__container">
+	<div class="title">
+		{{ stock?.latestPrice | currency }}
+	</div>
+	<div class="subtitle">
+		per share
+	</div>
 </div>
 
 <accordion [closeOthers]="true">
