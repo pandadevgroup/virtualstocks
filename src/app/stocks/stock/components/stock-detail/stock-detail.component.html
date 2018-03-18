@@ -1,56 +1,7 @@
-<div class="container-fluid container-fluid--padding">
-	<div class="row">
-
-		<div class="col-lg-9 col-md-8">
-			<vs-stock-chart [chart]="chart"></vs-stock-chart>
-			<hr>
-			<div class="card">
-				<div class="card-body">
-					<pre>{{ stock | json }}</pre>
-				</div>
-			</div>
-		</div>
-		<!-- TODO: make the smaller column appear on top instead of bottom when the sm/xs breakpoint is exceeded-->
-		<!-- TODO: make the buy/sell inside a modal -->
-		<div class="col-lg-3 col-md-4">
-			<div>
-				<h3>{{ stock?.ticker }}</h3>
-				<p class="text-muted">{{ stock?.companyName }} </p>
-				<h4 class="text-success">$ {{ stock?.latestPrice }}</h4>
-				<!-- <vs-stock-actions (userAction)="onTransaction($event)"></vs-stock-actions> -->
-			</div>
-			<hr>
-			<form [formGroup]="transactionForm" (ngSubmit)="onTransaction('buy')">
-				<h4>
-					<small class="text-muted">Buy</small>
-					{{ stock?.ticker }}
-				</h4>
-				<div class="input-group mb-3">
-					<input type="number" class="form-control" placeholder="QTY" formControlName="quantity" min="0" aria-label="Quantity" aria-describedby="share-addon">
-					<div class="input-group-append">
-						<span class="input-group-text" id="share-addon"> {{ quantity | i18nPlural: shareQuantityMsgMapping}} </span>
-					</div>
-				</div>
-				<button class="btn btn-primary btn-block" type="submit">
-					Buy {{ quantity }} {{ quantity | i18nPlural: shareQuantityMsgMapping }} for {{ quantity * stock?.latestPrice | currency }}
-				</button>
-			</form>
-			<hr>
-			<form [formGroup]="transactionForm" (ngSubmit)="onTransaction('sell')">
-				<h3>SELL {{ stock?.ticker }}</h3>
-
-				<div class="input-group mb-3">
-					<input type="number" class="form-control" placeholder="QTY" formControlName="quantity" min="0" aria-label="Quantity" aria-describedby="share-addon">
-					<div class="input-group-append">
-						<span class="input-group-text" id="share-addon">{{ quantity | i18nPlural: shareQuantityMsgMapping}}</span>
-					</div>
-
-				</div>
-				<button class="btn btn-primary btn-block" type="submit">
-					Sell {{ quantity }} {{ quantity | i18nPlural: shareQuantityMsgMapping }} for {{ quantity * stock?.latestPrice | currency
-					}}
-				</button>
-			</form>
-		</div>
+<vs-stock-chart [chart]="chart"></vs-stock-chart>
+<hr>
+<div class="card">
+	<div class="card-body">
+		<pre>{{ stock | json }}</pre>
 	</div>
 </div>
