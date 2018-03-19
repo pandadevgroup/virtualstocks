@@ -11,7 +11,7 @@
 					{{ error.message || error }}
 				</div>
 
-				<vs-auth-form type="login" (action)="onLogin($event)"></vs-auth-form>
+				<vs-auth-form type="login" [rememberMe]="rememberMe" [email]="email" (action)="onLogin($event)"></vs-auth-form>
 			</div>
 
 			<div class="auth__footer">

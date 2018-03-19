@@ -16,6 +16,12 @@ export class AuthFormComponent {
 		this._type = type;
 		this.updateValidators(type);
 	}
+	@Input() set rememberMe(rememberMe: boolean) {
+		this.form.get("rememberMe").setValue(rememberMe);
+	}
+	@Input() set email(email: string) {
+		this.form.get("email").setValue(email);
+	}
 	@Output() action: EventEmitter<any> = new EventEmitter();
 
 	form = this.fb.group({
