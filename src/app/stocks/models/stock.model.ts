@@ -101,7 +101,7 @@ export interface StockChartEntry {
 
 export interface StockChart extends Array<StockChartEntry> {}
 
-export type StockChartRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
+export type StockQueryRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
 
 export interface StockInfo {
 	quote: StockQuote,
@@ -110,5 +110,5 @@ export interface StockInfo {
 
 export interface QueryStockInfoOptions {
 	ticker: string;
-	chartRange?: StockChartRange;
+	range?: StockQueryRange;
 }

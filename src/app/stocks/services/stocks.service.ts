@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { BatchStockData, StockInfo, StockQuote, StockChart, StockChartRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions } from "@app/stocks/models";
+import { BatchStockData, StockInfo, StockQuote, StockChart, StockQueryRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -19,8 +19,9 @@ export class StocksService {
 			.get<BatchStockData>(queryUrl);
 	}
 
-	getStockInfo({ ticker, chartRange = "1m" }: QueryStockInfoOptions): Observable<StockInfo> {
-		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/batch?types=quote,chart&range=${chartRange}`;
+	getStockInfo({ ticker, range = "1m" }: QueryStockInfoOptions): Observable<StockInfo> {
+		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/batch?types=`
+				+ `quote,chart,company,dividends,earnings,financials,news,splits&range=${range}`;
 		return this.http
 			.get<any>(queryUrl)
 			.pipe(
