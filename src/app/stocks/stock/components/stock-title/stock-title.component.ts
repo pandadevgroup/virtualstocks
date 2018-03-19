@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { StockDetail } from "@app/stocks/models";
+import { StockQuote } from "@app/stocks/models";
 
 @Component({
 	selector: "vs-stock-title",
@@ -8,5 +8,5 @@ import { StockDetail } from "@app/stocks/models";
 	styleUrls: ["stock-title.component.scss"]
 })
 export class StockTitleComponent {
-	@Input() stock: StockDetail;
+	@Input() stockQuote: StockQuote;
 }

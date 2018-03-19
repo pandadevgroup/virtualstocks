@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { BatchStockData, StockDetail, StockChart, StockChartRange, IEXMonthChartEntry, StockSearchResult } from "@app/stocks/models";
+import { BatchStockData, StockInfo, StockQuote, StockChart, StockChartRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -19,34 +19,32 @@ export class StocksService {
 			.get<BatchStockData>(queryUrl);
 	}
 
-	getStockDetail(ticker: string): Observable<StockDetail> {
-		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
+	getStockInfo({ ticker, chartRange = "1m" }: QueryStockInfoOptions): Observable<StockInfo> {
+		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/batch?types=quote,chart&range=${chartRange}`;
 		return this.http
 			.get<any>(queryUrl)
 			.pipe(
 				map(response => {
-					const { symbol: ticker, ...data } = response;
 					return {
-						ticker, ...data
+						quote: this.parseQuote(response.quote),
+						chart: this.parseChart(response.chart)
 					};
 				})
 			);
 	}
 
-	getStockChart(ticker: string, range: StockChartRange = "1m"): Observable<StockChart> {
-		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}`;
+	private parseQuote(iexResponse: any) {
+		const { symbol: ticker, ...data } = iexResponse;
+		return {
+			ticker, ...data
+		};
+	}
 
-		if (range != "1m") throw "Error: Write code for range != 1m";
-
-		return this.http
-			.get<IEXMonthChartEntry[]>(queryUrl).pipe(
-				map(entries => entries.map(entry => {
-					return {
-						label: entry.label,
-						value: entry.close
-					}
-				}))
-			);
+	private parseChart(iexResponse: IEXMonthChartEntry[]) {
+		return iexResponse.map(entry => ({
+			label: entry.label,
+			value: entry.close
+		}));
 	}
 
 	runStockSearch(search: string): Observable<StockSearchResult[]> {

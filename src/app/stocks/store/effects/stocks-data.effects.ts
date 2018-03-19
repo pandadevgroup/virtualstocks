@@ -27,21 +27,11 @@ export class StocksDataEffects {
 	);
 
 	@Effect()
-	queryStockDetail$ = this.actions$.ofType(fromActions.QUERY_STOCK_DETAIL).pipe(
-		switchMap((action: fromActions.QueryStockDetail) =>
-			this.stocksService.getStockDetail(action.payload).pipe(
-				map(data => new fromActions.QueryStockDetailSuccess(data)),
-				catchError(error => of(new fromActions.QueryStockDetailFail(error)))
-			)
-		)
-	);
-
-	@Effect()
-	queryStockChart$ = this.actions$.ofType(fromActions.QUERY_STOCK_CHART).pipe(
-		switchMap((action: fromActions.QueryStockChart) =>
-			this.stocksService.getStockChart(action.payload.ticker, action.payload.range).pipe(
-				map(data => new fromActions.QueryStockChartSuccess(data)),
-				catchError(error => of(new fromActions.QueryStockChartFail(error)))
+	queryStockInfo$ = this.actions$.ofType(fromActions.QUERY_STOCK_INFO).pipe(
+		switchMap((action: fromActions.QueryStockInfo) =>
+			this.stocksService.getStockInfo(action.payload).pipe(
+				map(data => new fromActions.QueryStockInfoSuccess(data)),
+				catchError(error => of(new fromActions.QueryStockInfoFail(error)))
 			)
 		)
 	);

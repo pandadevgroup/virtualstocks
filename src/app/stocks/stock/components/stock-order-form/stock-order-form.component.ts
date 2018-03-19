@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 
-import { StockDetail, StockTransactionType } from "@app/stocks/models";
+import { StockQuote, StockTransactionType } from "@app/stocks/models";
 
 @Component({
 	selector: "vs-stock-order-form",
@@ -9,7 +9,7 @@ import { StockDetail, StockTransactionType } from "@app/stocks/models";
 	styleUrls: ["stock-order-form.component.scss"]
 })
 export class StockOrderFormComponent {
-	@Input() stock: StockDetail;
+	@Input() stockQuote: StockQuote;
 	@Input() type: "buy" | "sell";
 	@Output() transaction: EventEmitter<{ stock, quantity }> = new EventEmitter();
 
@@ -29,7 +29,7 @@ export class StockOrderFormComponent {
 	constructor(private fb: FormBuilder) {}
 
 	onTransaction() {
-		const stock = this.stock;
+		const stock = this.stockQuote;
 		const quantity = this.quantity;
 		this.transaction.emit({ stock, quantity });
 	}

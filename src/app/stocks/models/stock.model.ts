@@ -7,7 +7,7 @@ export interface Stock {
 	companyName: string;
 }
 
-export interface StockDetail extends Stock {
+export interface StockQuote extends Stock {
 	primaryExchange: string;
 	sector: string;
 	calculationPrice: string;
@@ -102,3 +102,13 @@ export interface StockChartEntry {
 export interface StockChart extends Array<StockChartEntry> {}
 
 export type StockChartRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
+
+export interface StockInfo {
+	quote: StockQuote,
+	chart: StockChart
+}
+
+export interface QueryStockInfoOptions {
+	ticker: string;
+	chartRange?: StockChartRange;
+}

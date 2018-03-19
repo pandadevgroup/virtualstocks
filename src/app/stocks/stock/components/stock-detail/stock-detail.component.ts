@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
-import { StockDetail, StockTransactionType, StockChart } from "@app/stocks/models";
+import { StockQuote, StockTransactionType, StockChart } from "@app/stocks/models";
 import { User } from "@app/auth";
 
 @Component({
@@ -10,7 +10,7 @@ import { User } from "@app/auth";
 	styleUrls: ["stock-detail.component.scss"]
 })
 export class StockDetailComponent {
-	@Input() stock: StockDetail;
+	@Input() stockQuote: StockQuote;
 	@Input() chart: StockChart;
 	@Input() user: User;
 }

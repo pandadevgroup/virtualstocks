@@ -1,6 +1,6 @@
 <div class="title__container">
 	<div class="title">
-		{{ stock?.latestPrice | currency }}
+		{{ stockQuote.latestPrice | currency }}
 	</div>
 	<div class="subtitle">
 		per share
@@ -9,13 +9,13 @@
 
 <accordion [closeOthers]="true">
 	<accordion-group heading="Buy" [isOpen]="true">
-		<vs-stock-order-form [stock]="stock"
+		<vs-stock-order-form [stockQuote]="stockQuote"
 			type="buy"
 			(transaction)="onTransaction($event, 'buy')">
 		</vs-stock-order-form>
 	</accordion-group>
 	<accordion-group heading="Sell">
-		<vs-stock-order-form [stock]="stock"
+		<vs-stock-order-form [stockQuote]="stockQuote"
 			type="sell"
 			(transaction)="onTransaction($event, 'sell')">
 		</vs-stock-order-form>

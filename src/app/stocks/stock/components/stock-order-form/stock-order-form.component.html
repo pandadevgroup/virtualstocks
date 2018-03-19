@@ -6,6 +6,6 @@
 		</div>
 	</div>
 	<button class="btn btn-primary btn-block" type="submit">
-		{{ msg[type] }} {{ quantity }} {{ quantity | i18nPlural: shareQuantityMsgMapping }} for {{ quantity * stock?.latestPrice | currency }}
+		{{ msg[type] }} {{ quantity }} {{ quantity | i18nPlural: shareQuantityMsgMapping }} for {{ quantity * stockQuote.latestPrice | currency }}
 	</button>
 </form>

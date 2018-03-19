@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { StockTransactionType, StockDetail } from "@app/stocks/models";
+import { StockTransactionType, StockQuote } from "@app/stocks/models";
 import { FormBuilder } from "@angular/forms";
 import { User } from "@app/auth/models";
 
@@ -9,7 +9,7 @@ import { User } from "@app/auth/models";
 	styleUrls: ["stock-actions.component.scss"]
 })
 export class StockActionsComponent {
-	@Input() stock: StockDetail;
+	@Input() stockQuote: StockQuote;
 	@Input() user: User;
 	@Output() transaction: EventEmitter<{ stock, uid, type, quantity }> = new EventEmitter();
 

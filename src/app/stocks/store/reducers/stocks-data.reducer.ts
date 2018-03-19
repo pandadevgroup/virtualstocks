@@ -1,18 +1,16 @@
 import * as fromStocks from "../actions/stocks-data.actions";
-import { BatchStockData, StockDetail, StockChart, StockSearchResult } from "@app/stocks/models";
+import { BatchStockData, StockInfo, StockChart, StockSearchResult } from "@app/stocks/models";
 
 export interface StocksDataState {
 	batchStocksData: BatchStockData,
-	stockDetail: StockDetail,
-	stockChart: StockChart,
+	stockInfo: StockInfo,
 	stockSearchResults: StockSearchResult[],
 	error: any
 }
 
 export const initialState: StocksDataState = {
 	batchStocksData: {},
-	stockDetail: null,
-	stockChart: null,
+	stockInfo: null,
 	stockSearchResults: [],
 	error: null
 };
@@ -32,40 +30,25 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 				error: action.payload
 			};
 		}
-		case fromStocks.QUERY_STOCK_DETAIL_SUCCESS: {
+		case fromStocks.QUERY_STOCK_INFO_SUCCESS: {
 			return {
 				...state,
-				stockDetail: action.payload,
+				stockInfo: action.payload,
 				error: null
 			};
 		}
-		case fromStocks.QUERY_STOCK_DETAIL_FAIL: {
+		case fromStocks.QUERY_STOCK_INFO_FAIL: {
 			return {
 				...state,
-				stockDetail: null,
+				stockInfo: null,
 				error: action.payload
 			};
 		}
-		case fromStocks.QUERY_STOCK_CHART_SUCCESS: {
-			return {
-				...state,
-				stockChart: action.payload,
-				error: null
-			};
-		}
-		case fromStocks.QUERY_STOCK_CHART_FAIL: {
-			return {
-				...state,
-				stockChart: null,
-				error: action.payload
-			};
-		}
-		case fromStocks.CLEAR_STOCK_DETAIL: {
+		case fromStocks.CLEAR_STOCK_INFO: {
 			return {
 				...state,
 				error: null,
-				stockDetail: null,
-				stockChart: null
+				stockInfo: null
 			};
 		}
 		case fromStocks.STOCK_SEARCH_SUCCESS: {
@@ -93,7 +76,6 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 }
 
 export const getBatchStocksData = (state: StocksDataState) => state.batchStocksData;
-export const getStocksDetail = (state: StocksDataState) => state.stockDetail;
-export const getStocksChart = (state: StocksDataState) => state.stockChart;
+export const getStockInfo = (state: StocksDataState) => state.stockInfo;
 export const getStocksError = (state: StocksDataState) => state.error;
 export const getStockSearchResults = (state: StocksDataState) => state.stockSearchResults;

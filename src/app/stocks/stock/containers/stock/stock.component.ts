@@ -5,7 +5,7 @@ import { switchMap, tap, filter, map } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
 
-import { StockDetail, StockTransactionType, StockChart } from "@app/stocks/models";
+import { StockInfo, StockTransactionType } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
@@ -16,8 +16,7 @@ import { User } from "@app/auth";
 	styleUrls: ["stock.component.scss"]
 })
 export class StockComponent implements OnInit, OnDestroy {
-	stock$: Observable<StockDetail>;
-	chart$: Observable<StockChart>;
+	stockInfo$: Observable<StockInfo>;
 	user$: Observable<User>;
 
 	constructor(
@@ -25,17 +24,11 @@ export class StockComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit() {
-		this.stock$ = this.store.select(fromRoot.getRouterState).pipe(
+		this.stockInfo$ = this.store.select(fromRoot.getRouterState).pipe(
 			map(state => state.state.params.ticker),
 			filter(ticker => !!ticker),
-			tap((ticker) => this.store.dispatch(new fromStocks.QueryStockDetail(ticker))),
-			switchMap(() => this.store.select(fromStocks.getStockDetail))
-		);
-		this.chart$ = this.store.select(fromRoot.getRouterState).pipe(
-			map(state => state.state.params.ticker),
-			filter(ticker => !!ticker),
-			tap((ticker) => this.store.dispatch(new fromStocks.QueryStockChart({ ticker, range: "1m" }))),
-			switchMap(() => this.store.select(fromStocks.getStockChart))
+			tap((ticker) => this.store.dispatch(new fromStocks.QueryStockInfo({ ticker }))),
+			switchMap(() => this.store.select(fromStocks.getStockInfo))
 		);
 
 		this.user$ = this.store.select(fromAuth.getUserData);
@@ -51,6 +44,6 @@ export class StockComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		this.store.dispatch(new fromStocks.ClearStockDetail());
+		this.store.dispatch(new fromStocks.ClearStockInfo());
 	}
 }

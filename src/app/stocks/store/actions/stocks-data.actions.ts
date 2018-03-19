@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BatchStockData, StockDetail, StockChartRange, StockChart, StockSearchResult } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockChartRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions } from "@app/stocks/models";
 
 // Stock Search
 export const STOCK_SEARCH = "[Stocks] Stock Search";
@@ -47,48 +47,29 @@ export class QueryBatchStockPricesFail {
 	constructor(public payload: any) {}
 }
 
-// Stock detail
-export const QUERY_STOCK_DETAIL = "[Stocks] Query Stock Detail";
-export const QUERY_STOCK_DETAIL_SUCCESS = "[Stocks] Query Stock Detail Success";
-export const QUERY_STOCK_DETAIL_FAIL = "[Stocks] Query Stock Detail Fail";
-export const CLEAR_STOCK_DETAIL = "[Stocks] Clear Stock Detail";
+// Stock info
+export const QUERY_STOCK_INFO = "[Stocks] Query Stock Info";
+export const QUERY_STOCK_INFO_SUCCESS = "[Stocks] Query Stock Info Success";
+export const QUERY_STOCK_INFO_FAIL = "[Stocks] Query Stock Info Fail";
+export const CLEAR_STOCK_INFO = "[Stocks] Clear Stock Info";
 
-export class QueryStockDetail {
-	readonly type = QUERY_STOCK_DETAIL;
-	constructor(public payload: string) {}
+export class QueryStockInfo {
+	readonly type = QUERY_STOCK_INFO;
+	constructor(public payload: QueryStockInfoOptions) {}
 }
 
-export class QueryStockDetailSuccess {
-	readonly type = QUERY_STOCK_DETAIL_SUCCESS;
-	constructor(public payload: StockDetail) {}
+export class QueryStockInfoSuccess {
+	readonly type = QUERY_STOCK_INFO_SUCCESS;
+	constructor(public payload: StockInfo) {}
 }
 
-export class QueryStockDetailFail {
-	readonly type = QUERY_STOCK_DETAIL_FAIL;
+export class QueryStockInfoFail {
+	readonly type = QUERY_STOCK_INFO_FAIL;
 	constructor(public payload: any) {}
 }
 
-// Stock Chart
-export const QUERY_STOCK_CHART = "[Stocks] Query Stock Chart";
-export const QUERY_STOCK_CHART_SUCCESS = "[Stocks] Query Stock Chart Success";
-export const QUERY_STOCK_CHART_FAIL = "[Stocks] Query Stock Chart Fail";
-
-export class QueryStockChart {
-	readonly type = QUERY_STOCK_CHART;
-	constructor(public payload: { ticker, range: StockChartRange }) {}
-}
-export class QueryStockChartSuccess {
-	readonly type = QUERY_STOCK_CHART_SUCCESS;
-	constructor(public payload: StockChart) {}
-}
-export class QueryStockChartFail {
-	readonly type = QUERY_STOCK_CHART_FAIL;
-	constructor(public payload: any) {}
-}
-
-// Clear Stock
-export class ClearStockDetail {
-	readonly type = CLEAR_STOCK_DETAIL;
+export class ClearStockInfo {
+	readonly type = CLEAR_STOCK_INFO;
 }
 
 export type StocksDataAction =
@@ -99,10 +80,7 @@ export type StocksDataAction =
 	| QueryBatchStockPrices
 	| QueryBatchStockPricesFail
 	| QueryBatchStockPricesSuccess
-	| QueryStockDetail
-	| QueryStockDetailFail
-	| QueryStockDetailSuccess
-	| QueryStockChart
-	| QueryStockChartSuccess
-	| QueryStockChartFail
-	| ClearStockDetail;
+	| QueryStockInfo
+	| QueryStockInfoSuccess
+	| QueryStockInfoFail
+	| ClearStockInfo;
