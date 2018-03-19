@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BatchStockData, StockQuote, StockChartRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockQueryRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions } from "@app/stocks/models";
 
 // Stock Search
 export const STOCK_SEARCH = "[Stocks] Stock Search";
@@ -72,6 +72,26 @@ export class ClearStockInfo {
 	readonly type = CLEAR_STOCK_INFO;
 }
 
+// Stock Chart
+export const QUERY_STOCK_CHART = "[Stocks] Query Stock Chart";
+export const QUERY_STOCK_CHART_SUCCESS = "[Stocks] Query Stock Chart Success";
+export const QUERY_STOCK_CHART_FAIL = "[Stocks] Query Stock Chart Fail";
+
+export class QueryStockChart {
+	readonly type = QUERY_STOCK_CHART;
+	constructor(public payload: { ticker, range: StockQueryRange }) {}
+}
+
+export class QueryStockChartSuccess {
+	readonly type = QUERY_STOCK_CHART_SUCCESS;
+	constructor(public payload: StockChart) {}
+}
+
+export class QueryStockChartFail {
+	readonly type = QUERY_STOCK_CHART_FAIL;
+	constructor(public payload: any) {}
+}
+
 export type StocksDataAction =
 	| StockSearch
 	| StockSearchSuccess
@@ -83,4 +103,7 @@ export type StocksDataAction =
 	| QueryStockInfo
 	| QueryStockInfoSuccess
 	| QueryStockInfoFail
-	| ClearStockInfo;
+	| ClearStockInfo
+	| QueryStockChart
+	| QueryStockChartSuccess
+	| QueryStockChartFail;

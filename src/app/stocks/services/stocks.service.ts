@@ -34,6 +34,17 @@ export class StocksService {
 			);
 	}
 
+	getStockChart(ticker: string, range: StockQueryRange = "1m"): Observable<StockChart> {
+		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}`;
+
+		if (range != "1m") throw "Error: Write code for range != 1m";
+
+		return this.http
+			.get<IEXMonthChartEntry[]>(queryUrl).pipe(
+				map(response => this.parseChart(response))
+			);
+	}
+
 	private parseQuote(iexResponse: any) {
 		const { symbol: ticker, ...data } = iexResponse;
 		return {
