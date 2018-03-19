@@ -27,8 +27,14 @@ export class StocksService {
 			.pipe(
 				map(response => {
 					return {
-						quote: this.parseQuote(response.quote),
-						chart: this.parseChart(response.chart)
+						quote: this.parseSymbol(response.quote),
+						chart: this.parseChart(response.chart),
+						company: this.parseSymbol(response.company),
+						dividends: response.dividends,
+						earnings: response.earnings,
+						financials: response.financials,
+						news: response.news,
+						splits: response.splits
 					};
 				})
 			);
@@ -45,7 +51,7 @@ export class StocksService {
 			);
 	}
 
-	private parseQuote(iexResponse: any) {
+	private parseSymbol(iexResponse: any) {
 		const { symbol: ticker, ...data } = iexResponse;
 		return {
 			ticker, ...data

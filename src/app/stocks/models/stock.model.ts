@@ -103,9 +103,27 @@ export interface StockChart extends Array<StockChartEntry> {}
 
 export type StockQueryRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
 
+export interface StockCompanyInfo {}
+
+export interface StockDividendInfo {}
+
+export interface StockEarningsInfo {}
+
+export interface StockFinancialsInfo {}
+
+export interface StockNews {}
+
+export interface StockSplit {}
+
 export interface StockInfo {
-	quote: StockQuote,
-	chart: StockChart
+	quote: StockQuote;
+	chart: StockChart;
+	company: StockCompanyInfo;
+	dividends: StockDividendInfo[];
+	earnings: StockEarningsInfo[];
+	financials: StockFinancialsInfo[],
+	news: StockNews[],
+	splits: StockSplit[]
 }
 
 export interface QueryStockInfoOptions {
