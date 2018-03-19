@@ -5,7 +5,7 @@ import { switchMap, tap, filter, map } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
 
-import { StockInfo, StockTransactionType, StockChart, StockQuote, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit } from "@app/stocks/models";
+import { StockInfo, StockTransactionType, StockChart, StockQuote, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
@@ -17,15 +17,16 @@ import { Subject } from "rxjs/Subject";
 	styleUrls: ["stock.component.scss"]
 })
 export class StockComponent implements OnInit, OnDestroy {
-	stockQuote$: Observable<StockQuote>;
-	stockChart$: Observable<StockChart>;
-	company$: Observable<StockCompanyInfo>;
-	dividends$: Observable<StockDividendInfo[]>;
-	earnings$: Observable<StockEarningsInfo[]>;
-	financials$: Observable<StockFinancialsInfo[]>;
-	news$: Observable<StockNews[]>;
-	splits$: Observable<StockSplit[]>;
-	user$: Observable<User>;
+	stockQuote$: Observable<StockQuote> = this.store.select(fromStocks.getStockQuote);
+	stockChart$: Observable<StockChart> = this.store.select(fromStocks.getStockChart);
+	company$: Observable<StockCompanyInfo> = this.store.select(fromStocks.getStockCompanyInfo);
+	dividends$: Observable<StockDividendInfo[]> = this.store.select(fromStocks.getStockDividendsInfo);
+	earnings$: Observable<StockEarningsInfo[]> = this.store.select(fromStocks.getStockEarningsInfo);
+	financials$: Observable<StockFinancialsInfo[]> = this.store.select(fromStocks.getStockFinancialsInfo);
+	news$: Observable<StockNews[]> = this.store.select(fromStocks.getStockNews);
+	splits$: Observable<StockSplit[]> = this.store.select(fromStocks.getStockSplits);
+	user$: Observable<User> = this.store.select(fromAuth.getUserData);
+	chartRange: StockQueryRange = "1m";
 	private ngUnsubscribe: Subject<any> = new Subject();
 
 	constructor(
@@ -39,16 +40,6 @@ export class StockComponent implements OnInit, OnDestroy {
 		).takeUntil(this.ngUnsubscribe).subscribe(ticker => {
 			this.store.dispatch(new fromStocks.QueryStockInfo({ ticker }))
 		});
-
-		this.stockQuote$ = this.store.select(fromStocks.getStockQuote);
-		this.stockChart$ = this.store.select(fromStocks.getStockChart);
-		this.company$ = this.store.select(fromStocks.getStockCompanyInfo);
-		this.dividends$ = this.store.select(fromStocks.getStockDividendsInfo);
-		this.earnings$ = this.store.select(fromStocks.getStockEarningsInfo);
-		this.financials$ = this.store.select(fromStocks.getStockFinancialsInfo);
-		this.news$ = this.store.select(fromStocks.getStockNews);
-		this.splits$ = this.store.select(fromStocks.getStockSplits);
-		this.user$ = this.store.select(fromAuth.getUserData);
 	}
 
 	onTransaction({ stock, type, uid, quantity }) {
@@ -58,6 +49,10 @@ export class StockComponent implements OnInit, OnDestroy {
 			quantity,
 			type
 		}));
+	}
+
+	updateChartRange(chartRange: StockQueryRange) {
+		this.chartRange = chartRange;
 	}
 
 	ngOnDestroy() {

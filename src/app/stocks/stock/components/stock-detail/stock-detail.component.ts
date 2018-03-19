@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
-import { StockQuote, StockTransactionType, StockChart, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit } from "@app/stocks/models";
+import { StockQuote, StockTransactionType, StockChart, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange } from "@app/stocks/models";
 import { User } from "@app/auth";
 
 @Component({
@@ -19,4 +19,10 @@ export class StockDetailComponent {
 	@Input() news: StockNews[];
 	@Input() splits: StockSplit[];
 	@Input() user: User;
+	@Input() chartRange: StockQueryRange;
+	@Output() chartRangeChange: EventEmitter<StockQueryRange> = new EventEmitter();
+
+	updateChartRange(range: StockQueryRange) {
+		this.chartRangeChange.emit(range);
+	}
 }
