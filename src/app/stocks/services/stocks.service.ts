@@ -27,14 +27,14 @@ export class StocksService {
 			.pipe(
 				map(response => {
 					return {
-						quote: this.parseSymbol(response.quote),
-						chart: this.parseChart(response.chart),
-						company: this.parseSymbol(response.company),
-						dividends: response.dividends,
-						earnings: response.earnings,
-						financials: response.financials,
-						news: response.news,
-						splits: response.splits
+						stockQuote: this.parseSymbol(response.quote),
+						stockChart: this.parseChart(response.chart),
+						stockCompanyInfo: this.parseSymbol(response.company),
+						stockDividendsInfo: response.dividends,
+						stockEarningsInfo: response.earnings,
+						stockFinancialsInfo: response.financials,
+						stockNews: response.news,
+						stockSplits: response.splits
 					};
 				})
 			);

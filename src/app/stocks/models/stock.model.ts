@@ -116,14 +116,14 @@ export interface StockNews {}
 export interface StockSplit {}
 
 export interface StockInfo {
-	quote: StockQuote;
-	chart: StockChart;
-	company: StockCompanyInfo;
-	dividends: StockDividendInfo[];
-	earnings: StockEarningsInfo[];
-	financials: StockFinancialsInfo[],
-	news: StockNews[],
-	splits: StockSplit[]
+	stockQuote: StockQuote;
+	stockChart: StockChart;
+	stockCompanyInfo: StockCompanyInfo;
+	stockDividendsInfo: StockDividendInfo[];
+	stockEarningsInfo: StockEarningsInfo[];
+	stockFinancialsInfo: StockFinancialsInfo[],
+	stockNews: StockNews[],
+	stockSplits: StockSplit[]
 }
 
 export interface QueryStockInfoOptions {

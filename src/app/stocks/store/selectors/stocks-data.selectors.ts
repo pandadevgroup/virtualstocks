@@ -23,6 +23,36 @@ export const getStockChart = createSelector(
 	fromStocks.getStockChart
 );
 
+export const getStockCompanyInfo = createSelector(
+	getStocksDataState,
+	fromStocks.getStockCompanyInfo
+);
+
+export const getStockDividendsInfo = createSelector(
+	getStocksDataState,
+	fromStocks.getStockDividendsInfo
+);
+
+export const getStockEarningsInfo = createSelector(
+	getStocksDataState,
+	fromStocks.getStockEarningsInfo
+);
+
+export const getStockFinancialsInfo = createSelector(
+	getStocksDataState,
+	fromStocks.getStockFinancialsInfo
+);
+
+export const getStockNews = createSelector(
+	getStocksDataState,
+	fromStocks.getStockNews
+);
+
+export const getStockSplits = createSelector(
+	getStocksDataState,
+	fromStocks.getStockSplits
+);
+
 export const getStockSearchResults = createSelector(
 	getStocksDataState,
 	fromStocks.getStockSearchResults

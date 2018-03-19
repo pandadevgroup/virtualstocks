@@ -1,10 +1,16 @@
 import * as fromStocks from "../actions/stocks-data.actions";
-import { BatchStockData, StockQuote, StockChart, StockSearchResult } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit } from "@app/stocks/models";
 
 export interface StocksDataState {
 	batchStocksData: BatchStockData,
 	stockQuote: StockQuote,
 	stockChart: StockChart,
+	stockCompanyInfo: StockCompanyInfo,
+	stockDividendsInfo: StockDividendInfo[],
+	stockEarningsInfo: StockEarningsInfo[],
+	stockFinancialsInfo: StockFinancialsInfo[],
+	stockNews: StockNews[],
+	stockSplits: StockSplit[],
 	stockSearchResults: StockSearchResult[],
 	error: any
 }
@@ -13,6 +19,12 @@ export const initialState: StocksDataState = {
 	batchStocksData: {},
 	stockQuote: null,
 	stockChart: null,
+	stockCompanyInfo: null,
+	stockDividendsInfo: [],
+	stockEarningsInfo: [],
+	stockFinancialsInfo: [],
+	stockNews: [],
+	stockSplits: [],
 	stockSearchResults: [],
 	error: null
 };
@@ -35,8 +47,7 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 		case fromStocks.QUERY_STOCK_INFO_SUCCESS: {
 			return {
 				...state,
-				stockQuote: action.payload.quote,
-				stockChart: action.payload.chart,
+				...action.payload,
 				error: null
 			};
 		}
@@ -67,7 +78,13 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 				...state,
 				error: null,
 				stockQuote: null,
-				stockChart: null
+				stockChart: null,
+				stockCompanyInfo: null,
+				stockDividendsInfo: [],
+				stockEarningsInfo: [],
+				stockFinancialsInfo: [],
+				stockNews: [],
+				stockSplits: []
 			};
 		}
 		case fromStocks.STOCK_SEARCH_SUCCESS: {
@@ -97,5 +114,11 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 export const getBatchStocksData = (state: StocksDataState) => state.batchStocksData;
 export const getStockQuote = (state: StocksDataState) => state.stockQuote;
 export const getStockChart = (state: StocksDataState) => state.stockChart;
+export const getStockCompanyInfo = (state: StocksDataState) => state.stockCompanyInfo;
+export const getStockDividendsInfo = (state: StocksDataState) => state.stockDividendsInfo;
+export const getStockEarningsInfo = (state: StocksDataState) => state.stockEarningsInfo;
+export const getStockFinancialsInfo = (state: StocksDataState) => state.stockFinancialsInfo;
+export const getStockNews = (state: StocksDataState) => state.stockNews;
+export const getStockSplits = (state: StocksDataState) => state.stockSplits;
 export const getStocksError = (state: StocksDataState) => state.error;
 export const getStockSearchResults = (state: StocksDataState) => state.stockSearchResults;

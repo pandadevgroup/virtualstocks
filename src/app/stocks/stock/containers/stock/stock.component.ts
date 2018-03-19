@@ -19,13 +19,13 @@ import { Subject } from "rxjs/Subject";
 export class StockComponent implements OnInit, OnDestroy {
 	stockQuote$: Observable<StockQuote>;
 	stockChart$: Observable<StockChart>;
-	user$: Observable<User>;
 	company$: Observable<StockCompanyInfo>;
 	dividends$: Observable<StockDividendInfo[]>;
 	earnings$: Observable<StockEarningsInfo[]>;
 	financials$: Observable<StockFinancialsInfo[]>;
 	news$: Observable<StockNews[]>;
 	splits$: Observable<StockSplit[]>;
+	user$: Observable<User>;
 	private ngUnsubscribe: Subject<any> = new Subject();
 
 	constructor(
@@ -42,6 +42,12 @@ export class StockComponent implements OnInit, OnDestroy {
 
 		this.stockQuote$ = this.store.select(fromStocks.getStockQuote);
 		this.stockChart$ = this.store.select(fromStocks.getStockChart);
+		this.company$ = this.store.select(fromStocks.getStockCompanyInfo);
+		this.dividends$ = this.store.select(fromStocks.getStockDividendsInfo);
+		this.earnings$ = this.store.select(fromStocks.getStockEarningsInfo);
+		this.financials$ = this.store.select(fromStocks.getStockFinancialsInfo);
+		this.news$ = this.store.select(fromStocks.getStockNews);
+		this.splits$ = this.store.select(fromStocks.getStockSplits);
 		this.user$ = this.store.select(fromAuth.getUserData);
 	}
 
