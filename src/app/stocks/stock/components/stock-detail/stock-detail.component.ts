@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
-import { StockQuote, StockTransactionType, StockChart } from "@app/stocks/models";
+import { StockQuote, StockTransactionType, StockChart, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit } from "@app/stocks/models";
 import { User } from "@app/auth";
 
 @Component({
@@ -12,5 +12,11 @@ import { User } from "@app/auth";
 export class StockDetailComponent {
 	@Input() stockQuote: StockQuote;
 	@Input() chart: StockChart;
+	@Input() company: StockCompanyInfo;
+	@Input() dividends: StockDividendInfo[];
+	@Input() earnings: StockEarningsInfo[];
+	@Input() financials: StockFinancialsInfo[];
+	@Input() news: StockNews[];
+	@Input() splits: StockSplit[];
 	@Input() user: User;
 }

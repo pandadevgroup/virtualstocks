@@ -7,6 +7,12 @@
 			<vs-stock-detail
 				[stockQuote]="quote"
 				[chart]="stockChart$ | async"
+				[company]="company$ | async"
+				[dividends]="dividends$ | async"
+				[earnings]="earnings$ | async"
+				[financials]="financials$ | async"
+				[news]="news$ | async"
+				[splits]="splits$ | async"
 				[user]="user$ | async">
 			</vs-stock-detail>
 		</div>

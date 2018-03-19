@@ -5,7 +5,7 @@ import { switchMap, tap, filter, map } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
 
-import { StockInfo, StockTransactionType, StockChart, StockQuote } from "@app/stocks/models";
+import { StockInfo, StockTransactionType, StockChart, StockQuote, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
@@ -20,6 +20,12 @@ export class StockComponent implements OnInit, OnDestroy {
 	stockQuote$: Observable<StockQuote>;
 	stockChart$: Observable<StockChart>;
 	user$: Observable<User>;
+	company$: Observable<StockCompanyInfo>;
+	dividends$: Observable<StockDividendInfo[]>;
+	earnings$: Observable<StockEarningsInfo[]>;
+	financials$: Observable<StockFinancialsInfo[]>;
+	news$: Observable<StockNews[]>;
+	splits$: Observable<StockSplit[]>;
 	private ngUnsubscribe: Subject<any> = new Subject();
 
 	constructor(
