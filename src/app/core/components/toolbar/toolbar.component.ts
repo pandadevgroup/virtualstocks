@@ -44,7 +44,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.searchForm
 			.get("ticker")
-			.valueChanges.pipe(debounceTime(200))
+			.valueChanges.pipe(debounceTime(100))
 			.takeUntil(this.ngUnsubscribe)
 			.subscribe((search: string) => {
 				search = search.trim();
