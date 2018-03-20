@@ -55,10 +55,10 @@ export class StockComponent implements OnInit, OnDestroy {
 
 	updateQueryRange(queryRange: StockQueryRange) {
 		this.store.dispatch(new fromStocks.SetQueryRange(queryRange));
-		// this.store.dispatch(new fromStocks.QueryStockChart({
-		// 	ticker: this.ticker,
-		// 	range: queryRange
-		// }));
+		this.store.dispatch(new fromStocks.QueryStockChart({
+			ticker: this.ticker,
+			range: queryRange
+		}));
 	}
 
 	ngOnDestroy() {

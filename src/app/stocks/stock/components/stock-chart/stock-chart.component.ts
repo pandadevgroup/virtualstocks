@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectorRef } from "@angular/core";
 
 import { StockChart } from "@app/stocks/models";
 
@@ -20,6 +20,8 @@ export class StockChartComponent {
 		if (data) this.updateChartData(data);
 	}
 
+	constructor(private ref: ChangeDetectorRef) {}
+
 	chartData = null;
 	chartLabels = null;
 	legend = {
@@ -34,13 +36,18 @@ export class StockChartComponent {
 			chartLabels.push(dataPoint.label);
 		});
 
-		this.chartData = [
-			{
-				data: chartData,
-				label: "Close"
-			}
-		];
-		this.chartLabels = chartLabels;
-		
+		this.chartData = null;
+
+		setTimeout(() => {
+			this.chartData = [
+				{
+					data: chartData,
+					label: "Close"
+				}
+			];
+			this.chartLabels = chartLabels;
+
+			this.ref.markForCheck();
+		}, 0);
 	}
 }
