@@ -186,9 +186,40 @@ export interface StockDividendInfo {
 	indicated: number;
 }
 
-export interface StockEarningsInfo {}
+export interface StockEarningsInfo {
+	actualEPS: number;
+	consensusEPS: number;
+	estimatedEPS: number;
+	announceTime: string;
+	numberOfEstimates: number;
+	EPSSurpriseDollar: number;
+	EPSReportDate: string;
+	fiscalPeriod: string;
+	fiscalEndDate: string;
+}
 
-export interface StockFinancialsInfo {}
+export interface StockFinancialsInfo {
+	reportDate: string;
+	grossProfit: number;
+	costOfRevenue: number;
+	operatingRevenue: number;
+	totalRevenue: number;
+	operatingIncome: number;
+	netIncome: number;
+	researchAndDevelopment: number;
+	operatingExpense: number;
+	currentAssets: number;
+	totalAssets: number;
+	totalLiabilities: number;
+	currentCash: number;
+	currentDebt: number;
+	totalCash: number;
+	totalDebt: number;
+	shareholderEquity: number;
+	cashChange: number;
+	cashFlow: number;
+	operatingGainsLosses: string;
+}
 
 export interface StockNews {}
 
