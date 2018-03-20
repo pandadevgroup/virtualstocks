@@ -125,7 +125,7 @@ export interface StockChart extends Array<StockChartEntry> {}
 export type StockQueryRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
 
 export interface StockCompanyInfo {
-	symbol: string;
+	ticker: string;
 	companyName: string;
 	exchange: string;
 	industry: string;
@@ -240,7 +240,57 @@ export interface StockSplit {
 	forFactor: string;
 }
 
-export interface StockStats {}
+export interface StockStats {
+	companyName: string;
+	marketcap: number;
+	beta: number;
+	week52high: number;
+	week52low: number;
+	week52change: number;
+	shortInterest: number;
+	shortDate: string;
+	dividendRate: number;
+	dividendYield: number;
+	exDividendDate: string;
+	latestEPS: number;
+	latestEPSDate: string;
+	sharesOutstanding: number;
+	float; number;
+	returnOnEquity: number;
+	consensusEPS: number;
+	numberOfEstimates: number;
+	ticker: string;
+	EBITDA: number;
+	revenue: number;
+	grossProfit: number;
+	cash: number;
+	debt: number;
+	ttmEPS: number;
+	revenuePerShare: number;
+	revenuePerEmployee: number;
+	peRatioHigh: number;
+	peRatioLow: number;
+	EPSSurpriseDollar: number;
+	EPSSurprisePercent: number;
+	returnOnAssets: number;
+	returnOnCapital: number;
+	profitMargin: number;
+	priceToSales: number;
+	priceToBook: number;
+	day200MovingAvg: number;
+	day50MovingAvg: number;
+	institutionPercent: number;
+	insiderPercent: number;
+	shortRatio: number;
+	year5ChangePercent: number;
+	year2ChangePercent: number;
+	year1ChangePercent: number;
+	ytdChangePercent: number;
+	month6ChangePercent: number;
+	month3ChangePercent: number;
+	month1ChangePercent: number;
+	day5ChangePercent: number;
+}
 
 export interface StockInfo {
 	stockQuote: StockQuote;
