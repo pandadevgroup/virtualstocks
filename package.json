@@ -5,12 +5,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot",
-    "build": "ng build --prod",
+    "build": "ng build --prod --stats-json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
-    "deploy": "ng build --prod && ngh -m \"Build\""
+    "deploy": "ng build --prod --stats-json && ngh -m \"Build\""
   },
   "private": true,
   "dependencies": {
