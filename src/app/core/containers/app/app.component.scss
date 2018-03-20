@@ -7,10 +7,6 @@
 	.main__content {
 		flex: 1;
 		display: flex;
-
-		.main__page {
-			flex: 1;
-		}
 	}
 
 	@media(min-width: 768px) {
@@ -27,11 +23,6 @@
 		padding-left: 0;
 	}
 }
-
-.overflow-hidden {
-	overflow: hidden;
-}
-
 
 .sidebar {
 	position: fixed;
