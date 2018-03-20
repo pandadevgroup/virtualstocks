@@ -1,7 +1,7 @@
 {
-	"name": "Progressive Web Cat",
-	"short_name": "PWCat",
-	"description": "A funny cat image generator",
+	"name": "Virtual Stocks",
+	"short_name": "Virtual Stocks",
+	"description": "Practice trading stocks with unlimited virtual funds.",
 	"icons": [
 		{
 			"src": "assets/icon-128x128.png",
