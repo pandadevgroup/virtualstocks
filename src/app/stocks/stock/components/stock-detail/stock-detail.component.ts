@@ -27,7 +27,7 @@ export class StockDetailComponent implements OnChanges {
 		const stockQuote = changes.stockQuote && changes.stockQuote.currentValue || this.stockQuote;
 
 		if (chartRange === "1d" && stockQuote) {
-			this.chart.close = stockQuote.close;
+			this.chart.close = stockQuote.previousClose;
 		} else {
 			this.chart.close = null;
 		}
