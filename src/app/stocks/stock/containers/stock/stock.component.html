@@ -1,6 +1,10 @@
 <div class="container-fluid container-fluid--padding pt-2" *ngIf="stockQuote$ | async as quote; else loading">
 	<div class="w-100">
 		<vs-stock-title [stockQuote]="quote"></vs-stock-title>
+		<br>
+		<a [href]="'https://finance.yahoo.com/quote/' + quote.ticker" target="_blank">
+			Link to Yahoo Finance: {{ quote.ticker }}
+		</a>
 	</div>
 	<div class="row">
 		<div class="col-lg-9 col-md-8">
