@@ -57,11 +57,9 @@ export class StocksService {
 	}
 
 	private parseChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
-		let valueKey = "close";
-		if (range === "1d") valueKey = "average";
-		return iexResponse.map(entry => ({
+		return iexResponse.map((entry: any) => ({
 			label: entry.label,
-			value: entry[valueKey]
+			value: range === "1d" ? (entry.average == 0 ? entry.marketAverage : entry.average) : entry.close
 		}));
 	}
 
