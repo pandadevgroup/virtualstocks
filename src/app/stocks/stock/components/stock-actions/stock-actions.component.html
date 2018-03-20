@@ -8,7 +8,7 @@
 </div>
 
 <accordion [closeOthers]="true">
-	<accordion-group heading="Buy" [isOpen]="true">
+	<accordion-group heading="Buy" [isOpen]="true" class="mb-2">
 		<vs-stock-order-form [stockQuote]="stockQuote"
 			type="buy"
 			(transaction)="onTransaction($event, 'buy')">
