@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
+import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 import { StockQuote, StockTransactionType, StockChart, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange } from "@app/stocks/models";
@@ -9,7 +9,7 @@ import { User } from "@app/auth";
 	templateUrl: "stock-detail.component.html",
 	styleUrls: ["stock-detail.component.scss"]
 })
-export class StockDetailComponent {
+export class StockDetailComponent implements OnChanges {
 	@Input() stockQuote: StockQuote;
 	@Input() chart: StockChart;
 	@Input() company: StockCompanyInfo;
@@ -21,6 +21,19 @@ export class StockDetailComponent {
 	@Input() user: User;
 	@Input() chartRange: StockQueryRange;
 	@Output() chartRangeChange: EventEmitter<StockQueryRange> = new EventEmitter();
+
+	ngOnChanges(changes: SimpleChanges) {
+		const chartRange = changes.chartRange && changes.chartRange.currentValue || this.chartRange;
+		const stockQuote = changes.stockQuote && changes.stockQuote.currentValue || this.stockQuote;
+
+		if (chartRange === "1d" && stockQuote) {
+			this.chart.close = stockQuote.close;
+		} else {
+			this.chart.close = null;
+		}
+
+		if (changes.stockQuote || changes.chart) this.chart.ticker = stockQuote.ticker;
+	}
 
 	updateChartRange(range: StockQueryRange) {
 		this.chartRangeChange.emit(range);

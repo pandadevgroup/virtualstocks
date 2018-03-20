@@ -120,7 +120,11 @@ export interface StockChartEntry {
 	value: number;
 }
 
-export interface StockChart extends Array<StockChartEntry> {}
+export interface StockChart {
+	close?: number;
+	ticker?: string;
+	data: StockChartEntry[];
+}
 
 export type StockQueryRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
 

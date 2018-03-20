@@ -58,10 +58,12 @@ export class StocksService {
 	}
 
 	private parseChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
-		return iexResponse.map((entry: any) => ({
-			label: entry.label,
-			value: range === "1d" ? (entry.average == 0 ? entry.marketAverage : entry.average) : entry.close
-		}));
+		return {
+			data: iexResponse.map((entry: any) => ({
+				label: entry.label,
+				value: range === "1d" ? (entry.average == 0 ? entry.marketAverage : entry.average) : entry.close
+			}))
+		};
 	}
 
 	runStockSearch(search: string): Observable<StockSearchResult[]> {

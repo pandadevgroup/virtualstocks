@@ -32,24 +32,43 @@ export class StockChartComponent {
 		responsive: true
 	};
 
-	private updateChartData(data: StockChart) {
+	private updateChartData(chart: StockChart) {
 		let chartData = [];
 		let chartLabels = [];
+		let chartCloseData = null;
 
-		data.forEach(dataPoint => {
+		if (chart.close) {
+			chartCloseData = [];
+		}
+
+		chart.data.forEach(dataPoint => {
 			chartData.push(dataPoint.value);
 			chartLabels.push(dataPoint.label);
+
+			if (chart.close) {
+				chartCloseData.push(chart.close);
+			}
 		});
 
+		// Force re-render of chart to update x-axis
 		this.chartData = null;
 
 		setTimeout(() => {
 			this.chartData = [
 				{
 					data: chartData,
-					label: "Close"
+					label: chart.ticker
 				}
 			];
+
+			if (chartCloseData) {
+				this.chartData.push({
+					data: chartCloseData,
+					label: "Previous Close",
+					fill: "false"
+				});
+			}
+
 			this.chartLabels = chartLabels;
 
 			this.ref.markForCheck();
