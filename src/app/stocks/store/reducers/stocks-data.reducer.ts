@@ -1,5 +1,5 @@
 import * as fromStocks from "../actions/stocks-data.actions";
-import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange, StockStats } from "@app/stocks/models";
 
 export interface StocksDataState {
 	batchStocksData: BatchStockData,
@@ -12,6 +12,7 @@ export interface StocksDataState {
 	stockNews: StockNews[],
 	stockSplits: StockSplit[],
 	stockSearchResults: StockSearchResult[],
+	stockStats: StockStats,
 	stockQueryRange: StockQueryRange,
 	error: any
 }
@@ -28,6 +29,7 @@ export const initialState: StocksDataState = {
 	stockSplits: [],
 	stockSearchResults: [],
 	stockQueryRange: "1m",
+	stockStats: null,
 	error: null
 };
 
@@ -86,7 +88,8 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 				stockEarningsInfo: [],
 				stockFinancialsInfo: [],
 				stockNews: [],
-				stockSplits: []
+				stockSplits: [],
+				stockStats: null
 			};
 		}
 		case fromStocks.STOCK_SEARCH_SUCCESS: {

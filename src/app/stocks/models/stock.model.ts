@@ -225,6 +225,8 @@ export interface StockNews {}
 
 export interface StockSplit {}
 
+export interface StockStats {}
+
 export interface StockInfo {
 	stockQuote: StockQuote;
 	stockChart: StockChart;
@@ -233,7 +235,8 @@ export interface StockInfo {
 	stockEarningsInfo: StockEarningsInfo[];
 	stockFinancialsInfo: StockFinancialsInfo[],
 	stockNews: StockNews[],
-	stockSplits: StockSplit[]
+	stockSplits: StockSplit[],
+	stockStats: StockStats
 }
 
 export interface QueryStockInfoOptions {

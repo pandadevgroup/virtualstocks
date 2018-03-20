@@ -21,7 +21,7 @@ export class StocksService {
 
 	getStockInfo({ ticker, range = "1m" }: QueryStockInfoOptions): Observable<StockInfo> {
 		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/batch?types=`
-				+ `quote,chart,company,dividends,earnings,financials,news,splits&range=${range}`;
+				+ `quote,chart,company,dividends,earnings,financials,news,splits,stats&range=${range}`;
 		return this.http
 			.get<any>(queryUrl)
 			.pipe(
@@ -34,7 +34,8 @@ export class StocksService {
 						stockEarningsInfo: response.earnings,
 						stockFinancialsInfo: response.financials,
 						stockNews: response.news,
-						stockSplits: response.splits
+						stockSplits: response.splits,
+						stockStats: this.parseSymbol(response.stats)
 					};
 				})
 			);
