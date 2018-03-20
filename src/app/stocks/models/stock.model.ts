@@ -230,7 +230,15 @@ export interface StockNews {
 	related: string;
 }
 
-export interface StockSplit {}
+export interface StockSplit {
+	exDate: string;
+	delcaredDate: string;
+	recordDate: string;
+	paymentDate: string;
+	ratio: number;
+	toFactor: string;
+	forFactor: string;
+}
 
 export interface StockStats {}
 
