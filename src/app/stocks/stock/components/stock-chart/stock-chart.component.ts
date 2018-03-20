@@ -8,7 +8,7 @@ import { StockChart } from "@app/stocks/models";
 		<canvas baseChart
 			[datasets]="chartData"
 			[labels]="chartLabels"
-            [options]="{ responsive: true }"
+            [options]="options"
 			chartType="line"
 			*ngIf="chartData">
 		</canvas>
@@ -26,7 +26,12 @@ export class StockChartComponent {
 	chartLabels = null;
 	legend = {
 		display:false
-	}
+	};
+	options = {
+		elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 5 } },
+		responsive: true
+	};
+
 	private updateChartData(data: StockChart) {
 		let chartData = [];
 		let chartLabels = [];

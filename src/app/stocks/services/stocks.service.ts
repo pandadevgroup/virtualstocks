@@ -57,9 +57,8 @@ export class StocksService {
 	}
 
 	private parseChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
-		let valueKey = "";
+		let valueKey = "close";
 		if (range === "1d") valueKey = "average";
-		else if (range === "1m") valueKey = "close";
 		return iexResponse.map(entry => ({
 			label: entry.label,
 			value: entry[valueKey]
