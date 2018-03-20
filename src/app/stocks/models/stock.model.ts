@@ -147,7 +147,44 @@ export interface StockCompanyInfo {
 	issueType: "ad" | "re" | "ce" | "si" | "lp" | "cs" | "et" | "";
 }
 
-export interface StockDividendInfo {}
+export interface StockDividendInfo {
+	exDate: string;
+	paymentDate: string;
+	recordDate: string;
+	declaredDate: string;
+	amount: number;
+	/**
+	 * refers to the dividend flag
+	 * FI = Final dividend, div ends or instrument ends,
+	 * LI = Liquidation, instrument liquidates,
+	 * PR = Proceeds of a sale of rights or shares,
+	 * RE = Redemption of rights,
+	 * AC = Accrued dividend,
+	 * AR = Payment in arrears,
+	 * AD = Additional payment,
+	 * EX = Extra payment,
+	 * SP = Special dividend,
+	 * YE = Year end,
+	 * UR = Unknown rate,
+	 * SU = Regular dividend is suspended
+	 */
+	flag: "FI" | "LI" | "PR" | "RE" | "AC" | "AR" | "AD" | "EX" | "SP" | "YE" | "UR" | "SU";
+	/**
+	 * refers to the dividend payment type
+	 * (Dividend income, Interest income, Stock dividend, Short term capital gain,
+	 * Medium term capital gain, Long term capital gain, Unspecified term capital gain)
+	 */
+	type: string;
+	/**
+	 * refers to the dividend income type
+	 * P = Partially qualified income
+	 * Q = Qualified income
+	 * N = Unqualified income
+	 * null = N/A or unknown
+	 */
+	qualified: string | null;
+	indicated: number;
+}
 
 export interface StockEarningsInfo {}
 
