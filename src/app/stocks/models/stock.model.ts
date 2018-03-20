@@ -221,7 +221,14 @@ export interface StockFinancialsInfo {
 	operatingGainsLosses: string;
 }
 
-export interface StockNews {}
+export interface StockNews {
+	datetime: string;
+	headline: string;
+	source: string;
+	url: string;
+	summary: string;
+	related: string;
+}
 
 export interface StockSplit {}
 
