@@ -124,7 +124,28 @@ export interface StockChart extends Array<StockChartEntry> {}
 
 export type StockQueryRange = "1d" | "1m" | "3m" | "6m" | "ytd" | "1y" | "2y" | "5y";
 
-export interface StockCompanyInfo {}
+export interface StockCompanyInfo {
+	symbol: string;
+	companyName: string;
+	exchange: string;
+	industry: string;
+	website: string;
+	description: string;
+	CEO: string;
+	sector: string;
+	/**
+	 * Refers to the common issue type of the stock.
+	 * ad – American Depository Receipt (ADR’s)
+	 * -re – Real Estate Investment Trust (REIT’s)
+	 * ce – Closed end fund (Stock and Bond Fund)
+	 * si – Secondary Issue
+	 * lp – Limited Partnerships
+	 * cs – Common Stock
+	 * et – Exchange Traded Fund (ETF)
+	 * (blank) = Not Available, i.e., Warrant, Note, or (non-filing) Closed Ended Funds
+	 */
+	issueType: "ad" | "re" | "ce" | "si" | "lp" | "cs" | "et" | "";
+}
 
 export interface StockDividendInfo {}
 
