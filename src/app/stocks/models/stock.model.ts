@@ -94,6 +94,27 @@ export interface IEXMonthChartEntry {
 	changeOverTime: number;
 }
 
+export interface IEXDayChartEntry {
+	date: string;
+	minute: string;
+	label: string;
+	high: number;
+	low: number;
+	average: number;
+	volume: number;
+	notional: number;
+	numberOfTrades: number;
+	marketHigh: number;
+	marketLow: number;
+	marketAverage: number;
+	marketNotional: number;
+	marketNumberOfTrades: number;
+	changeOverTime: number;
+	marketChangeOverTime: number;
+}
+
+export type IEXChartEntry = IEXDayChartEntry | IEXMonthChartEntry;
+
 export interface StockChartEntry {
 	label: string;
 	value: number;

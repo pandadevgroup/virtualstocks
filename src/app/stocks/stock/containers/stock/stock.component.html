@@ -14,8 +14,8 @@
 				[news]="news$ | async"
 				[splits]="splits$ | async"
 				[user]="user$ | async"
-				[chartRange]="chartRange"
-				(chartRangeChange)="updateChartRange($event)">
+				[chartRange]="queryRange$ | async"
+				(chartRangeChange)="updateQueryRange($event)">
 			</vs-stock-detail>
 		</div>
 

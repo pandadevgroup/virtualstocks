@@ -47,6 +47,13 @@ export class StocksDataEffects {
 	);
 
 	@Effect()
+	stockQueryRangeChange$ = this.actions$.ofType(fromActions.SET_QUERY_RANGE).pipe(
+		switchMap((action: fromActions.SetQueryRange) => [
+			new fromActions.QueryStockChart({ ticker: "fb", range: action.payload })
+		])
+	);
+
+	@Effect()
 	stockSearch$ = this.actions$.ofType(fromActions.STOCK_SEARCH).pipe(
 		switchMap((action: fromActions.StockSearch) =>
 			this.stocksService.runStockSearch(action.payload).pipe(

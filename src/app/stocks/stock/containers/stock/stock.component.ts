@@ -26,8 +26,9 @@ export class StockComponent implements OnInit, OnDestroy {
 	news$: Observable<StockNews[]> = this.store.select(fromStocks.getStockNews);
 	splits$: Observable<StockSplit[]> = this.store.select(fromStocks.getStockSplits);
 	user$: Observable<User> = this.store.select(fromAuth.getUserData);
-	chartRange: StockQueryRange = "1m";
+	queryRange$: Observable<StockQueryRange> = this.store.select(fromStocks.getStockQueryRange);
 	private ngUnsubscribe: Subject<any> = new Subject();
+	private ticker: string;
 
 	constructor(
 		private store: Store<fromRoot.State>
@@ -36,7 +37,8 @@ export class StockComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.store.select(fromRoot.getRouterState).pipe(
 			map(state => state.state.params.ticker),
-			filter(ticker => !!ticker)
+			filter(ticker => !!ticker),
+			tap(ticker => this.ticker = ticker),
 		).takeUntil(this.ngUnsubscribe).subscribe(ticker => {
 			this.store.dispatch(new fromStocks.QueryStockInfo({ ticker }))
 		});
@@ -51,8 +53,12 @@ export class StockComponent implements OnInit, OnDestroy {
 		}));
 	}
 
-	updateChartRange(chartRange: StockQueryRange) {
-		this.chartRange = chartRange;
+	updateQueryRange(queryRange: StockQueryRange) {
+		this.store.dispatch(new fromStocks.SetQueryRange(queryRange));
+		// this.store.dispatch(new fromStocks.QueryStockChart({
+		// 	ticker: this.ticker,
+		// 	range: queryRange
+		// }));
 	}
 
 	ngOnDestroy() {

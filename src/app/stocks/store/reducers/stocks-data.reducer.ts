@@ -1,5 +1,5 @@
 import * as fromStocks from "../actions/stocks-data.actions";
-import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange } from "@app/stocks/models";
 
 export interface StocksDataState {
 	batchStocksData: BatchStockData,
@@ -12,6 +12,7 @@ export interface StocksDataState {
 	stockNews: StockNews[],
 	stockSplits: StockSplit[],
 	stockSearchResults: StockSearchResult[],
+	stockQueryRange: StockQueryRange,
 	error: any
 }
 
@@ -26,6 +27,7 @@ export const initialState: StocksDataState = {
 	stockNews: [],
 	stockSplits: [],
 	stockSearchResults: [],
+	stockQueryRange: "1m",
 	error: null
 };
 
@@ -107,6 +109,12 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 				stockSearchResults: []
 			};
 		}
+		case fromStocks.SET_QUERY_RANGE: {
+			return {
+				...state,
+				stockQueryRange: action.payload
+			}
+		}
 	}
 	return state;
 }
@@ -122,3 +130,4 @@ export const getStockNews = (state: StocksDataState) => state.stockNews;
 export const getStockSplits = (state: StocksDataState) => state.stockSplits;
 export const getStocksError = (state: StocksDataState) => state.error;
 export const getStockSearchResults = (state: StocksDataState) => state.stockSearchResults;
+export const getStockQueryRange = (state: StocksDataState) => state.stockQueryRange;

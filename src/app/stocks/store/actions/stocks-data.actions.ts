@@ -92,6 +92,14 @@ export class QueryStockChartFail {
 	constructor(public payload: any) {}
 }
 
+// Query Range
+export const SET_QUERY_RANGE = "[Stocks] Set Query Range";
+
+export class SetQueryRange {
+	readonly type = SET_QUERY_RANGE;
+	constructor(public payload: StockQueryRange) {}
+}
+
 export type StocksDataAction =
 	| StockSearch
 	| StockSearchSuccess
@@ -106,4 +114,5 @@ export type StocksDataAction =
 	| ClearStockInfo
 	| QueryStockChart
 	| QueryStockChartSuccess
-	| QueryStockChartFail;
+	| QueryStockChartFail
+	| SetQueryRange;

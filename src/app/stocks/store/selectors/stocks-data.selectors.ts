@@ -58,6 +58,11 @@ export const getStockSearchResults = createSelector(
 	fromStocks.getStockSearchResults
 );
 
+export const getStockQueryRange = createSelector(
+	getStocksDataState,
+	fromStocks.getStockQueryRange
+);
+
 export const getStockError = createSelector(
 	getStocksDataState,
 	fromStocks.getStocksError

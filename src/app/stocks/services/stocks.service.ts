@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { BatchStockData, StockInfo, StockQuote, StockChart, StockQueryRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions } from "@app/stocks/models";
+import { BatchStockData, StockInfo, StockQuote, StockChart, StockQueryRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions, IEXDayChartEntry, IEXChartEntry } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -28,7 +28,7 @@ export class StocksService {
 				map(response => {
 					return {
 						stockQuote: this.parseSymbol(response.quote),
-						stockChart: this.parseChart(response.chart),
+						stockChart: this.parseChart(response.chart, range),
 						stockCompanyInfo: this.parseSymbol(response.company),
 						stockDividendsInfo: response.dividends,
 						stockEarningsInfo: response.earnings,
@@ -43,11 +43,9 @@ export class StocksService {
 	getStockChart(ticker: string, range: StockQueryRange = "1m"): Observable<StockChart> {
 		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}`;
 
-		if (range != "1m") throw "Error: Write code for range != 1m";
-
 		return this.http
-			.get<IEXMonthChartEntry[]>(queryUrl).pipe(
-				map(response => this.parseChart(response))
+			.get<IEXChartEntry[]>(queryUrl).pipe(
+				map(response => this.parseChart(response, range))
 			);
 	}
 
@@ -58,10 +56,13 @@ export class StocksService {
 		};
 	}
 
-	private parseChart(iexResponse: IEXMonthChartEntry[]) {
+	private parseChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
+		let valueKey = "";
+		if (range === "1d") valueKey = "average";
+		else if (range === "1m") valueKey = "close";
 		return iexResponse.map(entry => ({
 			label: entry.label,
-			value: entry.close
+			value: entry[valueKey]
 		}));
 	}
 
