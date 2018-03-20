@@ -40,7 +40,8 @@ export class StockComponent implements OnInit, OnDestroy {
 			filter(ticker => !!ticker),
 			tap(ticker => this.ticker = ticker),
 		).takeUntil(this.ngUnsubscribe).subscribe(ticker => {
-			this.store.dispatch(new fromStocks.QueryStockInfo({ ticker }))
+			this.store.dispatch(new fromStocks.QueryStockInfo({ ticker }));
+			this.store.dispatch(new fromStocks.SetQueryRange("1m"));
 		});
 	}
 
