@@ -29,6 +29,11 @@ export class AppComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit() {
+		if (localStorage) {
+			let sidebarSmall = localStorage.getItem("sidebarSmall");
+			if (sidebarSmall === "true") this.sidebarSmall = true;
+		}
+
 		this.authService.user.takeUntil(this.ngUnsubscribe).subscribe(user => {
 			this.store.dispatch(new fromAuth.SetUser(user));
 		});
@@ -54,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	toggleSidebar() {
 		this.sidebarSmall = !this.sidebarSmall;
+		if (localStorage) localStorage.setItem("sidebarSmall", this.sidebarSmall + "");
 	}
 
 	toggleSidebarMobile() {
