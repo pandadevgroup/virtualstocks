@@ -7,4 +7,8 @@
 			[class.text-danger]="stockQuote.changePercent < 0">
 		{{ stockQuote.change | currency }} ({{ stockQuote.changePercent | percent: "1.2-5" }})
 	</span>
+	<br>
+	<span class="text-small text-muted">
+		At {{ stockQuote.calculationPrice }}: {{ stockQuote.latestTime }}
+	</span>
 </div>
