@@ -3,7 +3,7 @@
 		{{ stockQuote.latestPrice | currency }}
 	</div>
 	<div class="subtitle">
-		per share
+		per share ({{ stockQuote.change | currency }} {{ stockQuote.changePercent | percent: "1.2-5" }})
 	</div>
 </div>
 
