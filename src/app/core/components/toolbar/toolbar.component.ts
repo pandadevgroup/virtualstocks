@@ -27,7 +27,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	}
 	@Input()
 	set searchResults(searchResults: StockSearchResult[]) {
-		this._searchResults = searchResults;
+		if (!this.searchActive) {
+			this._searchResults = [];
+		} else {
+			this._searchResults = searchResults;
+		}
 		this.searchResultSelectedIndex = 0;
 	}
 
@@ -65,15 +69,15 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 		this.closeSearch(el);
 	}
 
-	openSearch(el) {
+	openSearch(el?) {
 		this.searchActive = true;
-		setTimeout(() => el.focus(), 0);
+		if (el) setTimeout(() => el.focus(), 0);
 	}
 
-	closeSearch(el) {
+	closeSearch(el?) {
 		this.searchActive = false;
 		this.clearSearch();
-		setTimeout(() => el.blur(), 0);
+		if (el) setTimeout(() => el.blur(), 0);
 	}
 
 	clearSearch() {

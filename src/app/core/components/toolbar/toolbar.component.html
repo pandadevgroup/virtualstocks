@@ -43,7 +43,8 @@
 			placeholder="Search Stocks"
 			aria-label="Search Stocks"
 			formControlName="ticker"
-			(blur)="clearSearch()"
+			(focus)="openSearch()"
+			(blur)="closeSearch()"
 			(keydown)="handleKeydown($event, search)"
 			#search>
 		<div class="ticker-search-result__container">
