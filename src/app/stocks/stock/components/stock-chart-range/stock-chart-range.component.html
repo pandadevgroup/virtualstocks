@@ -1,42 +1,7 @@
 <ul class="nav nav-pills justify-content-end mt-3">
-	<li class="nav-item">
+	<li class="nav-item" *ngFor="let range of chartRanges">
 		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '1d'"
-			(click)="updateChartRange('1d')">1D</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '1m'"
-			(click)="updateChartRange('1m')">1M</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '3m'"
-			(click)="updateChartRange('3m')">3M</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '6m'"
-			(click)="updateChartRange('6m')">6M</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == 'ytd'"
-			(click)="updateChartRange('ytd')">YTD</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '1y'"
-			(click)="updateChartRange('1y')">1Y</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '2y'"
-			(click)="updateChartRange('2y')">2Y</button>
-	</li>
-	<li class="nav-item">
-		<button class="nav-link nav-link--btn"
-			[class.active]="chartRange == '5y'"
-			(click)="updateChartRange('5y')">5Y</button>
+			[class.active]="chartRange == range"
+			(click)="chartRange != range && updateChartRange(range)">{{ range | uppercase}}</button>
 	</li>
 </ul>
