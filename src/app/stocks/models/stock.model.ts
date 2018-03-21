@@ -59,6 +59,11 @@ export interface StockSearchResult {
 	iexId: string;
 }
 
+export interface StockSearchResults {
+	results: StockSearchResult[];
+	search: string;
+}
+
 export interface IEXDayChartEntry {
 	date: string;
 	minute: string;

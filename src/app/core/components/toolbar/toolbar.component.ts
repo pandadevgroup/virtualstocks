@@ -4,7 +4,7 @@ import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW, TAB } from '@angular/cdk/keycodes'
 
 import { debounceTime, tap } from "rxjs/operators";
 import { Subject } from "rxjs/Subject";
-import { StockSearchResult } from "@app/stocks";
+import { StockSearchResult, StockSearchResults } from "@app/stocks";
 
 @Component({
 	selector: "vs-toolbar",
@@ -21,14 +21,14 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	searchActive = false;
 	searchResultSelectedIndex = 0;
 
-	private _searchResults: StockSearchResult[] = [];
+	private _searchResults: StockSearchResults = null;
 	get searchResults() {
 		return this._searchResults;
 	}
 	@Input()
-	set searchResults(searchResults: StockSearchResult[]) {
+	set searchResults(searchResults: StockSearchResults) {
 		if (!this.searchActive) {
-			this._searchResults = [];
+			this._searchResults = null;
 		} else {
 			this._searchResults = searchResults;
 		}
@@ -45,6 +45,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 		return this.searchForm.get("ticker").value;
 	}
 
+	get results() {
+		return this.searchResults ? this.searchResults.results : [];
+	}
+
 	ngOnInit() {
 		this.searchForm
 			.get("ticker")
@@ -59,10 +63,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 	onSubmit(el) {
 		if (this.ticker && this.ticker.trim() !== "") {
 			let success =
-				this.searchResults.length > this.searchResultSelectedIndex;
+				this.results.length > this.searchResultSelectedIndex
+				&& this.searchResults.search === this.ticker.trim().toUpperCase();
 			this.tickerSearch.emit(
 				success
-					? this.searchResults[this.searchResultSelectedIndex].symbol
+					? this.results[this.searchResultSelectedIndex].symbol
 					: this.ticker.trim().toUpperCase()
 			);
 		}
@@ -82,7 +87,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 	clearSearch() {
 		this.searchForm.get("ticker").setValue("");
-		this.searchResults = [];
+		this.searchResults = null;
 	}
 
 	handleKeydown(event: KeyboardEvent, el: any) {
@@ -103,10 +108,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 			event.stopPropagation();
 		} else if (keyCode === DOWN_ARROW) {
 			this.searchResultSelectedIndex++;
-			if (this.searchResultSelectedIndex >= this.searchResults.length) this.searchResultSelectedIndex = 0;
+			if (this.searchResultSelectedIndex >= this.results.length) this.searchResultSelectedIndex = 0;
 		} else if (keyCode === UP_ARROW) {
 			this.searchResultSelectedIndex--;
-			if (this.searchResultSelectedIndex < 0) this.searchResultSelectedIndex = this.searchResults.length - 1;
+			if (this.searchResultSelectedIndex < 0) this.searchResultSelectedIndex = this.results.length - 1;
 		}
 	}
 

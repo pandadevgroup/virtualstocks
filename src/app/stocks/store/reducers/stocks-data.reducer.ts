@@ -1,5 +1,5 @@
 import * as fromStocks from "../actions/stocks-data.actions";
-import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange, StockStats } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange, StockStats, StockSearchResults } from "@app/stocks/models";
 
 export interface StocksDataState {
 	batchStocksData: BatchStockData,
@@ -11,7 +11,7 @@ export interface StocksDataState {
 	stockFinancialsInfo: StockFinancialsInfo[],
 	stockNews: StockNews[],
 	stockSplits: StockSplit[],
-	stockSearchResults: StockSearchResult[],
+	stockSearchResults: StockSearchResults,
 	stockStats: StockStats,
 	stockQueryRange: StockQueryRange,
 	error: any
@@ -27,7 +27,7 @@ export const initialState: StocksDataState = {
 	stockFinancialsInfo: [],
 	stockNews: [],
 	stockSplits: [],
-	stockSearchResults: [],
+	stockSearchResults: null,
 	stockQueryRange: "1m",
 	stockStats: null,
 	error: null
@@ -115,7 +115,7 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 			return {
 				...state,
 				error: null,
-				stockSearchResults: []
+				stockSearchResults: null
 			};
 		}
 		case fromStocks.SET_QUERY_RANGE: {

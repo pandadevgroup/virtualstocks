@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BatchStockData, StockQuote, StockQueryRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockQueryRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions, StockSearchResults } from "@app/stocks/models";
 
 // Stock Search
 export const STOCK_SEARCH = "[Stocks] Stock Search";
@@ -15,7 +15,7 @@ export class StockSearch {
 
 export class StockSearchSuccess {
 	readonly type = STOCK_SEARCH_SUCCESS;
-	constructor(public payload: StockSearchResult[]) {}
+	constructor(public payload: StockSearchResults) {}
 }
 
 export class StockSearchFail {
