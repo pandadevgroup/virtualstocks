@@ -1,0 +1,10 @@
+<div class="title__container mb-3">
+	<span class="title">
+		{{ stockQuote.latestPrice | currency }}
+	</span>
+	<span class="subtitle"
+			[class.text-success]="stockQuote.changePercent >= 0"
+			[class.text-danger]="stockQuote.changePercent < 0">
+		{{ stockQuote.change | currency }} ({{ stockQuote.changePercent | percent: "1.2-5" }})
+	</span>
+</div>
