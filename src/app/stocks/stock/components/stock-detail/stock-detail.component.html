@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xxl-3 col-lg-6">
-		<div class="list-group list-group-flush">
+		<div class="list-group list-group-flush stats-listgroup stats-listgroup--first">
 			<li class="list-group-item">
 				<span class="list-group-item--left">Previous Close</span>
 				<span class="list-group-item--right">{{ stockQuote.previousClose }}</span>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<div class="col-xxl-3 col-lg-6">
-		<div class="list-group list-group-flush">
+		<div class="list-group list-group-flush stats-listgroup">
 			<li class="list-group-item">
 				<span class="list-group-item--left">Day&apos;s Range</span>
 				<span class="list-group-item--right">{{ stockQuote.low }} - {{ stockQuote.high }}</span>
@@ -32,7 +32,7 @@
 		</div>
 	</div>
 	<div class="col-xxl-3 col-lg-6">
-		<div class="list-group list-group-flush">
+		<div class="list-group list-group-flush stats-listgroup stats-listgroup--bottom">
 			<li class="list-group-item">
 				<span class="list-group-item--left">Market Cap</span>
 				<span class="list-group-item--right">{{ stats.marketcap | number }}</span>
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	<div class="col-xxl-3 col-lg-6">
-		<div class="list-group list-group-flush">
+		<div class="list-group list-group-flush stats-listgroup stats-listgroup--bottom">
 			<li class="list-group-item">
 				<span class="list-group-item--left">Ex-Dividend Date</span>
 				<span class="list-group-item--right">{{ stats.exDividendDate | date }}</span>
@@ -65,7 +65,6 @@
 	</div>
 </div>
 
-<hr>
 <div class="card">
 	<div class="card-body">
 		<pre>{{ stockQuote | json }}</pre>
