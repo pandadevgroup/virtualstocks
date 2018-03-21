@@ -140,3 +140,4 @@ export const getStockSplits = (state: StocksDataState) => state.stockSplits;
 export const getStocksError = (state: StocksDataState) => state.error;
 export const getStockSearchResults = (state: StocksDataState) => state.stockSearchResults;
 export const getStockQueryRange = (state: StocksDataState) => state.stockQueryRange;
+export const getStockStats = (state: StocksDataState) => state.stockStats;

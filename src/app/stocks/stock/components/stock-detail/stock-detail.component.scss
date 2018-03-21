@@ -1,0 +1,14 @@
+.list-group-item--left {
+	float: left;
+}
+.list-group-item--right {
+	float: right;
+	font-weight: bold;
+}
+
+@media(min-width: 1550px) {
+	.col-xxl-3 {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+}

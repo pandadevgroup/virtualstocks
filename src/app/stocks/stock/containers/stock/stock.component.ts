@@ -5,7 +5,7 @@ import { switchMap, tap, filter, map } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
 
-import { StockInfo, StockTransactionType, StockChart, StockQuote, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange } from "@app/stocks/models";
+import { StockInfo, StockTransactionType, StockChart, StockQuote, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange, StockStats } from "@app/stocks/models";
 import * as fromStocks from "@app/stocks/store";
 import * as fromRoot from "@app/core/store";
 import * as fromAuth from "@app/auth/store";
@@ -23,6 +23,7 @@ export class StockComponent implements OnInit, OnDestroy {
 	dividends$: Observable<StockDividendInfo[]> = this.store.select(fromStocks.getStockDividendsInfo);
 	earnings$: Observable<StockEarningsInfo[]> = this.store.select(fromStocks.getStockEarningsInfo);
 	financials$: Observable<StockFinancialsInfo[]> = this.store.select(fromStocks.getStockFinancialsInfo);
+	stats$: Observable<StockStats> = this.store.select(fromStocks.getStockStats);
 	news$: Observable<StockNews[]> = this.store.select(fromStocks.getStockNews);
 	splits$: Observable<StockSplit[]> = this.store.select(fromStocks.getStockSplits);
 	user$: Observable<User> = this.store.select(fromAuth.getUserData);

@@ -53,6 +53,11 @@ export const getStockSplits = createSelector(
 	fromStocks.getStockSplits
 );
 
+export const getStockStats = createSelector(
+	getStocksDataState,
+	fromStocks.getStockStats
+);
+
 export const getStockSearchResults = createSelector(
 	getStocksDataState,
 	fromStocks.getStockSearchResults
