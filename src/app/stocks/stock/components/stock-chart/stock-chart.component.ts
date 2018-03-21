@@ -4,15 +4,7 @@ import { StockChart } from "@app/stocks/models";
 
 @Component({
 	selector: "vs-stock-chart",
-	template: `
-		<canvas baseChart
-			[datasets]="chartData"
-			[labels]="chartLabels"
-            [options]="options"
-			chartType="line"
-			*ngIf="chartData">
-		</canvas>
-	`,
+	templateUrl: "stock-chart.component.html",
 	styleUrls: ["stock-chart.component.scss"]
 })
 export class StockChartComponent {
