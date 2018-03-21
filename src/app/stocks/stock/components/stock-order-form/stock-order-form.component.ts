@@ -17,6 +17,10 @@ export class StockOrderFormComponent {
 		quantity: 1
 	});
 	shareQuantityMsgMapping: { [k: string]: string } = { "=1": "share", "other": "shares" };
+	msg = {
+		buy: "Buy",
+		sell: "Sell"
+	}
 
 	get quantity() {
 		return this.transactionForm.get("quantity").value || 0;
