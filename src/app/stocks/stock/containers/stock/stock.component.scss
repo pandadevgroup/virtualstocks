@@ -2,12 +2,3 @@
 	width: 100%;
 }
 
-$actions-width: 380px;
-
-.col--detail {
-	max-width: calc(100% - #{$actions-width});
-}
-
-.col--actions {
-	width: $actions-width;
-}

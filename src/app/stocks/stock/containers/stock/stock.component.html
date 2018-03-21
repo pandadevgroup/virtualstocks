@@ -7,7 +7,7 @@
 		</a>
 	</div>
 	<div class="row">
-		<div class="col col--detail">
+		<div class="col col-lg-8 col-xl-9">
 			<vs-stock-detail
 				[stockQuote]="quote"
 				[chart]="stockChart$ | async"
@@ -23,7 +23,7 @@
 			</vs-stock-detail>
 		</div>
 
-		<div class="col col--actions">
+		<div class="col col-lg-4 col-xl-3">
 			<vs-stock-actions
 				[stockQuote]="quote"
 				[user]="user$ | async"
