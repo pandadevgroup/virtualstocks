@@ -12,7 +12,7 @@ export class StockChartComponent {
 	@Input() prevClose: number;
 	@Input() showPrevClose: boolean;
 	@Input() set chart(data: StockChart) {
-		if (data) this.updateChartData(data);
+		this.updateChartData(data);
 	}
 
 	constructor(private ref: ChangeDetectorRef) {}
@@ -27,7 +27,8 @@ export class StockChartComponent {
 		responsive: true
 	};
 
-	private updateChartData(chart: StockChart) {
+	private updateChartData(chart: StockChart | null) {
+		if (chart == null) return this.chartData = null;
 		let chartData = [];
 		let chartLabels = [];
 		let chartCloseData = null;
@@ -46,28 +47,23 @@ export class StockChartComponent {
 			}
 		});
 
-		// Force re-render of chart to update x-axis
-		this.chartData = null;
-
-		setTimeout(() => {
-			this.chartData = [
-				{
-					data: chartData,
-					label: this.ticker
-				}
-			];
-
-			if (chartCloseData) {
-				this.chartData.push({
-					data: chartCloseData,
-					label: "Previous Close",
-					fill: "false"
-				});
+		this.chartData = [
+			{
+				data: chartData,
+				label: this.ticker
 			}
+		];
 
-			this.chartLabels = chartLabels;
+		if (chartCloseData) {
+			this.chartData.push({
+				data: chartCloseData,
+				label: "Previous Close",
+				fill: "false"
+			});
+		}
 
-			this.ref.markForCheck();
-		}, 0);
+		this.chartLabels = chartLabels;
+
+		this.ref.markForCheck();
 	}
 }

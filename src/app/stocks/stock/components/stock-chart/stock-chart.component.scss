@@ -4,7 +4,12 @@
 	padding-bottom: 50%;
 	position: relative;
 
-	canvas {
+	canvas, .loading-spinner {
 		position: absolute;
+	}
+
+	.loading-spinner {
+		left: 0;
+		right: 0;
 	}
 }

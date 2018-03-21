@@ -63,6 +63,12 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 				error: action.payload
 			};
 		}
+		case fromStocks.QUERY_STOCK_CHART: {
+			return {
+				...state,
+				stockChart: null
+			};
+		}
 		case fromStocks.QUERY_STOCK_CHART_SUCCESS: {
 			return {
 				...state,
