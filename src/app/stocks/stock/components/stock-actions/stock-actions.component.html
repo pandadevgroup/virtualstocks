@@ -1,12 +1,3 @@
-<div class="title__container">
-	<div class="title">
-		{{ stockQuote.latestPrice | currency }}
-	</div>
-	<div class="subtitle">
-		per share ({{ stockQuote.change | currency }} {{ stockQuote.changePercent | percent: "1.2-5" }})
-	</div>
-</div>
-
 <accordion [closeOthers]="true">
 	<accordion-group heading="Buy" [isOpen]="true" class="mb-2">
 		<vs-stock-order-form [stockQuote]="stockQuote"
