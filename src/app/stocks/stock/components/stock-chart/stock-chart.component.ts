@@ -8,6 +8,9 @@ import { StockChart } from "@app/stocks/models";
 	styleUrls: ["stock-chart.component.scss"]
 })
 export class StockChartComponent {
+	@Input() ticker: string;
+	@Input() prevClose: number;
+	@Input() showPrevClose: boolean;
 	@Input() set chart(data: StockChart) {
 		if (data) this.updateChartData(data);
 	}
@@ -28,8 +31,9 @@ export class StockChartComponent {
 		let chartData = [];
 		let chartLabels = [];
 		let chartCloseData = null;
+		let showPrevClose = this.showPrevClose && this.prevClose;
 
-		if (chart.close) {
+		if (showPrevClose) {
 			chartCloseData = [];
 		}
 
@@ -37,8 +41,8 @@ export class StockChartComponent {
 			chartData.push(dataPoint.value);
 			chartLabels.push(dataPoint.label);
 
-			if (chart.close) {
-				chartCloseData.push(chart.close);
+			if (showPrevClose) {
+				chartCloseData.push(this.prevClose);
 			}
 		});
 
@@ -49,7 +53,7 @@ export class StockChartComponent {
 			this.chartData = [
 				{
 					data: chartData,
-					label: chart.ticker
+					label: this.ticker
 				}
 			];
 

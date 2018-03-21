@@ -1,20 +1,9 @@
-<vs-stock-price [stockQuote]="stockQuote"></vs-stock-price>
 
-<vs-stock-chart [chart]="chart"></vs-stock-chart>
-<vs-stock-chart-range [chartRange]="chartRange"
-	(chartRangeChange)="updateChartRange($event)">
-</vs-stock-chart-range>
 
 <hr>
 <div class="card">
 	<div class="card-body">
 		<pre>{{ stockQuote | json }}</pre>
-	</div>
-</div>
-
-<div class="card">
-	<div class="card-body">
-		<pre>{{ chart | json }}</pre>
 	</div>
 </div>
 
