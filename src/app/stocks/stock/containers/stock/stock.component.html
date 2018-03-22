@@ -7,7 +7,7 @@
 		</a>
 	</div>
 	<div class="row">
-		<div class="col col-lg-8 col-xl-9">
+		<div class="col-sm-12 col-lg-8 col-xl-9">
 			<vs-stock-price [stockQuote]="quote"></vs-stock-price>
 
 			<vs-stock-chart [chart]="stockChart$ | async"
@@ -19,7 +19,7 @@
 				(chartRangeChange)="updateQueryRange($event)">
 			</vs-stock-chart-range>
 		</div>
-		<div class="col col-lg-4 col-xl-3">
+		<div class="col-sm-12 col-lg-4 col-xl-3">
 			<vs-stock-actions
 				[stockQuote]="quote"
 				[user]="user$ | async"
