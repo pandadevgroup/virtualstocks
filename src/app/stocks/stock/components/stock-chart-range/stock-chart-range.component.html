@@ -2,6 +2,6 @@
 	<li class="nav-item" *ngFor="let range of chartRanges">
 		<button class="nav-link nav-link--btn"
 			[class.active]="chartRange == range"
-			(click)="chartRange != range && updateChartRange(range)">{{ range | uppercase}}</button>
+			(click)="chartRange != range && updateChartRange(range)">{{ range | uppercase }}</button>
 	</li>
 </ul>
