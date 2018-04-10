@@ -77,7 +77,7 @@ export class StocksService {
 	private parseChart(response) {
 		return {
 			data: Object.keys(response["Time Series (1min)"]).map(key => ({
-				label: key.split(" ")[1],
+				label: key,
 				value: parseFloat(response["Time Series (1min)"][key]["1. open"])
 			}))
 		}
