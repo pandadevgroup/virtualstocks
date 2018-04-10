@@ -28,7 +28,7 @@ export class StocksService {
 				map(response => {
 					return {
 						stockQuote: this.parseSymbol(response.quote),
-						stockChart: this.parseIEXChart(response.chart, range),
+						stockChart: this.parseChart(response.chart, range),
 						stockCompanyInfo: this.parseSymbol(response.company),
 						stockDividendsInfo: response.dividends,
 						stockEarningsInfo: response.earnings,
@@ -42,19 +42,13 @@ export class StocksService {
 	}
 
 	getStockChart(ticker: string, range: StockQueryRange = "1m"): Observable<StockChart> {
-		if (range === "1d") {
-			const queryUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${ticker}&interval=1min&apikey=WCEPZHFS9KKUZBRJ`;
-			return this.http
-				.get<any>(queryUrl).pipe(
-					map(response => this.parseChart(response))
-				);
-		}
+
 		let simplify = range === "2y" || range === "5y";
 		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}?chartSimplify=${simplify}`;
 
 		return this.http
 			.get<IEXChartEntry[]>(queryUrl).pipe(
-				map(response => this.parseIEXChart(response, range))
+				map(response => this.parseChart(response, range))
 			);
 	}
 
@@ -65,22 +59,13 @@ export class StocksService {
 		};
 	}
 
-	private parseIEXChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
+	private parseChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
 		return {
 			data: iexResponse.map((entry: any) => ({
 				label: entry.label,
 				value: range === "1d" ? (entry.average == 0 ? 10 : entry.average) : entry.close
 			}))
 		};
-	}
-
-	private parseChart(response) {
-		return {
-			data: Object.keys(response["Time Series (1min)"]).map(key => ({
-				label: key,
-				value: parseFloat(response["Time Series (1min)"][key]["1. open"])
-			}))
-		}
 	}
 
 	runStockSearch(search: string): Observable<StockSearchResults> {
