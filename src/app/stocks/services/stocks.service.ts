@@ -63,7 +63,7 @@ export class StocksService {
 		return {
 			data: iexResponse.map((entry: any) => ({
 				label: entry.label,
-				value: range === "1d" ? (entry.average == 0 ? 10 : entry.average) : entry.close
+				value: range === "1d" ? (entry.average == 0 ? entry.marketAverage : entry.average) : entry.close
 			}))
 		};
 	}
