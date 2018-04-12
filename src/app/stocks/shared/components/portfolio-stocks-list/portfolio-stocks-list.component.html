@@ -1,5 +1,7 @@
 <ng-container *ngIf="stockPrices">
 	<p *ngFor="let stock of stocks">
-		{{ stock | json }}. {{ stockPrices[stock.ticker] | json }}.
+		{{ stock.quantity }} shares of <b>{{ stock.ticker }}</b>.
+		Purchase value: <b>{{ stock.purchaseValue | currency }}</b>.
+		Current value: <b>{{ stockPrices[stock.ticker].price * stock.quantity | currency }}</b>.
 	</p>
 </ng-container>
