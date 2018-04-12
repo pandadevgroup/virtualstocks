@@ -24,12 +24,7 @@ export class StockChartComponent {
 	};
 	options = {
 		elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 5 } },
-		responsive: true,
-		// scales: {
-		// 	xAxes: [{
-		// 		type: "time"
-		// 	}]
-		// }
+		responsive: true
 	};
 
 	private updateChartData(chart: StockChart | null) {

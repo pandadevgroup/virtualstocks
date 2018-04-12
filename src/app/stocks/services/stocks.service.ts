@@ -60,11 +60,23 @@ export class StocksService {
 	}
 
 	private parseChart(iexResponse: IEXChartEntry[], range: StockQueryRange) {
+		let prevNum = null;
 		return {
-			data: iexResponse.map((entry: any) => ({
-				label: entry.label,
-				value: range === "1d" ? (entry.average == 0 ? entry.marketAverage : entry.average) : entry.close
-			}))
+			data: iexResponse.map((entry: any) => {
+				if (range === "1d") {
+					let value = (entry.marketAverage == 0 && entry.average == 0 ? prevNum : Math.max(entry.marketAverage, entry.average));
+					prevNum = value;
+					return {
+						label: entry.label,
+						value
+					};
+				} else {
+					return {
+						label: entry.label,
+						value: entry.close
+					};
+				}
+			})
 		};
 	}
 
