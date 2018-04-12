@@ -1,27 +1,30 @@
 <ng-container *ngIf="stockPrices">
-	
-	<div class="card-deck">
-		<div class="card" *ngFor="let stock of stocks">
-			<div class="card-header">
-					Amazon, INC.
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">{{stock.ticker}}</h5>
-
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<b>Shares:</b> {{stock.quantity}}</li>
-				<li class="list-group-item">
-					<b>Current Price:</b> {{ stockPrices[stock.ticker].price | currency }}</li>
-				<li class="list-group-item">
-					<b>Current Total Value:</b> {{ stockPrices[stock.ticker].price * stock.quantity | currency }}</li>
-				<li class="list-group-item">
-					<b>Purchase Price:</b> {{stock.purchaseValue | currency}}</li>
-			</ul>
-			<div class="card-footer">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</div>
-		</div>
-	</div>
+	<table class="table striped" style="max-width: 60rem">
+		<thead>
+			<tr>
+				<th scope="col">Ticker</th>
+				<th scope="col">Price</th>
+				<th scope="col">% Change</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Gain</th>
+				<th scope="col">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let stock of stocks">
+				<th>{{ stock.ticker }}</th>
+				<td>{{ stockPrices[stock.ticker]?.price | currency }}</td>
+				<td [class.text-success]="getPercentChange(stock) > 0"
+						[class.text-danger]="getPercentChange(stock) < 0">
+					{{ getPercentChange(stock) | percent: "1.2" }}
+				</td>
+				<td>{{ stock.quantity }}</td>
+				<td [class.text-success]="getStockGain(stock) > 0"
+						[class.text-danger]="getStockGain(stock) < 0">
+					{{ getStockGain(stock) | currency }}
+				</td>
+				<td>{{ getStockValue(stock) | currency }}</td>
+			</tr>
+		</tbody>
+	</table>
 </ng-container>
