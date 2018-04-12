@@ -1,7 +1,13 @@
-<h1 class="mat-display-1">Stocks Component</h1>
+<div class="container-fluid container-fluid--padding" *ngIf="stocks$ | async as stocks; else loading">
+	<h1>Stocks</h1>
 
-<vs-portfolio-stocks-list
-	[stocks]="stocks$ | async"
-	[stockPrices]="stockPrices$ | async">
-</vs-portfolio-stocks-list>
-<p>Portfolio Cash: {{ (portfolio$ | async).cash | currency }}</p>
+	<vs-portfolio-stocks-list
+		[stocks]="stocks$ | async"
+		[stockPrices]="stockPrices$ | async">
+	</vs-portfolio-stocks-list>
+	<p>Portfolio Cash: {{ (portfolio$ | async).cash | currency }}</p>
+</div>
+
+<ng-template #loading>
+	<div class="loading-spinner"></div>
+</ng-template>
