@@ -1,6 +1,5 @@
 <div class="container-fluid container-fluid--padding" *ngIf="stocks$ | async as stocks; else loading">
-	<h1>Stocks</h1>
-	<h3>Portfolio Cash: <span class="text-success">{{ (portfolio$ | async).cash | currency }}</span></h3>
+	<h1 class="font-weight-normal mb-4">Stocks</h1>
 	<vs-portfolio-stocks-list
 		[stocks]="stocks"
 		[stockPrices]="stockPrices$ | async">
