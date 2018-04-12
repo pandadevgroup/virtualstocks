@@ -1,7 +1,27 @@
 <ng-container *ngIf="stockPrices">
-	<p *ngFor="let stock of stocks">
-		{{ stock.quantity }} shares of <b>{{ stock.ticker }}</b>.
-		Purchase value: <b>{{ stock.purchaseValue | currency }}</b>.
-		Current value: <b>{{ stockPrices[stock.ticker].price * stock.quantity | currency }}</b>.
-	</p>
+	
+	<div class="card-deck">
+		<div class="card" *ngFor="let stock of stocks">
+			<div class="card-header">
+				{{stock.ticker}}
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Amazon, INC.</h5>
+
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<b>Shares:</b> {{stock.quantity}}</li>
+				<li class="list-group-item">
+					<b>Current Price:</b> {{ stockPrices[stock.ticker].price | currency }}</li>
+				<li class="list-group-item">
+					<b>Current Total Value:</b> {{ stockPrices[stock.ticker].price * stock.quantity | currency }}</li>
+				<li class="list-group-item">
+					<b>Purchase Price:</b> {{stock.purchaseValue | currency}}</li>
+			</ul>
+			<div class="card-footer">
+				<small class="text-muted">Last updated 3 mins ago</small>
+			</div>
+		</div>
+	</div>
 </ng-container>
