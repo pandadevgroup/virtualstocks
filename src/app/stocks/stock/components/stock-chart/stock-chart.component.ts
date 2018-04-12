@@ -33,7 +33,15 @@ export class StockChartComponent {
 	options = {
 		elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 5 } },
 		responsive: true,
-		animation: false
+		maintainAspectRatio: false,
+		animation: false,
+		scales: {
+			yAxes: [{
+				ticks: {
+					// display: false
+				}
+			}]
+		}
 	};
 
 	private updateChartData(chart: StockChart | null) {
