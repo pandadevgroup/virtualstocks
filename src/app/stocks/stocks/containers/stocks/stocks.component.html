@@ -2,7 +2,7 @@
 	<h1>Stocks</h1>
 
 	<vs-portfolio-stocks-list
-		[stocks]="stocks$ | async"
+		[stocks]="stocks"
 		[stockPrices]="stockPrices$ | async">
 	</vs-portfolio-stocks-list>
 	<p>Portfolio Cash: {{ (portfolio$ | async).cash | currency }}</p>
