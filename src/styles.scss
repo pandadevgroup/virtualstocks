@@ -6,8 +6,12 @@ body {
 }
 
 .container-fluid--padding {
-    padding: 2rem;
-    padding-top: 1.5rem;
+    padding: 3rem;
+	padding-top: 1.5rem;
+
+	@media(max-width: 900px) {
+		padding: 2rem;
+	}
 }
 
 accordion-group .card-header {
