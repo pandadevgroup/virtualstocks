@@ -2,12 +2,11 @@ import { Component } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 
-import { Stock, PortfolioStock, BatchStockData } from "@app/stocks";
+import { Stock, PortfolioStock, BatchStockData, Portfolio } from "@app/stocks";
 
 import { Store } from "@ngrx/store";
 import * as fromRoot from "@app/core/store";
 import * as fromStocks from "@app/stocks/store";
-import * as fromPortfolio from "@app/stocks/store/reducers/portfolio.reducer";
 
 import { tap } from "rxjs/operators";
 
@@ -16,14 +15,14 @@ import { tap } from "rxjs/operators";
 	styleUrls: ["stocks.component.scss"]
 })
 export class StocksComponent {
-	portfolio$: Observable<fromPortfolio.PortfolioState>;
+	portfolio$: Observable<Portfolio>;
 	stocks$: Observable<PortfolioStock[]>;
 	stockPrices$: Observable<BatchStockData>;
 
 	constructor(private store: Store<fromRoot.State>) {}
 
 	ngOnInit() {
-		this.portfolio$ = this.store.select(fromStocks.getPortfolioState);
+		this.portfolio$ = this.store.select(fromStocks.getPortfolio);
 		this.stocks$ = this.store.select(fromStocks.getAllPortfolioStocks).pipe(
 			tap(stocks => {
 				const stockTickers = stocks.map(stock => stock.ticker);

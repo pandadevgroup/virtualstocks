@@ -3,9 +3,14 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 import * as fromContainers from "./containers";
+import { SharedModule } from "@app/stocks";
 
 const routes: Routes = [
-	{ path: "", pathMatch: "full", component: fromContainers.PortfolioComponent }
+	{
+		path: "",
+		pathMatch: "full",
+		component: fromContainers.PortfolioComponent
+	}
 ];
 
 @NgModule({
@@ -14,6 +19,7 @@ const routes: Routes = [
 	],
 	imports: [
 		CommonModule,
+		SharedModule,
 		RouterModule.forChild(routes)
 	]
 })
