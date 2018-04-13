@@ -1,9 +1,8 @@
 <div class="container-fluid container-fluid--padding">
-	<h1>Home Component</h1>
+	<h2 class="font-weight-normal mb-4">Dashboard</h2>
 
-	<vs-portfolio-stocks-list [stocks]="stocks$ | async"></vs-portfolio-stocks-list>
-
-	<a routerLink="/stocks">Stocks Page</a>
-	<a routerLink="/transactions">Transactions Page</a>
-	<a routerLink="/portfolio">Portfolio Page</a>
+	<vs-portfolio-stocks-list
+		[stocks]="stocks$ | async"
+		[stockPrices]="stockPrices$ | async">
+	</vs-portfolio-stocks-list>
 </div>
