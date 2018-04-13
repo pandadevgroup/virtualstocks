@@ -18,7 +18,7 @@ export interface StocksDataState {
 }
 
 export const initialState: StocksDataState = {
-	batchStocksData: {},
+	batchStocksData: null,
 	stockQuote: null,
 	stockChart: null,
 	stockCompanyInfo: null,
