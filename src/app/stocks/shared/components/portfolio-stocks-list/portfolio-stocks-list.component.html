@@ -1,13 +1,13 @@
-<ng-container *ngIf="stockPrices">
+<div class="table-responsive" *ngIf="stockPrices">
 	<table class="table striped" style="max-width: 60rem">
 		<thead>
 			<tr>
 				<th scope="col">Ticker</th>
 				<th scope="col">Price</th>
-				<th scope="col">% Change</th>
-				<th scope="col">Quantity</th>
-				<th scope="col">Gain</th>
-				<th scope="col">Value</th>
+				<th scope="col">% Gain</th>
+				<th scope="col" class="d-none d-sm-table-cell">Quantity</th>
+				<th scope="col" class="d-none d-sm-table-cell">Gain</th>
+				<th scope="col" class="d-none d-sm-table-cell">Value</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,13 +18,14 @@
 						[class.text-danger]="getPercentChange(stock) < 0">
 					{{ getPercentChange(stock) | percent: "1.2" }}
 				</td>
-				<td>{{ stock.quantity }}</td>
-				<td [class.text-success]="getStockGain(stock) > 0"
+				<td class="d-none d-sm-table-cell">{{ stock.quantity }}</td>
+				<td class="d-none d-sm-table-cell"
+						[class.text-success]="getStockGain(stock) > 0"
 						[class.text-danger]="getStockGain(stock) < 0">
 					{{ getStockGain(stock) | currency }}
 				</td>
-				<td>{{ getStockValue(stock) | currency }}</td>
+				<td class="d-none d-sm-table-cell">{{ getStockValue(stock) | currency }}</td>
 			</tr>
 		</tbody>
 	</table>
-</ng-container>
+</div>
