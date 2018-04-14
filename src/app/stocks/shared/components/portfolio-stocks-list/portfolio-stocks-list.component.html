@@ -1,4 +1,4 @@
-<div class="table-responsive" *ngIf="stockPrices">
+<div class="table-responsive" *ngIf="stockPrices && stocks.length > 0">
 	<table class="table striped" style="max-width: 60rem">
 		<thead>
 			<tr>
@@ -28,4 +28,7 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
+<div *ngIf="stocks && stocks.length === 0">
+	No stocks yet!
 </div>
