@@ -1,26 +1,25 @@
-<ng-container *ngIf="transactions$ | async as transactions">
-	<h3>{{ transactions.length }} Transactions</h3>
-	<div class="list-group">
+<div class="container-fluid container-fluid--padding" *ngIf="transactions$ | async as transactions">
+	<h2 class="font-weight-normal">{{ transactions.length }} Transactions</h2>
 
-		<a *ngFor="let transaction of transactions" 
-			class="transaction list-group-item {{transaction.error != null ? 'text-danger' : ''}}">
-			<span *ngIf="transaction.error != null">ERROR {{transaction.error}} | attempted to </span>
-			<b class="text-mutedd">{{ transaction.type }}</b>
-			<a routerLink="/stock/{{transaction.ticker}}" class="{{transaction.error != null ? 'text-danger' : ''}}">
-				{{transaction.ticker}}</a> | {{transaction.timestamp | date:'MMMM d, y, h:mm a'}} |
-			<span *ngIf="transaction.error == null">{{transaction.quantity}} 
-				share<span *ngIf="transaction.quantity != 1">s</span> for 
-				${{transaction.price*transaction.quantity}}(${{transaction.price}} each)
-			</span>
-			<span *ngIf="transaction.error != null">{{transaction.quantity}} share
-				<span *ngIf="transaction.quantity != 1">s</span>
-			</span>
-		</a>
-	</div>
-	<hr>
-	<div class="card">
-		<div class="card-body">
-			<pre>{{transactions | json}}</pre>
+	<div class="list-group">
+		<div *ngFor="let transaction of transactions"
+			class="transaction list-group-item"
+			[class.text-danger]="transaction.error">
+
+			<span *ngIf="transaction.error != null">Error: {{transaction.error}} ‒ attempted to </span>
+			<b>{{ transaction.type }}</b>
+			<a routerLink="/stock/{{ transaction.ticker }}"
+					[class.text-danger]="transaction.error">
+				{{transaction.ticker}}
+			</a>
+			‒
+			{{ transaction.quantity }} share<span *ngIf="transaction.quantity != 1">s</span>
+			<ng-container *ngIf="!transaction.error">
+				at {{ transaction.price | currency }} each
+				({{ transaction.price * transaction.quantity | currency }} total)
+			</ng-container>
+			‒
+			{{ transaction.timestamp | date:'MMMM d, y, h:mm a' }}
 		</div>
 	</div>
-</ng-container>
+</div>
