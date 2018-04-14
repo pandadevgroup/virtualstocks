@@ -7,6 +7,7 @@ export interface StockOrder {
 	fulfilled: boolean;
 	type: StockTransactionType;
 	limitPrice?: number;
+	timestamp: number;
 }
 
 export interface StockTransactionPayload {
@@ -15,4 +16,5 @@ export interface StockTransactionPayload {
 	quantity: number;
 	type: StockTransactionType;
 	limitPrice?: number;
+	timestamp: number;
 }

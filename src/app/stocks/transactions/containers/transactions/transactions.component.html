@@ -14,9 +14,12 @@
 			</a>
 			‒
 			{{ transaction.quantity }} share<span *ngIf="transaction.quantity != 1">s</span>
-			<ng-container *ngIf="!transaction.error">
+			<ng-container *ngIf="transaction.price">
 				at {{ transaction.price | currency }} each
 				({{ transaction.price * transaction.quantity | currency }} total)
+			</ng-container>
+			<ng-container *ngIf="!transaction.fulfilled">
+				(Pending)
 			</ng-container>
 			‒
 			{{ transaction.timestamp | date:'MMMM d, y, h:mm a' }}

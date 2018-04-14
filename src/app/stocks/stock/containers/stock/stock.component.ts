@@ -51,7 +51,8 @@ export class StockComponent implements OnInit, OnDestroy {
 			uid,
 			ticker: stock.ticker,
 			quantity,
-			type
+			type,
+			timestamp: Date.now()
 		}));
 	}
 

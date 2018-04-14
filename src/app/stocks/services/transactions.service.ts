@@ -13,7 +13,7 @@ export class TransactionsService {
 	constructor(private db: AngularFirestore, private authService: AuthService) {}
 
 	orderStock(order: StockOrder): Observable<any> {
-		const transactionsCollection = this.db.collection<StockOrder>("transactions");
+		const transactionsCollection = this.db.collection<StockTransaction>("transactions");
 		return Observable.fromPromise(transactionsCollection.add(order));
 	}
 
