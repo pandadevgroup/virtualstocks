@@ -1,0 +1,10 @@
+<div class="chart-container">
+	<canvas baseChart
+		[data]="chartData"
+		[labels]="chartLabels"
+		[options]="options"
+		chartType="pie"
+		*ngIf="chartData">
+	</canvas>
+	<div class="loading-spinner" *ngIf="chartData == null"></div>
+</div>
