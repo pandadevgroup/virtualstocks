@@ -1,14 +1,14 @@
 <div class="container-fluid container-fluid--padding" *ngIf="stocks$ | async as stocks; else loading">
 	<h2 class="font-weight-normal">My Portfolio</h2>
 	<div class="row">
-		<div class="col col-lg-3">
+		<div class="col col-lg-3 col-xl-2">
 			<vs-portfolio-composition-chart
 				[stocks]="stocks"
 				[stockPrices]="stockPrices$ | async"
 				[cash]="(portfolio$ | async).cash">
 			</vs-portfolio-composition-chart>
 		</div>
-		<div class="col col-lg-6">
+		<div class="col col-lg-6 col-xl-7">
 			<p>
 				Cash: <span class="text-success">{{ (portfolio$ | async).cash | currency }}</span><br>
 				Value: <span class="text-success">{{ 121312.33 | currency }}</span>
