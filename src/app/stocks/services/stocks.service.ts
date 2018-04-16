@@ -42,7 +42,6 @@ export class StocksService {
 	}
 
 	getStockChart(ticker: string, range: StockQueryRange = "1m"): Observable<StockChart> {
-
 		let simplify = range === "2y" || range === "5y";
 		const queryUrl = `https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}?chartSimplify=${simplify}`;
 
