@@ -34,6 +34,10 @@ export const getPortfolioError = createSelector(
 	getPortfolioState,
 	fromPortfolio.getPortfolioError
 );
+export const getPortfolioChart = createSelector(
+	getPortfolioState,
+	fromPortfolio.getPortfolioChart
+);
 export const getPortfolio = createSelector(
 	getPortfolioCash,
 	getAllPortfolioStocks,

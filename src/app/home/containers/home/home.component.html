@@ -1,6 +1,8 @@
 <div class="container-fluid container-fluid--padding">
 	<h2 class="font-weight-normal mb-4">Dashboard</h2>
 
+	<pre>{{ portfolioChart$ | async | json }}</pre>
+
 	<vs-portfolio-stocks-list
 		[stocks]="stocks$ | async"
 		[stockPrices]="stockPrices$ | async">

@@ -1,4 +1,4 @@
-import { PortfolioStock, Portfolio } from "@app/stocks";
+import { PortfolioStock, Portfolio, PortfolioChart } from "@app/stocks";
 
 import * as fromPortfolio from "../actions/portfolio.actions";
 
@@ -8,6 +8,7 @@ export interface PortfolioState {
 	loading: boolean;
 	cash: number;
 	error: any;
+	chart: PortfolioChart;
 }
 
 export const initialState: PortfolioState = {
@@ -15,7 +16,8 @@ export const initialState: PortfolioState = {
 	loaded: false,
 	loading: false,
 	cash: 0,
-	error: null
+	error: null,
+	chart: null
 };
 
 export function reducer(state = initialState, action: fromPortfolio.PortfolioAction): PortfolioState {
@@ -66,3 +68,4 @@ export const getPortfolioLoaded = (state: PortfolioState) => state.loaded;
 export const getPortfolioLoading = (state: PortfolioState) => state.loading;
 export const getPortfolioCash = (state: PortfolioState) => state.cash;
 export const getPortfolioError = (state: PortfolioState) => state.error;
+export const getPortfolioChart = (state: PortfolioState) => state.chart;
