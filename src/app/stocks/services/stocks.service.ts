@@ -79,7 +79,7 @@ export class StocksService {
 		return {
 			data: iexResponse.map((entry: any) => {
 				if (range === "1d") {
-					let value = (entry.marketAverage == 0 && entry.average == 0 ? prevNum : Math.max(entry.marketAverage, entry.average));
+					let value = (entry.marketAverage <= 0 && entry.average <= 0 ? prevNum : Math.max(entry.marketAverage, entry.average));
 					prevNum = value;
 					return {
 						label: entry.label,
