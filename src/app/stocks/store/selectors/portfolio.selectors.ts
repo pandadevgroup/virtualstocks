@@ -3,7 +3,7 @@ import { createSelector } from "@ngrx/store";
 import * as fromFeature from "../reducers";
 import * as fromPortfolio from "../reducers/portfolio.reducer";
 
-import { PortfolioStock, Portfolio } from "@app/stocks/models";
+import { PortfolioStock, Portfolio, StockChart } from "@app/stocks/models";
 
 export const getPortfolioState = createSelector(
 	fromFeature.getStocksState,
@@ -34,9 +34,19 @@ export const getPortfolioError = createSelector(
 	getPortfolioState,
 	fromPortfolio.getPortfolioError
 );
-export const getPortfolioChart = createSelector(
+export const getPortfolioStockChartEntities = createSelector(
 	getPortfolioState,
-	fromPortfolio.getPortfolioChart
+	fromPortfolio.getPortfolioStockChartEntities
+);
+export const getAllPortfolioStockCharts = createSelector(
+	getPortfolioStockChartEntities,
+	entities => Object.values(entities)
+);
+export const getPortfolioChart = createSelector(
+	getAllPortfolioStockCharts,
+	(charts): StockChart => {
+		return null;
+	}
 );
 export const getPortfolio = createSelector(
 	getPortfolioCash,
