@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BatchStockData, StockQuote, StockQueryRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions, StockSearchResults } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockQueryRange, StockChart, StockSearchResult, StockInfo, QueryStockInfoOptions, StockSearchResults, BatchStockChartData } from "@app/stocks/models";
 
 // Stock Search
 export const STOCK_SEARCH = "[Stocks] Stock Search";
@@ -92,6 +92,26 @@ export class QueryStockChartFail {
 	constructor(public payload: any) {}
 }
 
+// Batch Stock Chart
+export const QUERY_BATCH_STOCK_CHARTS = "[Stocks] Query Batch Stock Charts";
+export const QUERY_BATCH_STOCK_CHARTS_SUCCESS = "[Stocks] Query Batch Stock Charts Success";
+export const QUERY_BATCH_STOCK_CHARTS_FAIL = "[Stocks] Query Batch Stock Charts Fail";
+
+export class QueryBatchStockCharts {
+	readonly type = QUERY_BATCH_STOCK_CHARTS;
+	constructor(public payload: { tickers: string[], range: StockQueryRange }) {}
+}
+
+export class QueryBatchStockChartsSuccess {
+	readonly type = QUERY_BATCH_STOCK_CHARTS_SUCCESS;
+	constructor(public payload: BatchStockChartData) {}
+}
+
+export class QueryBatchStockChartsFail {
+	readonly type = QUERY_BATCH_STOCK_CHARTS_FAIL;
+	constructor(public payload: any) {}
+}
+
 // Query Range
 export const SET_QUERY_RANGE = "[Stocks] Set Query Range";
 
@@ -115,4 +135,7 @@ export type StocksDataAction =
 	| QueryStockChart
 	| QueryStockChartSuccess
 	| QueryStockChartFail
-	| SetQueryRange;
+	| SetQueryRange
+	| QueryBatchStockCharts
+	| QueryBatchStockChartsSuccess
+	| QueryBatchStockChartsFail;

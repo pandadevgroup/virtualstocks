@@ -313,6 +313,10 @@ export interface StockInfo {
 	stockStats: StockStats
 }
 
+export interface BatchStockChartData {
+	[ticker: string]: StockChart;
+}
+
 export interface QueryStockInfoOptions {
 	ticker: string;
 	range?: StockQueryRange;
