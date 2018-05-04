@@ -47,6 +47,16 @@ export class StocksDataEffects {
 	);
 
 	@Effect()
+	queryBatchStockCharts$ = this.actions$.ofType(fromActions.QUERY_BATCH_STOCK_CHARTS).pipe(
+		switchMap((action: fromActions.QueryBatchStockCharts) =>
+			this.stocksService.getBatchStockCharts(action.payload.tickers, action.payload.range).pipe(
+				map(data => new fromActions.QueryBatchStockChartsSuccess(data)),
+				catchError(error => of(new fromActions.QueryBatchStockChartsFail(error)))
+			)
+		)
+	)
+
+	@Effect()
 	stockSearch$ = this.actions$.ofType(fromActions.STOCK_SEARCH).pipe(
 		switchMap((action: fromActions.StockSearch) =>
 			this.stocksService.runStockSearch(action.payload).pipe(

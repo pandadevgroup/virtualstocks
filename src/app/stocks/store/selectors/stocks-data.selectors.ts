@@ -13,6 +13,11 @@ export const getBatchStocksData = createSelector(
 	fromStocks.getBatchStocksData
 );
 
+export const getBatchStockChartsData = createSelector(
+	getStocksDataState,
+	fromStocks.getBatchStockChartsData
+);
+
 export const getStockQuote = createSelector(
 	getStocksDataState,
 	fromStocks.getStockQuote

@@ -1,8 +1,9 @@
 import * as fromStocks from "../actions/stocks-data.actions";
-import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange, StockStats, StockSearchResults } from "@app/stocks/models";
+import { BatchStockData, StockQuote, StockChart, StockSearchResult, StockCompanyInfo, StockDividendInfo, StockEarningsInfo, StockFinancialsInfo, StockNews, StockSplit, StockQueryRange, StockStats, StockSearchResults, BatchStockChartData } from "@app/stocks/models";
 
 export interface StocksDataState {
 	batchStocksData: BatchStockData,
+	batchStockChartsData: BatchStockChartData,
 	stockQuote: StockQuote,
 	stockChart: StockChart,
 	stockCompanyInfo: StockCompanyInfo,
@@ -19,6 +20,7 @@ export interface StocksDataState {
 
 export const initialState: StocksDataState = {
 	batchStocksData: null,
+	batchStockChartsData: null,
 	stockQuote: null,
 	stockChart: null,
 	stockCompanyInfo: null,
@@ -43,6 +45,19 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 			};
 		}
 		case fromStocks.QUERY_BATCH_STOCK_PRICES_FAIL: {
+			return {
+				...state,
+				error: action.payload
+			};
+		}
+		case fromStocks.QUERY_BATCH_STOCK_CHARTS_SUCCESS: {
+			return {
+				...state,
+				batchStockChartsData: action.payload,
+				error: null
+			};
+		}
+		case fromStocks.QUERY_BATCH_STOCK_CHARTS_FAIL: {
 			return {
 				...state,
 				error: action.payload
@@ -129,6 +144,7 @@ export function reducer(state = initialState, action: fromStocks.StocksDataActio
 }
 
 export const getBatchStocksData = (state: StocksDataState) => state.batchStocksData;
+export const getBatchStockChartsData = (state: StocksDataState) => state.batchStockChartsData;
 export const getStockQuote = (state: StocksDataState) => state.stockQuote;
 export const getStockChart = (state: StocksDataState) => state.stockChart;
 export const getStockCompanyInfo = (state: StocksDataState) => state.stockCompanyInfo;

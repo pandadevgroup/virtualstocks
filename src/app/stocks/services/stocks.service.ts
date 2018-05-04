@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
 
-import { BatchStockData, StockInfo, StockQuote, StockChart, StockQueryRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions, IEXDayChartEntry, IEXChartEntry, StockSearchResults } from "@app/stocks/models";
+import { BatchStockData, StockInfo, StockQuote, StockChart, StockQueryRange, IEXMonthChartEntry, StockSearchResult, QueryStockInfoOptions, IEXDayChartEntry, IEXChartEntry, StockSearchResults, BatchStockChartData } from "@app/stocks/models";
 
 @Injectable()
 export class StocksService {
@@ -48,6 +48,22 @@ export class StocksService {
 		return this.http
 			.get<IEXChartEntry[]>(queryUrl).pipe(
 				map(response => this.parseChart(response, range))
+			);
+	}
+
+	getBatchStockCharts(tickers: string[], range: StockQueryRange = "1d"): Observable<BatchStockChartData> {
+		let simplify = range === "2y" || range === "5y";
+		const queryUrl = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickers.join(",")}&types=chart&range=${range}&chartSimplify=${simplify}`;
+
+		return this.http
+			.get<{ [ticker: string]: { chart: IEXChartEntry[] } }>(queryUrl).pipe(
+				map(response => {
+					let parsed = {};
+					for (let ticker of Object.keys(response)) {
+						parsed[ticker] = this.parseChart(response[ticker].chart, range);
+					}
+					return parsed;
+				})
 			);
 	}
 

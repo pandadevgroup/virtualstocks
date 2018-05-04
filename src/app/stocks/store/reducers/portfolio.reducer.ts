@@ -17,7 +17,7 @@ export const initialState: PortfolioState = {
 	loading: false,
 	cash: 0,
 	error: null,
-	stockChartEntities: null
+	stockChartEntities: {}
 };
 
 export function reducer(state = initialState, action: fromPortfolio.PortfolioAction): PortfolioState {
@@ -68,4 +68,3 @@ export const getPortfolioLoaded = (state: PortfolioState) => state.loaded;
 export const getPortfolioLoading = (state: PortfolioState) => state.loading;
 export const getPortfolioCash = (state: PortfolioState) => state.cash;
 export const getPortfolioError = (state: PortfolioState) => state.error;
-export const getPortfolioStockChartEntities = (state: PortfolioState) => state.stockChartEntities;
