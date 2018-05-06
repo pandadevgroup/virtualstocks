@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, Input, ChangeDetectorRef, HostListener } from "@angular/core";
 
 import { StockChart } from "@app/stocks/models";
 
@@ -42,13 +42,16 @@ export class StockChartComponent {
 		animation: false,
 		scales: {
 			xAxes: [{
+				ticks: {
+					display: true
+				},
 				gridLines: {
 					display:false
 				}
 			}],
 			yAxes: [{
 				ticks: {
-					// display: false
+					display: true
 				},
 				gridLines: {
 					display:false
@@ -60,6 +63,20 @@ export class StockChartComponent {
 			intersect: false
 		}
 	};
+
+	@HostListener('window:resize', ['$event'])
+	onResize(event) {
+		let width = event.target.innerWidth;
+		if (width < 768 && this.options.scales.yAxes[0].ticks.display) {
+			this.options = { ...this.options };
+			this.options.scales.yAxes[0].ticks.display = false;
+			this.options.scales.xAxes[0].ticks.display = false;
+		} else if (width >= 768 && !this.options.scales.yAxes[0].ticks.display) {
+			this.options = { ...this.options };
+			this.options.scales.yAxes[0].ticks.display = true;
+			this.options.scales.xAxes[0].ticks.display = true;
+		}
+	}
 
 	private updateChartData(chart: StockChart | null) {
 		if (chart == null) return this.chartData = null;
