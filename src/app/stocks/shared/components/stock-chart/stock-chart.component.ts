@@ -77,7 +77,7 @@ export class StockChartComponent {
 		this.lineCount = lineCount;
 
 		chart.data.forEach(dataPoint => {
-			chartData.push(dataPoint.value);
+			chartData.push(dataPoint.value.toFixed(2));
 			chartLabels.push(dataPoint.label);
 
 			if (showPrevClose) {
