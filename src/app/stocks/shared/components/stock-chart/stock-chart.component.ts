@@ -41,11 +41,19 @@ export class StockChartComponent {
 		maintainAspectRatio: false,
 		animation: false,
 		scales: {
+			xAxes: [{
+				gridLines: {
+					display:false
+				}
+			}],
 			yAxes: [{
 				ticks: {
 					// display: false
+				},
+				gridLines: {
+					display:false
 				}
-			}]
+			}],
 		},
 		tooltips: {
 			mode: "index",
