@@ -14,14 +14,6 @@ export class StockChartComponent {
 	@Input() set chart(data: StockChart) {
 		this.updateChartData(data);
 	}
-	/**
-	 * ng2-charts has an issue where it crashes if the number of drawn lines
-	 * decreases. This happens when we switch from a 1-day view to a 1-month view.
-	 * See: https://github.com/valor-software/ng2-charts/issues/424
-	 *
-	 * To fix this, if the line count decreases, then "redraw" the graph.
-	 */
-	private lineCount: number = 0;
 
 	constructor(private ref: ChangeDetectorRef) {}
 
@@ -80,6 +72,11 @@ export class StockChartComponent {
 
 	private updateChartData(chart: StockChart | null) {
 		if (chart == null) return this.chartData = null;
+		if (this.chartData != null) {
+			this.chartData = null;
+			this.ref.markForCheck();
+			return setTimeout(() => this.updateChartData(chart), 0);
+		}
 
 		let chartData = [];
 		let chartLabels = [];
@@ -89,22 +86,6 @@ export class StockChartComponent {
 		if (showPrevClose) {
 			chartCloseData = [];
 		}
-
-		/**
-		 * ng2-charts has an issue where it crashes if the number of drawn lines
-		 * decreases. This happens when we switch from a 1-day view to a 1-month view.
-		 * See: https://github.com/valor-software/ng2-charts/issues/424
-		 *
-		 * To fix this, if the line count decreases, then "redraw" the graph.
-		 */
-		let lineCount = showPrevClose ? 2 : 1;
-		if (lineCount < this.lineCount) {
-			this.lineCount = lineCount;
-			this.chartData = null;
-			this.ref.markForCheck();
-			return setTimeout(() => this.updateChartData(chart), 0);
-		}
-		this.lineCount = lineCount;
 
 		chart.data.forEach(dataPoint => {
 			chartData.push(dataPoint.value.toFixed(2));

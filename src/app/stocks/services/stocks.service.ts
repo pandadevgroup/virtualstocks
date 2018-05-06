@@ -53,7 +53,7 @@ export class StocksService {
 
 	getBatchStockCharts(tickers: string[], range: StockQueryRange = "1d"): Observable<BatchStockChartData> {
 		let simplify = range === "2y" || range === "5y";
-		let interval = 5;
+		let interval = range === "1d" ? 5 : 1;
 		const queryUrl = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickers.join(",")}&types=chart&range=${range}&chartSimplify=${simplify}&chartInterval=${interval}`;
 
 		return this.http

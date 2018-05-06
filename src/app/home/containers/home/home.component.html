@@ -2,6 +2,7 @@
 	<h2 class="font-weight-normal mb-4">Dashboard</h2>
 
 	<vs-stock-chart [chart]="portfolioChart$ | async" ticker="Portfolio Value"></vs-stock-chart>
+	<vs-stock-chart-range [chartRange]="chartRange" (chartRangeChange)="onChartRangeChange($event)"></vs-stock-chart-range>
 
 	<vs-portfolio-stocks-list
 		[stocks]="stocks$ | async"
