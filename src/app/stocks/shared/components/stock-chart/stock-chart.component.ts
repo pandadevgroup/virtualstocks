@@ -31,7 +31,12 @@ export class StockChartComponent {
 		display: false
 	};
 	options = {
-		elements: { point: { radius: 0 } },
+		elements: {
+			point: { radius: 0 },
+			line: {
+				tension: 0
+			}
+		},
 		responsive: true,
 		maintainAspectRatio: false,
 		animation: false,
@@ -45,7 +50,7 @@ export class StockChartComponent {
 		tooltips: {
 			mode: "index",
 			intersect: false
-		},
+		}
 	};
 
 	private updateChartData(chart: StockChart | null) {
