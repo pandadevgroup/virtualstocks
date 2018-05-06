@@ -1,11 +1,15 @@
 <div class="container-fluid container-fluid--padding">
 	<h2 class="font-weight-normal mb-4">Dashboard</h2>
 
-	<vs-stock-chart [chart]="portfolioChart$ | async" ticker="Portfolio Value"></vs-stock-chart>
-	<vs-stock-chart-range [chartRange]="chartRange" (chartRangeChange)="onChartRangeChange($event)"></vs-stock-chart-range>
+	<ng-container *ngIf="stocks$ | async as stocks">
+		<ng-container *ngIf="stocks.length > 0">
+			<vs-stock-chart [chart]="portfolioChart$ | async" ticker="Portfolio Value"></vs-stock-chart>
+			<vs-stock-chart-range [chartRange]="chartRange" (chartRangeChange)="onChartRangeChange($event)"></vs-stock-chart-range>
+		</ng-container>
 
-	<vs-portfolio-stocks-list
-		[stocks]="stocks$ | async"
-		[stockPrices]="stockPrices$ | async">
-	</vs-portfolio-stocks-list>
+		<vs-portfolio-stocks-list
+			[stocks]="stocks"
+			[stockPrices]="stockPrices$ | async">
+		</vs-portfolio-stocks-list>
+	</ng-container>
 </div>
