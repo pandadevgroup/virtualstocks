@@ -28,7 +28,7 @@ export class StockChartComponent {
 	chartData = null;
 	chartLabels = null;
 	legend = {
-		display:false
+		display: false
 	};
 	options = {
 		elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 5 } },

@@ -3,13 +3,12 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { Routes, RouterModule } from "@angular/router";
 
-import "chart.js";
-import { ChartsModule } from "ng2-charts";
-
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 import * as fromContainers from "./containers";
 import * as fromComponents from "./components";
+
+import { SharedModule } from "../shared";
 
 const routes: Routes = [
 	{ path: "", pathMatch: "full", component: fromContainers.StockComponent }
@@ -25,9 +24,9 @@ const routes: Routes = [
 		RouterModule.forChild(routes),
 		ReactiveFormsModule,
 
-		AccordionModule.forRoot(),
+		SharedModule,
 
-		ChartsModule
+		AccordionModule.forRoot()
 	],
 	providers: []
 })
